@@ -1,18 +1,50 @@
-.whole-navbar {
-  width: 100%;
+.navbar {
   display: flex;
   flex-direction: column;
-  background-color: black;
-  opacity: 0.6;
-  color: white;
+  background-color: rgba(0, 0, 0, 0.662);
+  height: 7rem;
+  
 }
-.top-navbar {
+.logo_profil {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 4%;
+
+
 }
-.bottom-navbar {
+.logo{
+  font-size: 26px;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.button-filter{
+  font-size: 11px;
+  text-decoration: none;
+  color: #FFFFFF;
+
+  
+}
+
+.genre-film-series{
+  display: flex;
+  flex-direction: row;
+  gap: 25%;
+  
+
+}
+.button-watchlist{
+  font-size: 11px;
+  text-decoration: none;
+  color: #FFFFFF;
+  
+}
+
+
+.filter_content{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  padding: 4%;
 }
