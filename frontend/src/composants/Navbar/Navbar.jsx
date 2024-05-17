@@ -1,35 +1,34 @@
-
 import { Link } from "react-router-dom";
+import ProfilIcon from "../../assets/images/Profilicon.png";
 import "./navbar.css";
 
 function Navbar() {
   return (
     <div className="navbar">
       <div className="logo_profil">
-      <Link to="/" className="logo">
-        <p >CINÉREVIEW</p>
+        <Link to="/" className="button-filter-link">
+          <p className="logo">CINÉREVIEW</p>
         </Link>
         <div className="search">loupe </div>
-        <Link to="/profil" className="button-profil">
-          <p>Profil</p>
+        <Link to="/profil">
+          <img className="profil-icon" src={ProfilIcon} alt="ProfilIcon" />
         </Link>
       </div>
 
-
       <div className="filter_content">
         <div className="genre-film-series">
-      <Link to="/profil" className="button-filter">
-          <p>FILMS</p>
-        </Link>
-        <Link to="/series" className="button-filter">
-          <p>SERIES</p>
-        </Link>
-        <Link to="/genre" className="button-filter">
-          <p>GENRE</p>
-        </Link>
+          <Link to="/movieslist" className="button-filter-link">
+            <p className="button-filter">MOVIES</p>
+          </Link>
+          <Link to="/serieslist" className="button-filter-link">
+            <p className="button-filter">SERIES</p>
+          </Link>
+          <Link to="/genrelist" className="button-filter-link">
+            <p className="button-filter">GENRE</p>
+          </Link>
         </div>
-        <Link to="/watchlist" className="button-watchlist">
-          <p>WATCHLIST</p>
+        <Link to="/watchlist" className="button-filter-link">
+          <p className="button-filter">WATCHLIST</p>
         </Link>
       </div>
     </div>
