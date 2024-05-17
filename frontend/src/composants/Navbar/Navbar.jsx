@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ProfilIcon from "../../assets/images/Profilicon.png";
+import SearchIcon from "../../assets/images/Searchicon.png";
 import "./navbar.css";
 
 function Navbar() {
@@ -9,10 +10,12 @@ function Navbar() {
         <Link to="/" className="button-filter-link">
           <p className="logo">CINÉREVIEW</p>
         </Link>
-        <div className="search">loupe </div>
-        <Link to="/profil">
-          <img className="profil-icon" src={ProfilIcon} alt="ProfilIcon" />
-        </Link>
+        <div className="search-profil">
+          <img className="search-icon" src={SearchIcon} alt="SearchIcon" />
+          <Link to="/profil">
+            <img className="profil-icon" src={ProfilIcon} alt="ProfilIcon" />
+          </Link>
+        </div>
       </div>
 
       <div className="filter_content">
