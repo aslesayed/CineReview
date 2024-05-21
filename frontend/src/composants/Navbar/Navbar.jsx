@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProfilIcon from "../../assets/images/Profilicon.png";
-import SearchIcon from "../../assets/images/Searchicon.png";
 import "./navbar.css";
+import SearchBar from "../SearchBar/SearchBar.jsx";
 
 function Navbar() {
   return (
@@ -11,7 +11,7 @@ function Navbar() {
           <p className="logo">CINÉREVIEW</p>
         </Link>
         <div className="search-profil">
-          <img className="search-icon" src={SearchIcon} alt="SearchIcon" />
+          <SearchBar />
           <Link to="/profil">
             <img className="profil-icon" src={ProfilIcon} alt="ProfilIcon" />
           </Link>

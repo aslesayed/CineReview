@@ -13,7 +13,7 @@
   padding: 4%;
 }
 .logo {
-  font-size: 27px;
+  font-size: 28px;
   color: #ffffff;
   font-family: "Bebas Neue", sans-serif;
   letter-spacing: 1px;
@@ -50,6 +50,7 @@
 }
 .search-profil {
   display: flex;
-  width: 14.5%;
   justify-content: space-between;
+  align-items: center;
+  gap: 2%;
 }
