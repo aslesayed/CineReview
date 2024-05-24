@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ProfilIcon from "../../assets/images/Profilicon.png";
 import "./navbar.css";
 import SearchBar from "../SearchBar/SearchBar.jsx";
+import FilterGenre from "../FilterGenre/FilterGenre.jsx";
 
 function Navbar() {
   return (
@@ -26,9 +27,7 @@ function Navbar() {
           <Link to="/serieslist" className="button-filter-link">
             <p className="button-filter">SERIES</p>
           </Link>
-          <Link to="/genrelist" className="button-filter-link">
-            <p className="button-filter">GENRE</p>
-          </Link>
+          <FilterGenre />
         </div>
         <Link to="/watchlist" className="button-filter-link">
           <p className="button-filter">WATCHLIST</p>

@@ -1,0 +1,43 @@
+.filter-genre {
+  position: relative;
+}
+
+.button-filter {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.genre-list {
+  position: fixed; /* Change to fixed to take full screen height */
+  top: 0;
+  left: 0;
+  width: 335px;
+  height: 100vh; /* Full height */
+  background-color: rgba(0, 0, 0, 0.86);
+  border-radius: 0; /* Remove border-radius for full screen effect */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Enable scrolling if needed */
+  z-index: 1000; /* Ensure it appears on top */
+}
+
+.genre-item {
+  padding: 20px 80px; /* Increased padding for better spacing */
+  cursor: pointer;
+  color: #ffffff;
+  margin-top: 3rem;
+  text-decoration: underline;
+}
+
+.genre-item:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Adjust hover color for better contrast */
+}
