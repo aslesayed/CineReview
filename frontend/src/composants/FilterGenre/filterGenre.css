@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
 .filter-genre {
   position: relative;
 }
@@ -13,9 +14,9 @@
   position: fixed; /* Change to fixed to take full screen height */
   top: 0;
   left: 0;
-  width: 335px;
+  width: 305px;
   height: 100vh; /* Full height */
-  background-color: rgba(0, 0, 0, 0.86);
+  background-color: rgba(0, 0, 0, 0.76);
   border-radius: 0; /* Remove border-radius for full screen effect */
   padding: 0;
   margin: 0;
@@ -23,14 +24,21 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-y: auto; /* Enable scrolling if needed */
   z-index: 1000; /* Ensure it appears on top */
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Column direction */
+  justify-content: center; /* Center items vertically */
 }
 
 .genre-item {
-  padding: 20px 80px; /* Increased padding for better spacing */
+  padding: 24px 80px ; /* Increased padding for better spacing */
   cursor: pointer;
-  color: #ffffff;
-  margin-top: 3rem;
+  color: #aeaeae;
+
+  font-size: 18px;
+  margin: 12px 0; /* Adjusted margin for better spacing */
   text-decoration: underline;
+  font-family: "Inter", sans-serif;
+  text-underline-offset: 4px;
 }
 
 .genre-item:hover {
