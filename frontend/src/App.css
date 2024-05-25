@@ -1,0 +1,9 @@
+.body {
+  background: linear-gradient(to bottom, rgba(26, 11, 11, 0.5) 53%, #200b0b 50%),
+    url("./assets/images/BackgroundMobile.png");
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+}
