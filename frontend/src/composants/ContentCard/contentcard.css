@@ -1,0 +1,54 @@
+.content-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.content-card {
+  position: relative;
+  width: 200px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+
+.content-image {
+  width: 100%;
+  height: auto;
+}
+
+.content-details {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgb(0, 0, 0);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.genre {
+  font-size: 14px;
+  border: 1px solid #aeaeae;
+  padding: 2px;
+  border-radius: 12px;
+  width: 58px;
+  height: 18px;
+}
+
+.rating {
+  font-size: 14px;
+}
+
+.add-to-favorites {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}

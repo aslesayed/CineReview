@@ -1,7 +1,9 @@
+import ContentCard from "../../composants/ContentCard/ContentCard";
 import "./homepage.css";
 
 function Homepage() {
-  return <div>Homepage</div>;
+  return <div> <ContentCard/>
+  </div>;
 }
 
 export default Homepage;
