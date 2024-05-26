@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./contentcard.css";
 
 const fakeData = [
@@ -38,23 +39,31 @@ const ContentCard = () => {
   return (
     <div className="content-list">
       {fakeData.map((content) => (
-        <div key={content.id} className="content-card">
-          <img
-            src={content.image}
-            alt="Content Poster"
-            className="content-image"
-          />
-          <div className="content-details">
-            <div className="genre">{content.genre}</div>
-            <div className="rating">{content.rating} ★</div>
-            <button
-              className="add-to-favorites"
-              onClick={() => handleAddToFavorites(content.id)}
-            >
-              +
-            </button>
+        <Link to="/description" key={content.id} className="content-card-link">
+          <div className="content-card">
+            <img
+              src={content.image}
+              alt="Content Poster"
+              className="content-image"
+            />
+            <div className="content-details">
+              <div className="genre-rating-container">
+                <div className="genre">{content.genre}</div>
+                <div className="rating">{content.rating} ★</div>
+              </div>
+              <button
+                className="add-to-favorites"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleAddToFavorites(content.id);
+                }}
+              >
+                +
+              </button>
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
