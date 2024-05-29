@@ -13,41 +13,36 @@
 }
 
 .genre-list {
-  position: fixed; /* Change to fixed to take full screen height */
+  position: fixed;
   top: 0;
   left: 0;
   width: 303px;
-  height: 100vh; /* Full height */
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.94);
-  border-radius: 0; /* Remove border-radius for full screen effect */
+  border-radius: 0;
   padding: 0;
   margin: 0;
   list-style: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; /* Enable scrolling if needed */
-  z-index: 1000; /* Ensure it appears on top */
-  display: flex; /* Use flexbox */
-  flex-direction: column; /* Column direction */
-  justify-content: center; /* Center items vertically */
+  overflow-y: auto;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .genre-item {
-  padding: 24px 80px; /* Increased padding for better spacing */
+  padding: 24px 80px;
   cursor: pointer;
   color: #aeaeae;
 
   font-size: 16px;
-  margin: 12px 0; /* Adjusted margin for better spacing */
+  margin: 12px 0;
   text-decoration: underline;
   font-family: "Inter", sans-serif;
   text-underline-offset: 4px;
 }
 
 .genre-item:hover {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.1
-  ); /* Adjust hover color for better contrast */
+  background-color: rgba(255, 255, 255, 0.1);
 }

@@ -6,13 +6,16 @@ import Footer from "./composants/Footer/Footer";
 
 function App() {
   const location = useLocation();
-  const showNavbar = location.pathname !== "/inscription";
+  // const showNavbar = location.pathname !== "/inscription";
+  // const showFooter = location.pathname !== "/inscription";
+  const hideComponents = location.pathname === "/inscription" || location.pathname === "/connection";
 
   return (
     <div className="body">
-      {showNavbar && <Navbar />}
+      {!hideComponents && <Navbar />}
+      {!hideComponents &&  <Footer />}
       <Outlet />
-      <Footer />
+     
     </div>
   );
 }
