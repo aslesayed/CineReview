@@ -1,0 +1,18 @@
+.create-account-link {
+  display: flex;
+  gap: 1%;
+  width: 100%;
+  justify-content: center;
+  align-items: baseline;
+}
+.form-connection {
+  background-color: rgba(0, 0, 0, 0.76);
+  color: #b5b5b5;
+  width: 308px;
+  height: 255px;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+}
