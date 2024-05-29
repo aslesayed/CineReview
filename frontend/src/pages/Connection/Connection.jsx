@@ -1,7 +1,7 @@
 import "./connection.css";
 
 function Connection() {
-  return <div>Connection</div>;
+  return <div>Connectionz</div>;
 }
 
 export default Connection;
