@@ -32,7 +32,7 @@ function FilterGenre() {
 
   return (
     <div className="filter-genre" ref={ref}>
-      <p className="button-filter" onClick={toggleDropdown}>
+      <p className="button-filter-genre" onClick={toggleDropdown}>
         GENRE {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </p>
       {isOpen && (
