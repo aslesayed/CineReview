@@ -3,18 +3,20 @@
   position: relative;
 }
 
-.button-filter {
+.button-filter-genre {
   cursor: pointer;
   display: flex;
   align-items: center;
   color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
 }
 
 .genre-list {
   position: fixed; /* Change to fixed to take full screen height */
   top: 0;
   left: 0;
-  width: 305px;
+  width: 303px;
   height: 100vh; /* Full height */
   background-color: rgba(0, 0, 0, 0.94);
   border-radius: 0; /* Remove border-radius for full screen effect */
@@ -30,11 +32,11 @@
 }
 
 .genre-item {
-  padding: 24px 80px ; /* Increased padding for better spacing */
+  padding: 24px 80px; /* Increased padding for better spacing */
   cursor: pointer;
   color: #aeaeae;
 
-  font-size: 18px;
+  font-size: 16px;
   margin: 12px 0; /* Adjusted margin for better spacing */
   text-decoration: underline;
   font-family: "Inter", sans-serif;

@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 18px;
+  gap: 14px;
   padding: 20px;
 }
 
@@ -14,7 +14,6 @@
   height: 288px;
   overflow: hidden;
 
-
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -22,9 +21,9 @@
 }
 
 .content-image {
-  width: 122px;
+  width: 126px;
   height: 198px;
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .content-details {

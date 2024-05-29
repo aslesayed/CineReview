@@ -1,7 +1,7 @@
 import "./watchlist.css";
 
 function WatchList() {
-  return <div>WatchList</div>;
+  return <div>hdaieh</div>;
 }
 
 export default WatchList;
