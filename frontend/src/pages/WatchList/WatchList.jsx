@@ -1,7 +1,10 @@
+import ReviewSection from "../../composants/Reviews/ReviewSection.jsx";
 import "./watchlist.css";
 
 function WatchList() {
-  return <div>hdaieh</div>;
+  return (
+    <ReviewSection/>
+  );
 }
 
 export default WatchList;
