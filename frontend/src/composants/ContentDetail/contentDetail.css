@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
+
+.content-detail {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.content-card2 {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-card-link2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  text-decoration: none;
+  color: #b5b5b5;
+}
+
+.content-title {
+  font-size: 32px;
+  font-family: "Bebas Neue", sans-serif;
+  margin-top: 1.5rem;
+}
+
+.more-info {
+  margin-top: 10px;
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  color: #b5b5b5;
+}
+
+.content-description {
+  margin-bottom: 5px;
+  max-width: 332px;
+}
+
+.content-release {
+  margin-bottom: 5px;
+}
+
+.content-casting {
+  margin-bottom: 5px;
+}
+
+.horizontal-bar {
+  border-bottom: 1px solid #b5b5b5;
+  margin-bottom: 5px;
+}
+
+.type2 {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  border: 1.5px solid #b5b5b5;
+  padding: 3px 10px;
+  border-radius: 26px;
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-image2 {
+  width: 222px;
+  height: 305px;
+  margin-top: 10px;
+}
+
+.genre-rating-container2 {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  color: #b5b5b5;
+  margin-left: 80px;
+}
+
+.add-to-favorites2 {
+  background: none;
+  border: none;
+  color: #b5b5b5;
+  font-size: 34px;
+  cursor: pointer;
+  margin-left: 250px;
+}
+
+.rating2 {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  color: #b5b5b5;
+}
+
+.genre2 {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  border: 1.5px solid #b5b5b5;
+  padding: 3px 10px;
+  border-radius: 26px;
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
