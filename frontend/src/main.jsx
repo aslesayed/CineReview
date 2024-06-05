@@ -14,7 +14,6 @@ import WatchList from "./pages/WatchList/WatchList.jsx";
 import ContentManager from "./pages/ContentManager/ContentManager.jsx";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,7 +54,8 @@ const router = createBrowserRouter([
       {
         path: "/contentmanager",
         element: <ContentManager />,
-
+      },
+      {
         path: "/moviedetail",
         element: <MovieDetail />,
       },
