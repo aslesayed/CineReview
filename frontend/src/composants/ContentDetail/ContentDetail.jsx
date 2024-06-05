@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./contentDetail.css";
+import ReviewSection from "../ReviewSection/ReviewSection.jsx";
 
 const fakeData = [
   {
@@ -62,6 +63,7 @@ const ContentDetail = () => {
           </div>
         </div>
       ))}
+      <ReviewSection />
     </div>
   );
 };

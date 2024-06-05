@@ -30,13 +30,16 @@
   font-size: 32px;
   font-family: "Bebas Neue", sans-serif;
   margin-top: 1.5rem;
+  letter-spacing: 0.7px;
 }
 
 .more-info {
   margin-top: 10px;
-  font-size: 10px;
+  font-size: 12px;
   font-family: "Inter", sans-serif;
   color: #b5b5b5;
+  line-height: 1.5;
+  padding: 2%;
 }
 
 .content-description {
@@ -60,7 +63,7 @@
 .type2 {
   font-size: 14px;
   font-family: "Inter", sans-serif;
-  border: 1.5px solid #b5b5b5;
+  border: 1px solid #b5b5b5;
   padding: 3px 10px;
   border-radius: 26px;
   margin-right: 8px;
@@ -70,8 +73,8 @@
 }
 
 .content-image2 {
-  width: 222px;
-  height: 305px;
+  width: 220px;
+  height: 296px;
   margin-top: 10px;
 }
 
@@ -93,7 +96,7 @@
 }
 
 .rating2 {
-  font-size: 14px;
+  font-size: 13px;
   font-family: "Inter", sans-serif;
   color: #b5b5b5;
 }
@@ -101,7 +104,7 @@
 .genre2 {
   font-size: 14px;
   font-family: "Inter", sans-serif;
-  border: 1.5px solid #b5b5b5;
+  border: 1px solid #b5b5b5;
   padding: 3px 10px;
   border-radius: 26px;
   margin-right: 8px;
