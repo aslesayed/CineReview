@@ -11,7 +11,7 @@ const ReviewSection = () => {
     if (newReview.trim()) {
       const newReviewObj = {
         id: reviews.length + 1,
-        name: "User", 
+        name: "User",
         time: "Just now",
         text: newReview,
       };

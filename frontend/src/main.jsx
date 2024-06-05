@@ -11,6 +11,22 @@ import MoviesList from "./pages/MoviesList/MoviesList.jsx";
 import Profil from "./pages/Profil/Profil.jsx";
 import SeriesList from "./pages/SeriesList/SeriesList.jsx";
 import WatchList from "./pages/WatchList/WatchList.jsx";
+import ContentManager from "./pages/ContentManager/ContentManager.jsx";
+// import Loader from "./composants/Loader/Loader.jsx";
+
+// function PrivateRoute({ children }) {
+//   const { user, isLoading } = useUser();
+//   const [page, setPage] = useState(null);
+//   const redirect = useNavigate();
+//   const location = useLocation();
+//   useEffect(() => {
+//     if (isLoading) setPage(<Loader />);
+//     else if (!user) redirect("./login");
+//     else setPage(children);
+//     return () => setPage(null);
+//   }, [user, isLoading, location]);
+//   return page;
+// }
 
 const router = createBrowserRouter([
   {
@@ -48,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/watchlist",
         element: <WatchList />,
+      },
+      {
+        path: "/contentmanager",
+        element: <ContentManager />,
       },
     ],
   },

@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { FaRegEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import "./connection.css";
 
 function Connection() {
   const [inputValue, setInputValue] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -41,17 +44,32 @@ function Connection() {
           <input
             className="form-input"
             type="text"
-            placeholder="Email or Telephone"
+            placeholder="Email or Phone"
             value={inputValue}
             onChange={handleInputChange}
             required
           />
-          <input
-            className="form-input"
-            type="password"
-            placeholder="Password"
-            required
-          />
+          <div className="input-icon">
+            <input
+              className="form-input"
+              type={passwordVisible ? "text" : "password"}
+              placeholder="Password"
+              required
+            />
+            <div
+              onClick={() => setPasswordVisible((prevState) => !prevState)}
+              className="text_visible"
+              onKeyDown={() => setPasswordVisible((prevState) => !prevState)}
+              tabIndex="0"
+              role="button"
+            >
+              {passwordVisible ? (
+                <FaRegEye icon="gridicons:not-visible" width="20" />
+              ) : (
+                <FaEyeSlash icon="gridicons:visible" width="20" />
+              )}
+            </div>
+          </div>
 
           <button className="form-button" type="submit">
             Connect
