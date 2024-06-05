@@ -5,7 +5,8 @@ import Footer from "./composants/Footer/Footer";
 
 function App() {
   const location = useLocation();
-  const hideComponents = location.pathname === "/inscription" || location.pathname === "/connection";
+  const hideComponents =
+    location.pathname === "/inscription" || location.pathname === "/connection";
 
   return (
     <div className="body">
@@ -17,5 +18,3 @@ function App() {
 }
 
 export default App;
-
-
