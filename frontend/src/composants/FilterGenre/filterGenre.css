@@ -51,3 +51,16 @@
     0.1
   ); /* Adjust hover color for better contrast */
 }
+
+
+@media screen and (min-width: 1024px) {
+  
+  .button-filter-genre{
+    font-size: 14px;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0.3px;
+    font-weight: 300;
+  }
+  }

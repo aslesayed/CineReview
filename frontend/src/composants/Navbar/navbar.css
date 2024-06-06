@@ -6,12 +6,18 @@
   background-color: rgba(0, 0, 0, 0.66);
   height: 7.5rem;
 }
+
+.nav-block-dektop {
+  display: none;
+}
+
 .logo_profil {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 4%;
 }
+
 .logo {
   font-size: 28px;
   color: #ffffff;
@@ -26,8 +32,8 @@
   color: #ffffff;
   font-family: "Inter", sans-serif;
   letter-spacing: 0.3px;
- 
 }
+
 .button-filter-link {
   text-decoration: none;
 }
@@ -35,7 +41,7 @@
 .genre-film-series {
   display: flex;
   flex-direction: row;
-  gap: 25%;
+  gap: 23%;
 }
 
 .filter_content {
@@ -53,4 +59,56 @@
   justify-content: space-between;
   align-items: center;
   gap: 2%;
+}
+
+@media screen and (min-width: 1024px) {
+  .filter_content {
+    display: none;
+  }
+
+  .logo_profil {
+    display: none;
+  }
+  .filter_content {
+    padding: 0;
+  }
+
+  .navbar {
+    height: 5rem;
+    width: 100%;
+  }
+
+  .nav-block-dektop {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 12%;
+    margin-top: 35px;
+  }
+  .genre-film-series-dektop {
+    display: flex;
+    gap: 35%;
+    justify-content: flex-end;
+  }
+
+  .search-watch-pro-dektop {
+    display: flex;
+    gap: 38%;
+  }
+  .button-filter-dektop {
+    font-size: 14px;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0.3px;
+    font-weight: 300;
+  }
+
+  .heaher-logo-desktop {
+    font-size: 38px;
+    color: #ffffff;
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+    margin-top: -10px;
+  }
 }
