@@ -52,10 +52,8 @@
   ); /* Adjust hover color for better contrast */
 }
 
-
 @media screen and (min-width: 1024px) {
-  
-  .button-filter-genre{
+  .button-filter-genre {
     font-size: 13px;
     text-decoration: none;
     color: #ffffff;
@@ -69,12 +67,10 @@
     top: 0;
     left: 0;
     width: 40%;
-    background-color: rgba(0, 0, 0, 0.90);
+    background-color: rgba(0, 0, 0, 0.9);
   }
   .genre-item {
     font-size: 18px;
     margin: 13px 62px;
-
-
   }
 }
