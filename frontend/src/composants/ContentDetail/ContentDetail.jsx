@@ -12,7 +12,7 @@ const fakeData = [
     genre: "Action",
     rating: "8.3",
     description:
-      "Paul Atreides, a brilliant and gifted young man with a destiny greater than himself",
+      "Paul Atreides, a brilliant and gifted young man with a destiny greater than himself and whatever the fuck the story is i still like it and enjoyed it tho, and Timothée kinda gay not gonna lie",
     cast: "Cast : Zendaya, Thimothée Chalamet, Rebecca Ferguson",
     release: "Release Date : 15 September 2021",
   },
@@ -25,7 +25,7 @@ const ContentDetail = () => {
   };
 
   return (
-    <div className="content-detail">
+    <div className="details-block">
       {fakeData.map((content) => (
         <div key={content.id} className="content-card-link2">
           <div className="content-title">{content.title}</div>
@@ -35,7 +35,7 @@ const ContentDetail = () => {
               alt="Content Poster"
               className="content-image2"
             />
-            <div className="content-details">
+            <div className="content-details-info">
               <div className="genre-rating-container2">
                 <div className="type2">{content.type}</div>
                 <div className="genre2">{content.genre}</div>
@@ -54,6 +54,7 @@ const ContentDetail = () => {
             </div>
           </div>
           <div className="more-info">
+            <div className="content-title-dektop">{content.title}</div>
             <div className="content-description">{content.description}</div>
             <div className="horizontal-bar"></div>
             <div className="content-release">{content.release}</div>
