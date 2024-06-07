@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./contentDetail.css";
+import ReviewSection from "../ReviewSection/ReviewSection.jsx";
 
 const fakeData = [
   {
@@ -61,6 +62,7 @@ const ContentDetail = () => {
           </div>
         </div>
       ))}
+      <ReviewSection />
     </div>
   );
 };

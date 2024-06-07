@@ -1,7 +1,7 @@
 import "./serieslist.css";
 
 function SeriesList() {
-  return <div>SeriesList</div>;
+  return <div>fekthnr</div>;
 }
 
 export default SeriesList;

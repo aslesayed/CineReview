@@ -16,3 +16,14 @@
   flex-direction: column;
   font-family: "Inter", sans-serif;
 }
+.text_visible {
+  margin-left: -2rem;
+  margin-top: 1rem;
+  color: #848484;
+  cursor: pointer;
+}
+
+.input-icon {
+  display: flex;
+  flex-direction: row;
+}
