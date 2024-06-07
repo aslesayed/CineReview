@@ -56,7 +56,20 @@ const ContentDetail = () => {
             </div>
           </div>
           <div className="more-info">
-            <div className="content-title-dektop">{content.title}</div>
+            <div className="desktop-title-watchlist">
+              <div className="content-title-dektop">{content.title}</div>
+              <button
+                className="add-to-favorites2-desktop"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleAddToFavorites(content.id);
+                }}
+              >
+                +<p className="add-watchlist-header"> Add to watchlist</p>
+              </button>
+            </div>
+
             <div className="content-description">{content.description}</div>
             <div className="horizontal-bar"></div>
             <div className="content-release">{content.release}</div>
