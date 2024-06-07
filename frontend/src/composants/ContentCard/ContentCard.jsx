@@ -49,7 +49,9 @@ const ContentCard = () => {
             <div className="content-details">
               <div className="genre-rating-container">
                 <div className="genre">{content.genre}</div>
-                <div className="rating">{content.rating} ★ </div>
+                <div className="rating">
+                  {content.rating} <span className="star-symbol">★</span>{" "}
+                </div>
               </div>
               <button
                 className="add-to-favorites"

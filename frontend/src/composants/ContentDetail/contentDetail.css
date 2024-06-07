@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
 
-.content-detail {
+.details-block {
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -9,7 +9,7 @@
 .content-card2 {
   position: relative;
   width: 300px;
-  height: 400px;
+  height: auto;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -73,7 +73,7 @@
 }
 
 .content-image2 {
-  width: 220px;
+  width: 212px;
   height: 296px;
   margin-top: 10px;
 }
@@ -84,6 +84,7 @@
   align-items: baseline;
   color: #b5b5b5;
   margin-left: 80px;
+  align-items: center;
 }
 
 .add-to-favorites2 {
@@ -96,9 +97,11 @@
 }
 
 .rating2 {
+  display: flex;
   font-size: 13px;
   font-family: "Inter", sans-serif;
   color: #b5b5b5;
+  gap: 12%;
 }
 
 .genre2 {
@@ -111,4 +114,128 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.content-details-info {
+  width: 100%;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  margin-top: 16px;
+  margin-left: 3%;
+}
+.star-symbol {
+  font-size: 8px;
+  color: gold;
+}
+.content-title-dektop {
+  display: none;
+}
+.add-to-favorites2-desktop {
+  display: none;
+}
+.desktop-title-watchlist {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .content-card-link2 {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3.5rem;
+    margin-left: 8%;
+  }
+  .star-symbol {
+    font-size: 9px;
+    color: gold;
+  }
+
+  .more-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    width: 63%;
+    font-size: 18px;
+    font-weight: 250;
+
+    margin-top: 0rem;
+  }
+  .content-title {
+    display: none;
+  }
+  .content-image2 {
+    width: 275px;
+    height: 395px;
+  }
+  .content-details-info {
+    position: relative;
+    top: 0;
+    margin-top: 1.5rem;
+  }
+  .genre-rating-container2 {
+    margin-left: 4%;
+  }
+
+  .type2 {
+    font-size: 17px;
+    font-weight: 300;
+    border: 1px solid #b5b5b5;
+    padding: 3px 11px;
+  }
+  .add-to-favorites2 {
+    display: none;
+  }
+
+  .genre2 {
+    font-size: 17px;
+    font-weight: 300;
+    border: 1px solid #b5b5b5;
+    padding: 3px 11px;
+  }
+  .rating2 {
+    font-size: 16px;
+    font-weight: 300;
+    margin-left: 4%;
+  }
+  .content-description {
+    margin-bottom: 11px;
+    max-width: 100%;
+  }
+  .content-release {
+    margin-bottom: 11px;
+  }
+  .content-casting {
+    margin-bottom: 11px;
+  }
+
+  .content-title-dektop {
+    display: inline;
+    font-size: 52px;
+    font-family: "Bebas Neue", sans-serif;
+    margin-bottom: 1rem;
+    letter-spacing: 0.7px;
+  }
+  .horizontal-bar {
+    border-bottom: 0.9px solid #b5b5b5;
+    margin-bottom: 25px;
+  }
+  .add-to-favorites2-desktop {
+    display: inline;
+    background: none;
+    border: none;
+    color: #b5b5b5;
+    font-size: 45px;
+    margin-top: -10px;
+  }
+  .desktop-title-watchlist {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .add-watchlist-header {
+    font-size: 18px;
+    font-weight: 300;
+  }
 }

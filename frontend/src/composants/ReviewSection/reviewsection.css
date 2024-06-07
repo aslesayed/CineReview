@@ -88,4 +88,38 @@
 .review-text {
   color: #ccc;
   font-size: 12px;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .review-section {
+    width: 19%;
+    margin-left: 8%;
+    margin-top: 1rem;
+  }
+
+  .add-review-button {
+    margin-top: 2%;
+    margin-left: 76%;
+    font-size: 16px;
+  }
+  .review-section-header {
+    font-size: 26px;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 2rem;
+  }
+
+  .add-review-input {
+    flex: 1;
+    font-size: 16px;
+  }
+  .review-text {
+    font-size: 16px;
+  }
+  .review-name {
+    font-size: 18px;
+  }
+  .review-time {
+    font-size: 16px;
+  }
 }
