@@ -39,7 +39,9 @@ const ContentDetail = () => {
               <div className="genre-rating-container2">
                 <div className="type2">{content.type}</div>
                 <div className="genre2">{content.genre}</div>
-                <div className="rating2">{content.rating} ★ </div>
+                <div className="rating2">
+                  {content.rating} <span className="star-symbol">★</span>
+                </div>
               </div>
               <button
                 className="add-to-favorites2"
