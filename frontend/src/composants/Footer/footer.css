@@ -3,7 +3,6 @@
 .Footer {
   display: flex;
   flex-direction: column;
-  position: absolute;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.382);
   width: 100%;

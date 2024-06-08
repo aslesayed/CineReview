@@ -49,6 +49,7 @@ function Profil() {
           <p className="modify-profil">Modify informations</p>
         </div>
       ))}
+      <div className="logout-button">Log out</div>
     </div>
   );
 }
