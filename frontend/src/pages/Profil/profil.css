@@ -6,8 +6,7 @@
   align-items: center;
   flex-direction: column;
   height: 100%;
-  background-image: url("../../assets/images/BackgroundRegister.png");
-  background-repeat: no-repeat;
+
 }
 
 .top-header {
