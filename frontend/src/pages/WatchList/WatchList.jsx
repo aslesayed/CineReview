@@ -1,10 +1,7 @@
-
 import "./watchlist.css";
 
 function WatchList() {
-  return (
-   <div>efnrfn</div>
-  );
+  return <div>hdaieh</div>;
 }
 
 export default WatchList;

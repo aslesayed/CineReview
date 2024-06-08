@@ -9,7 +9,7 @@
   align-items: center;
   color: #fff;
   font-family: "Inter", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .genre-list {
@@ -50,27 +50,4 @@
     255,
     0.1
   ); /* Adjust hover color for better contrast */
-}
-
-@media screen and (min-width: 1024px) {
-  .button-filter-genre {
-    font-size: 13px;
-    text-decoration: none;
-    color: #ffffff;
-    font-family: "Inter", sans-serif;
-    letter-spacing: 0.3px;
-    font-weight: 300;
-  }
-
-  .genre-list {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 40%;
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-  .genre-item {
-    font-size: 18px;
-    margin: 13px 62px;
-  }
 }

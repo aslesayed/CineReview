@@ -11,8 +11,6 @@ import MoviesList from "./pages/MoviesList/MoviesList.jsx";
 import Profil from "./pages/Profil/Profil.jsx";
 import SeriesList from "./pages/SeriesList/SeriesList.jsx";
 import WatchList from "./pages/WatchList/WatchList.jsx";
-import ContentManager from "./pages/ContentManager/ContentManager.jsx";
-import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -50,14 +48,6 @@ const router = createBrowserRouter([
       {
         path: "/watchlist",
         element: <WatchList />,
-      },
-      {
-        path: "/contentmanager",
-        element: <ContentManager />,
-      },
-      {
-        path: "/moviedetail",
-        element: <MovieDetail />,
       },
     ],
   },

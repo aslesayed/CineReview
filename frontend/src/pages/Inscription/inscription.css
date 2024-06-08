@@ -1,17 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
 
-.container-form {
+.container-inscription {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   background-image: url("../../assets/images/BackgroundRegister.png");
   background-repeat: no-repeat;
 }
 
-.top-header {
+.inscription-header {
   color: white;
   font-size: 44px;
   font-family: "Bebas Neue", sans-serif;
@@ -19,7 +19,7 @@
 .form-body {
   display: flex;
   flex-direction: column;
-  width: 235px;
+  width: 240px;
   margin-left: 36px;
 }
 
@@ -28,14 +28,14 @@
   color: #b5b5b5;
   width: 308px;
   height: 464px;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
   font-family: "Inter", sans-serif;
 }
 
-.form-header {
+.create-header {
   margin-bottom: 1.8rem;
   margin-top: 0.6rem;
   font-size: 20px;
@@ -44,7 +44,7 @@
   font-weight: 330;
 }
 
-.form-input {
+.inscription-input {
   margin: 16px;
   font-size: 15px;
   font-family: "Inter", sans-serif;
@@ -56,25 +56,24 @@
   border-bottom: 0.9px solid #b5b5b5;
   padding-bottom: 5px;
   font-weight: 330;
-  width: 86%;
 }
 
 .inscription-input::placeholder {
   font-family: "Inter", sans-serif;
-  color: #b5b5b5;
+  color: #b5b5b5; /* Change the color of the placeholder */
 }
 
-.form-button {
+.create-button {
   background: none;
   border: none;
   color: #b5b5b5;
-  font-size: 16px;
+  font-size: 15px;
 
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.connect-header {
+.link-to-sign-in {
   margin-top: 1.5rem;
   color: #b5b5b5;
   font-family: "Inter", sans-serif;
@@ -82,7 +81,7 @@
   font-weight: 330;
 }
 
-.button-to-connect {
+.button-to-sign-in {
   margin-top: 0.5rem;
   text-decoration: none;
   color: #b5b5b5;
@@ -91,30 +90,13 @@
   font-weight: 330;
 }
 
-.connect-link {
-  color: #b5b5b5;
-  font-size: 18px;
-  text-decoration: underline;
-  text-underline-offset: 0.5px;
-}
-
-.unmatch-header {
-  font-size: 13px;
-  margin-left: 6%;
-  margin-bottom: 1rem;
-  color: #5a0d0d;
-}
-
-@media screen and (min-width: 1024px) {
-  .container-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    background-image: url("../../assets/images/Back.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-  }
-}
+/* .form-inscription button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+} */

@@ -1,20 +1,21 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./composants/Navbar/Navbar";
-import "./App.css";
+import "./app.css";
 import Footer from "./composants/Footer/Footer";
+
 
 function App() {
   const location = useLocation();
-  const hideComponents =
-    location.pathname === "/inscription" || location.pathname === "/connection";
+  const showNavbar = location.pathname !== "/inscription";
 
   return (
     <div className="body">
-      {!hideComponents && <Navbar />}
+      {showNavbar && <Navbar />}
       <Outlet />
-      {!hideComponents && <Footer />}
+      <Footer />
     </div>
   );
 }
 
 export default App;
+

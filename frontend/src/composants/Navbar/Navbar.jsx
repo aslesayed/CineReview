@@ -29,37 +29,9 @@ function Navbar() {
           </Link>
           <FilterGenre />
         </div>
-
         <Link to="/watchlist" className="button-filter-link">
           <p className="button-filter">WATCHLIST</p>
         </Link>
-      </div>
-
-      <div className="nav-block-dektop">
-        <div className="genre-film-series-dektop">
-          <Link to="/movieslist" className="button-filter-link">
-            <p className="button-filter-dektop">MOVIES</p>
-          </Link>
-          <Link to="/serieslist" className="button-filter-link">
-            <p className="button-filter-dektop">SERIES</p>
-          </Link>
-          <FilterGenre />
-        </div>
-
-        <Link to="/" className="button-filter-link">
-          <p className="heaher-logo-desktop">CINÉREVIEW</p>
-        </Link>
-
-        <div className="search-watch-pro-dektop">
-          <SearchBar />
-          <Link to="/watchlist" className="button-filter-link">
-            <p className="button-filter-dektop">WATCHLIST</p>
-          </Link>
-
-          <Link to="/profil" className="button-filter-link">
-            <p className="button-filter-dektop">PROFIL</p>
-          </Link>
-        </div>
       </div>
     </div>
   );
