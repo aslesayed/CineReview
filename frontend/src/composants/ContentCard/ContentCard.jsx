@@ -39,7 +39,7 @@ const ContentCard = () => {
   return (
     <div className="content-list">
       {fakeData.map((content) => (
-        <Link to="/moviedetail" key={content.id} className="content-card-link">
+        <Link to="/description" key={content.id} className="content-card-link">
           <div className="content-card">
             <img
               src={content.image}
