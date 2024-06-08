@@ -1,9 +1,36 @@
 .body {
-  background: linear-gradient(to bottom, rgba(26, 11, 11, 0.5) 53%, #200b0b 50%),
-    url("./assets/images/BackgroundMobile.png");
+  background: linear-gradient(to bottom, rgba(18, 11, 11, 0.5) 52%, #190b0b 56%),
+    url(/src/assets/images/BackgroundMobile.png);
+  background-color: #200b0b;
+  background-attachment: fixed;
   background-size: contain;
   background-position: top;
   background-repeat: no-repeat;
   width: 100%;
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .body {
+    background: linear-gradient(
+        to bottom,
+        rgba(18, 11, 11, 0.7) 50%,
+        #170a0a 70%
+      ),
+      url(/src/assets/images/Back.png);
+    background-color: #200b0b;
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    height: 50%;
+  }
 }
