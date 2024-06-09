@@ -4,7 +4,8 @@ import ContentUpload from "../../composants/ContentUpload/ContentUpload";
 
 function ContentManager() {
   return (
-    <div>
+    <div >
+
       <ContentUpload />
       <ContentTable />
       

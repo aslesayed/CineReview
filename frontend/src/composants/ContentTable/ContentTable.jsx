@@ -12,7 +12,7 @@ const ContentTable = () => {
       actors: "Actor 1, Actor 2",
       rating: 8.5,
       genres: "Action, Thriller",
-      image: "https://via.placeholder.com/100", // Replace with actual image URL
+      image: "https://via.placeholder.com/100",
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const ContentTable = () => {
       actors: "Actor 3, Actor 4",
       rating: 9.0,
       genres: "Drama, Mystery",
-      image: "https://via.placeholder.com/100", // Replace with actual image URL
+      image: "https://via.placeholder.com/100",
     },
   ]);
 

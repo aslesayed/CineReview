@@ -10,7 +10,7 @@ const ContentUpload = () => {
     actors: "",
     rating: "",
     genres: "",
-    image: "",
+    image: null, // Update to handle file
   });
 
   const handleChange = (e) => {
@@ -18,10 +18,19 @@ const ContentUpload = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, image: e.target.files[0] });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formDataToSubmit = new FormData();
+    for (const key in formData) {
+      formDataToSubmit.append(key, formData[key]);
+    }
     // Here you can perform any action you want with the form data
     console.log(formData);
+
     // Reset the form fields
     setFormData({
       title: "",
@@ -31,15 +40,16 @@ const ContentUpload = () => {
       actors: "",
       rating: "",
       genres: "",
-      image: "",
+      image: null,
     });
   };
 
   return (
-    <div className="content-form-container">
-      <h2>Upload Content</h2>
-      <form onSubmit={handleSubmit} className="content-form">
+    <div className="container-upload">
+      <h2 className="header-upload-content">Upload Content</h2>
+      <form onSubmit={handleSubmit} className="content-upload-form">
         <input
+          className="content-form-inputs"
           type="text"
           name="title"
           placeholder="Title"
@@ -48,6 +58,7 @@ const ContentUpload = () => {
           required
         />
         <textarea
+          className="content-form-inputs"
           name="description"
           placeholder="Description"
           value={formData.description}
@@ -55,6 +66,7 @@ const ContentUpload = () => {
           required
         ></textarea>
         <input
+          className="content-form-inputs"
           type="text"
           name="type"
           placeholder="Type"
@@ -63,6 +75,7 @@ const ContentUpload = () => {
           required
         />
         <input
+          className="content-form-inputs"
           type="date"
           name="releaseDate"
           value={formData.releaseDate}
@@ -70,6 +83,7 @@ const ContentUpload = () => {
           required
         />
         <input
+          className="content-form-inputs"
           type="text"
           name="actors"
           placeholder="Actors"
@@ -78,6 +92,7 @@ const ContentUpload = () => {
           required
         />
         <input
+          className="content-form-inputs"
           type="number"
           name="rating"
           placeholder="Rating"
@@ -86,6 +101,7 @@ const ContentUpload = () => {
           required
         />
         <input
+          className="content-form-inputs"
           type="text"
           name="genres"
           placeholder="Genres"
@@ -94,14 +110,16 @@ const ContentUpload = () => {
           required
         />
         <input
-          type="url"
+          className="content-form-inputs"
+          type="file"
           name="image"
-          placeholder="Image URL"
-          value={formData.image}
-          onChange={handleChange}
+          accept="image/*"
+          onChange={handleFileChange}
           required
         />
-        <button type="submit">Upload</button>
+        <button className="upload-content-button" type="submit">
+          Upload
+        </button>
       </form>
     </div>
   );
