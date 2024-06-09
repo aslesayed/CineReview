@@ -7,6 +7,10 @@
   flex-direction: column;
   height: 100%;
 
+
+
+  background-repeat: no-repeat;
+
 }
 
 .top-header {
@@ -20,6 +24,7 @@
   width: 240px;
   margin-left: 36px;
   margin-top: 2rem;
+  margin-right: 36px;
 }
 
 .form-profil {
@@ -46,6 +51,7 @@
 
 .form-input-profil {
   margin-left: 16px;
+  margin-right: 16px;
   margin-top: 6px;
   margin-bottom: 16px;
   font-size: 15px;
@@ -70,7 +76,6 @@
   border: none;
   color: #b5b5b5;
   font-size: 16px;
-
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -135,4 +140,66 @@
   transform: translateX(-50%);
   width: 60px;
   height: 60px;
+}
+
+.logout-button {
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+  color: #b5b5b5;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 1024px) {
+  .form-profil {
+    background-color: rgba(0, 0, 0, 0.76);
+    color: #b5b5b5;
+    width: 550px;
+    height: 435px;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
+    padding-top: 2rem;
+    position: relative;
+    align-items: center;
+  }
+
+  .form-body-profil {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin-left: 36px;
+    margin-top: 2rem;
+    margin-right: 36px;
+  }
+
+  .name-profilzz {
+    font-size: 30px;
+  }
+
+  .form-profil-label {
+    font-size: 24px;
+  }
+
+  .form-input-profil {
+    font-size: 18px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+  }
+
+  .profil-picture-container {
+    width: 75px;
+    height: 75px;
+    top: -52px;
+  }
+
+  .modify-profil {
+    font-size: 18px;
+  }
 }
