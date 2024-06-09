@@ -1,0 +1,57 @@
+.admin-table {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6rem;
+  width: 80%;
+  margin: 48px auto;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+.admin-table table {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  background-color: rgba(0, 0, 0, 0.46);
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  color: #b5b5b5;
+}
+
+.admin-table th {
+  background-color: rgba(0, 0, 0, 0.76);
+  color: #b5b5b5;
+  padding: 5px;
+  border-right: 1px solid #ddd;
+}
+
+.admin-table th:last-child,
+.admin-table td:last-child {
+  border-right: none;
+}
+
+.admin-table button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-table button:last-child {
+  background-color: #f44336;
+}
+
+.admin-table input {
+  color: white;
+  background: none;
+  text-align: center;
+  border: none;
+}
