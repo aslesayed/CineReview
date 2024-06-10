@@ -6,7 +6,7 @@ import Footer from "./composants/Footer/Footer";
 function App() {
   const location = useLocation();
   const hideComponents =
-    location.pathname === "/inscription" || location.pathname === "/connection" ;
+    location.pathname === "/inscription" || location.pathname === "/connection";
 
   return (
     <div className="body">

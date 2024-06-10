@@ -25,7 +25,7 @@
 }
 
 .form-profil {
-  background-color: rgba(0, 0, 0, 0.76);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #b5b5b5;
   width: 306px;
   height: 364px;
@@ -106,15 +106,16 @@
 .name-profilzz {
   font-family: "Inter", sans-serif;
   color: #b5b5b5;
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
   margin-top: 0.75rem;
+  font-weight: 330;
 }
 
 .form-profil-label {
   margin-left: 16px;
   margin-top: 5px;
-  font-size: 19px;
+  font-size: 18px;
   font-family: "Inter", sans-serif;
   background: none;
   color: white;
@@ -155,7 +156,6 @@
 
 @media screen and (min-width: 1024px) {
   .form-profil {
-    background-color: rgba(0, 0, 0, 0.76);
     color: #b5b5b5;
     width: 440px;
     height: 482px;
@@ -178,7 +178,7 @@
   .form-body-profil {
     display: flex;
     flex-direction: column;
-    width: 344px;
+    width: 340px;
     margin-left: 36px;
     margin-top: 3rem;
     margin-right: 36px;
@@ -186,15 +186,12 @@
 
   .name-profilzz {
     margin-bottom: 1.8rem;
-    font-size: 20px;
-    font-weight: 330;
-    font-family: "Inter", sans-serif;
   }
 
   .form-input-profil {
     font-size: 15px;
     margin-top: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
   }
 
   .profil-picture-container {
@@ -205,7 +202,7 @@
 
   .modify-profil {
     font-size: 15px;
-    margin-top: 6rem;
+    margin-top: 5.5rem;
   }
   .container-form-profil {
     margin-bottom: 5rem;

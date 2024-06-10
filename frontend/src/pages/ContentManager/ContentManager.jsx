@@ -1,19 +1,3 @@
-// import "./contentmanager.css";
-// import ContentTable from "../../composants/ContentTable/ContentTable";
-// import ContentUpload from "../../composants/ContentUpload/ContentUpload";
-
-// function ContentManager() {
-//   return (
-//     <div className="content-manger" >
-
-//       <ContentUpload />
-//       <ContentTable />
-      
-//     </div>
-//   );
-// }
-
-// export default ContentManager;
 import "./contentmanager.css";
 import ContentTable from "../../composants/ContentTable/ContentTable";
 import ContentUpload from "../../composants/ContentUpload/ContentUpload";
@@ -32,4 +16,3 @@ function ContentManager() {
 }
 
 export default ContentManager;
-
