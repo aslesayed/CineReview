@@ -36,7 +36,7 @@ DROP TABLE IF EXISTS `actors`;
 ;
 
 CREATE TABLE `actors` (
-    `actor_id` int NOT NULL,
+    `actor_id` INT NOT NULL AUTO_INCREMENT,
     `firstname` varchar(45) NOT NULL,
     `lastname` varchar(45) NOT NULL,
     PRIMARY KEY (`actor_id`)
@@ -91,7 +91,7 @@ DROP TABLE IF EXISTS `contents`;
 ;
 
 CREATE TABLE `contents` (
-    `content_id` int NOT NULL,
+    `content_id` INT NOT NULL AUTO_INCREMENT,
     `type` varchar(45) NOT NULL,
     `name` varchar(45) NOT NULL,
     `description` varchar(255) NOT NULL,
@@ -114,7 +114,7 @@ DROP TABLE IF EXISTS `genres`;
 ;
 
 CREATE TABLE `genres` (
-    `genre_id` int NOT NULL,
+    `genre_id` INT NOT NULL AUTO_INCREMENT,
     `name` varchar(45) NOT NULL,
     PRIMARY KEY (`genre_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
@@ -132,7 +132,7 @@ DROP TABLE IF EXISTS `reviews`;
 ;
 
 CREATE TABLE `reviews` (
-    `review_id` int NOT NULL,
+    `review_id` INT NOT NULL AUTO_INCREMENT,
     `review` varchar(255) NOT NULL,
     `review_date` datetime NOT NULL,
     PRIMARY KEY (`review_id`)
@@ -151,7 +151,7 @@ DROP TABLE IF EXISTS `users`;
 ;
 
 CREATE TABLE `users` (
-    `user_id` int NOT NULL,
+    `user_id` INT NOT NULL AUTO_INCREMENT,
     `firstname` varchar(45) NOT NULL,
     `lastname` varchar(45) NOT NULL,
     `email` varchar(100) NOT NULL,

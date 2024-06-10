@@ -26,7 +26,7 @@ const getAll = async (req, res, next) => {
 const editContent = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const [result] = await contentModel.Update(req.body, id);
+    const [result] = await contentModel.update(req.body, id);
     if (result.affectedRows > 0) res.sendStatus(204);
     else res.sendStatus(404);
   } catch (error) {
@@ -77,6 +77,7 @@ const getById = async (req, res, next) => {
     next(error);
   }
 };
+
 
 module.exports = {
  add,
