@@ -3,13 +3,28 @@ const contentController = require("../controllers/contents.controller");
 
 const router = express.Router();
 
-router.post("/content", contentController.add);
+// Route to add new content
+router.post("/content", contentController.addContent);
+
+// Route to get all content
 router.get("/content", contentController.getAll);
-router.get("/content/:id", contentController.getById);
+
+// Route to get content by genre ID
 router.get("/content/genre/:genreId", contentController.getByGenre);
-router.put("/content/:id", contentController.editContent);
+
+// Route to update content
+router.put("/content/:id", contentController.updateContent);
+
+// Route to delete content
 router.delete("/content/:id", contentController.deleteContent);
-router.get("/content/type/:type", contentController.getAllSeries);
-router.get("/content/type/:type", contentController.getAllMovies);
+
+// Route to get all movies
+router.get("/content/type/movie", contentController.getAllMovies);
+
+// Route to get all series
+router.get("/content/type/series", contentController.getAllSeries);
+
+// Route to filter content by type and genre
+router.get("/content/filter", contentController.filterContent);
 
 module.exports = router;
