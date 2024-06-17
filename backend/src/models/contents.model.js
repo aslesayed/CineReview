@@ -3,20 +3,15 @@ const db = require("../../database/client");
 // update
 
 const insert = async (content) => {
-  const query = `
-    INSERT INTO contents (type, name, description, release_date, rating, thumbnail)
-    VALUES (?,?,?,?,?,?)
-  `;
-  const [result] = await db.execute(query, [
-    content.type,
-    content.name,
-    content.description,
-    content.release_date,
-    content.rating,
-    content.thumbnail,
-  ]);
-  return result;
+  const { type, name, description, rating, thumbnail, genre } = content;
+
+  return db.query(
+    "INSERT INTO contents (type, name, description, rating, release_date, thumbnail, genre) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    [type, name, description, content.release_date, rating, thumbnail, genre]
+  );
 };
+
+
 
 const findById = async (contentId) => {
   const query = `SELECT * FROM contents WHERE content_id =?`;
@@ -33,27 +28,23 @@ const addGenreContent = async (contentId, genreId) => {
   await db.execute(query, [contentId, genreId]);
 };
 
-const filterByGenre = async (genreId) => {
-  const query = `
-    SELECT c.* 
-    FROM contents c
-    INNER JOIN content_genre cg ON c.content_id = cg.content_id
-    WHERE cg.genre_id =?
-  `;
-  const [rows] = await db.execute(query, [genreId]);
-  return rows;
-};
+// const filterByGenre = async (genreId) => {
+//   const query = `
+//     SELECT c.* 
+//     FROM contents c
+//     INNER JOIN content_genre cg ON c.content_id = cg.content_id
+//     WHERE cg.genre_id =?
+//   `;
+//   const [rows] = await db.execute(query, [genreId]);
+//   return rows;
+// };
 const findByActorId = async (actorId) => {
   const query = `SELECT * FROM actors WHERE actor_id =?`;
   const [rows] = await db.execute(query, [actorId]);
   return rows;
 };
 
-const findByGenreId = async (genreId) => {
-  const query = `SELECT * FROM genres WHERE genre_id =?`;
-  const [rows] = await db.execute(query, [genreId]);
-  return rows;
-};
+
 
 const findAll = async () => {
   const sql = `SELECT * FROM contents`;
@@ -98,9 +89,9 @@ const filter = async (type, genre) => {
 };
 
 module.exports = {
-  findByGenreId,
+  // findByGenreId,
   findByActorId,
-  filterByGenre,
+  // filterByGenre,
   addGenreContent,
   addActorContent,
   findById,

@@ -3,6 +3,8 @@ const db = require("../../database/client");
 const findAll = () => {
   return db.query("SELECT * FROM watchlisted ");
 };
+
+
 const insert = (watchlist) => {
   console.info(watchlist);
 
@@ -13,10 +15,13 @@ const insert = (watchlist) => {
 };
 const findByUsers = (usersid) => {
   return db.query(
-    "SELECT * FROM watchlisted AS w JOIN contents AS c ON w.content_id= c.content_id  WHERE user_id = ?",
+    "SELECT c.* FROM contents c JOIN watchlisted w ON c.content_id = w.content_id WHERE w.user_id = ?",
     [usersid]
   );
 };
+
+
+
 const deleteById = (watchlist) => {
   return db.query(
     "DELETE FROM watchlisted WHERE content_id = ? AND user_id = ?",
