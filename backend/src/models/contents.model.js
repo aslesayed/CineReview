@@ -37,7 +37,7 @@ const deleteById = async (id) => {
 
 
 module.exports = {
-  insert,
+  // insert,
   findById,
   findAll,
   // update,
