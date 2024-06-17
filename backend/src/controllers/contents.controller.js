@@ -1,18 +1,32 @@
 const contentModel = require("../models/contents.model");
 
-
-const add = async (req, res, next) => {
+const getAllMovies = async (req, res, next) => {
   try {
-    const content = req.body;
-    const [result] = await contentModel.insert(content);
-    if (result.insertId) {
-      const [[newcontent]] = await contentModel.findById(result.insertId);
-      res.status(201).json(newcontent);
-    } else res.sendStatus(422);
+    const [movies] = await contentModel.findByType("movie");
+    res.status(200).json(movies);
   } catch (error) {
     next(error);
   }
 };
+
+const getAllSeries = async (req, res, next) => {
+  try {
+    const [series] = await contentModel.findByType("series");
+    res.status(200).json(series);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// const getByGenre = async (req, res, next) => {
+//   try {
+//     const { genreId } = req.params;
+//     const contentList = await contentModel.filterByGenre(genreId);
+//     res.status(200).json(contentList);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 const getAll = async (req, res, next) => {
   try {
@@ -33,6 +47,7 @@ const editContent = async (req, res, next) => {
     next(error);
   }
 };
+
 const deleteContent = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -44,48 +59,64 @@ const deleteContent = async (req, res, next) => {
     next(error);
   }
 };
-
-const getByType = async (req, res, next) => {
+const filterContent = async (req, res, next) => {
   try {
-    const { type } = req.params;
-    const [content] = await contentModel.findByType(type);
-    res.status(200).json(content);
+    const { type, genre } = req.query;
+    const filteredContents = await contentModel.filter(type, genre);
+    res.status(200).json(filteredContents);
   } catch (error) {
     next(error);
   }
 };
 
-const getByGenre = async (req, res, next) => {
+
+// const addContent = async (req, res, next) => {
+//   try {
+//     const content = req.body;
+//     if (req.file) {
+//       content.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
+//         req.file.filename
+//       }`;
+//     } else {
+//       throw new Error("File upload failed");
+//     }
+//     await contentModel.insert(content);
+//     res.status(201).json(content);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: error.message });
+//     next(error);
+//   }
+// };
+
+
+const addContent = async (req, res, next) => {
   try {
-    const { genreId } = req.params;
-    const [content] = await contentModel.findByGenre(genreId);
-    res.status(200).json(content);
-  } catch (error) {
-    next(error);
-  }
-};
-const getById = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const [[content]] = await contentModel.findById(id);
-    if (content) {
-      res.status(200).json(content);
+    const content = req.body;
+    if (req.file) {
+      content.thumbnail = `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`;
     } else {
-      res.sendStatus(404);
+      throw new Error('File upload failed');
     }
+    await contentModel.insert(content);
+    res.status(201).json(content);
   } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
     next(error);
   }
 };
 
 
 module.exports = {
- add,
- getAll,
- editContent,
- deleteContent,
- getByType,
- getByGenre,
- getById,
- 
+  // add,
+  addContent,
+  getAll,
+  editContent,
+  deleteContent,
+  // getById,
+  getAllMovies,
+  getAllSeries,
+  // getByGenre,
+  filterContent,
 };
