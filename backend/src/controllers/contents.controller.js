@@ -1,4 +1,5 @@
 const contentModel = require("../models/contents.model");
+const { insert } = require('../models/contents.model');
 
 const getAllMovies = async (req, res, next) => {
   try {
@@ -92,13 +93,16 @@ const filterContent = async (req, res, next) => {
 
 const addContent = async (req, res, next) => {
   try {
+    console.log("Body:", req.body);
+    console.log("File:", req.file);
+
     const content = req.body;
     if (req.file) {
       content.thumbnail = `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`;
     } else {
       throw new Error('File upload failed');
     }
-    await contentModel.insert(content);
+    await insert(content);
     res.status(201).json(content);
   } catch (error) {
     console.error(error);
@@ -106,6 +110,8 @@ const addContent = async (req, res, next) => {
     next(error);
   }
 };
+
+
 
 
 module.exports = {
