@@ -22,8 +22,12 @@ const editActor = async (req, res, next) => {
   const { id } = req.params;
   try {
     const [result] = await actorModel.updateActorById(req.body, id);
-    if (result.affectedRows > 0) res.sendStatus(204);
-    else res.sendStatus(404);
+    if (result.affectedRows > 0) {
+      const updatedActor = await actorModel.findActorById(id);
+      res.status(200).json(updatedActor);
+    } else {
+      res.status(404).json({ message: "Actor not found" });
+    }
   } catch (error) {
     next(error);
   }
@@ -35,7 +39,9 @@ const deleteActor = async (req, res, next) => {
     const [result] = await actorModel.deleteActorById(id);
     if (result.affectedRows > 0) {
       res.sendStatus(204);
-    } else res.sendStatus(404);
+    } else {
+      res.status(404).json({ message: "Actor not found" });
+    }
   } catch (error) {
     next(error);
   }

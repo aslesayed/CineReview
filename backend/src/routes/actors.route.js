@@ -2,12 +2,8 @@ const express = require("express");
 const router = express.Router();
 const actorController = require("../controllers/actors.controller");
 
-router.post("/", actorController.addActor);
-
-router.get("/", actorController.getAllActors);
-
-router.put("/:id", actorController.editActor);
-
-router.delete("/:id", actorController.deleteActor);
-
+router.post("/actors", actorController.addActor);
+router.get("/actors", actorController.getAllActors);
+router.put("/actors/:id", actorController.editActor);
+router.delete("/actors/:id", actorController.deleteActor);
 module.exports = router;

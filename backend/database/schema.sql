@@ -24,13 +24,12 @@ USE `cinereview` ;
 -- Table `cinereview`.`actors`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `cinereview`.`actors` ;
-
 CREATE TABLE IF NOT EXISTS `cinereview`.`actors` (
-  `actor_id` INT NOT NULL,
+  `actor_id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`actor_id`))
-ENGINE = InnoDB
+  PRIMARY KEY (`actor_id`)
+) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -41,7 +40,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `cinereview`.`contents` ;
 
 CREATE TABLE IF NOT EXISTS `cinereview`.`contents` (
-  `content_id` INT NOT NULL,
+  `content_id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(255) NOT NULL,
@@ -62,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`contents` (
 DROP TABLE IF EXISTS `cinereview`.`users` ;
 
 CREATE TABLE IF NOT EXISTS `cinereview`.`users` (
-  `user_id` INT NOT NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
@@ -86,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`reviews` (
   `review_date` DATETIME NOT NULL,
   `user_id` INT NOT NULL,
   `content_id` INT NOT NULL,
-  `review_id` INT NOT NULL,
+  `review_id` INT NOT NULL AUTO_INCREMENT,
   INDEX `fk_reviews_users1_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_reviews_contents1_idx` (`content_id` ASC) VISIBLE,
   PRIMARY KEY (`user_id`, `content_id`, `review_id`),
@@ -137,7 +136,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `cinereview`.`contents_actors` ;
 
 CREATE TABLE IF NOT EXISTS `cinereview`.`contents_actors` (
-  `content_id` INT NOT NULL,
+  `content_id` INT NOT NULL AUTO_INCREMENT,
   `actor_id` INT NOT NULL,
   PRIMARY KEY (`content_id`, `actor_id`),
   INDEX `fk_contents_has_actors_actors1_idx` (`actor_id` ASC) VISIBLE,

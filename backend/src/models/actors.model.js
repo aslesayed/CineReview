@@ -12,11 +12,16 @@ const findAllActors = async () => {
   return rows;
 };
 
-const updateActorById = async (actorId, updatedActor) => {
+const updateActorById = async (updatedActor, actorId) => {
   const { firstname, lastname } = updatedActor;
   const query =
     "UPDATE actors SET firstname = ?, lastname = ? WHERE actor_id = ?";
   return db.query(query, [firstname, lastname, actorId]);
+};
+const findActorById = async (actorId) => {
+  const query = "SELECT * FROM actors WHERE actor_id = ?";
+  const [rows] = await db.query(query, [actorId]);
+  return rows[0];
 };
 
 const deleteActorById = async (actorId) => {
@@ -28,5 +33,6 @@ module.exports = {
   insert,
   findAllActors,
   updateActorById,
+  findActorById,
   deleteActorById,
 };
