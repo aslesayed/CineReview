@@ -29,7 +29,6 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`actors` (
   `actor_id` INT NOT NULL,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
-  `role_type` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`actor_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -50,10 +49,11 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`contents` (
   `rating` DECIMAL(3,1) NOT NULL,
   `thumbnail` BLOB NOT NULL,
   `genre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`content_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`content_id`)
+) ENGINE = InnoDB 
+  DEFAULT CHARACTER SET = utf8mb4 
+  COLLATE = utf8mb4_0900_ai_ci;
+
 
 
 -- -----------------------------------------------------
