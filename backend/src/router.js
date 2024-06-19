@@ -1,27 +1,17 @@
 const express = require("express");
+const contentRoutes = require("./routes/contents.route");
+const genreRoutes = require("./routes/genres.route");
+const reviewRoutes = require("./routes/reviews.route");
+const watchlistRoutes = require("./routes/watchlisted.route");
+const userRoutes = require("./routes/users.route");
 
 const router = express.Router();
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
 
-// Import routes here
-const usersRouter = require("./routes/users.route");
-const contentsRouter = require("./routes/contents.route");
-const actorsRouter = require("./routes/actors.route");
-const genresRouter = require("./routes/genres.route");
-const watchlistRouter = require("./routes/watchlist.route");
-const reviewsRouter = require("./routes/reviews.route");
-
-// Apply routes
-router.use(usersRouter);
-router.use(contentsRouter);
-
-router.use(actorsRouter);
-router.use(genresRouter);
-router.use(watchlistRouter);
-router.use(reviewsRouter);
-
-/* ************************************************************************* */
+// Include content routes
+router.use(contentRoutes);
+router.use(genreRoutes);
+router.use(reviewRoutes);
+router.use(watchlistRoutes);
+router.use(userRoutes);
 
 module.exports = router;
