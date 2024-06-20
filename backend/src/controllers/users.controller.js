@@ -5,12 +5,16 @@ const userModel = require("../models/users.model");
 const add = async (req, res, next) => {
   try {
     const user = req.body;
-    console.info(user);
+    user.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
+      req.file.filename
+    }`;
     const [result] = await userModel.insert(user);
     if (result.insertId) {
       const [[newUser]] = await userModel.findById(result.insertId);
       res.status(201).json(newUser);
-    } else res.sendStatus(422);
+    } else {
+      res.sendStatus(422);
+    }
   } catch (error) {
     next(error);
   }
@@ -78,13 +82,26 @@ const deleteuser = async (req, res, next) => {
   }
 };
 
-const updateuser = async (req, res, next) => {
+// const updateUse = async (req, res, next) => {
+//   const { id } = req.params;
+//   try {
+//     const [result] = await userModel.updateById(req.body, id);
+//     if (result.affectedRows > 0) res.sendStatus(204);
+//     else res.sendStatus(404);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+const updateUser = async (req, res, next) => {
   try {
     const id = req.userID;
     const data = req.body;
-    const [result] = await userModel.Update(id, data);
-    if (result.affectedRows > 0) res.sendStatus(204);
-    else res.sendStatus(404);
+    const [result] = await userModel.updateById(id, data);
+    if (result.affectedRows <= 0) res.sendStatus(422);
+    else {
+      const [[user]] = await userModel.findById(id);
+      res.status(200).json(user);
+    }
   } catch (error) {
     next(error);
   }
@@ -96,6 +113,6 @@ module.exports = {
   getAll,
   getCurrentUser,
   logout,
-  updateuser,
+  updateUser,
   deleteuser,
 };
