@@ -1,16 +1,22 @@
 const contentModel = require("../models/contents.model");
+const { insert } = require('../models/contents.model');
 
 const addContent = async (req, res, next) => {
   try {
+    console.log("Body:", req.body);
+    console.log("File:", req.file);
+
     const content = req.body;
-    content.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
-      req.files[0].filename
-    }`;
-    await contentModel.insert(content);
+    if (req.file) {
+      content.thumbnail = `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`;
+    } else {
+      throw new Error('File upload failed');
+    }
+    await insert(content);
     res.status(201).json(content);
   } catch (error) {
     console.error(error);
-    res.status(500).json();
+    res.status(500).json({ error: error.message });
     next(error);
   }
 };
@@ -100,6 +106,9 @@ const deleteContent = async (req, res, next) => {
     next(error);
   }
 };
+
+
+
 
 module.exports = {
   addContent,

@@ -3,9 +3,15 @@
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
+
+SET
+    @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS,
+    FOREIGN_KEY_CHECKS = 0;
+
+SET
+    @OLD_SQL_MODE = @@SQL_MODE,
+    SQL_MODE = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
 -- Schema mydb
@@ -17,12 +23,14 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema cinereview
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `cinereview` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `cinereview` ;
+CREATE SCHEMA IF NOT EXISTS `cinereview` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+USE `cinereview`;
 
 -- -----------------------------------------------------
 -- Table `cinereview`.`actors`
 -- -----------------------------------------------------
+
 DROP TABLE IF EXISTS `cinereview`.`actors` ;
 CREATE TABLE IF NOT EXISTS `cinereview`.`actors` (
   `actor_id` INT NOT NULL AUTO_INCREMENT,
@@ -34,12 +42,14 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
+
 -- -----------------------------------------------------
 -- Table `cinereview`.`contents`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `cinereview`.`contents` ;
+DROP TABLE IF EXISTS `cinereview`.`contents`;
 
 CREATE TABLE IF NOT EXISTS `cinereview`.`contents` (
+
   `content_id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
@@ -58,11 +68,12 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`contents` (
 -- -----------------------------------------------------
 -- Table `cinereview`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `cinereview`.`users` ;
+DROP TABLE IF EXISTS `cinereview`.`users`;
 
 DROP TABLE IF EXISTS `cinereview`.`users`;
 
 CREATE TABLE IF NOT EXISTS `cinereview`.`users` (
+
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
@@ -78,12 +89,14 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 
+
 -- -----------------------------------------------------
 -- Table `cinereview`.`reviews`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `cinereview`.`reviews` ;
+DROP TABLE IF EXISTS `cinereview`.`reviews`;
 
 CREATE TABLE IF NOT EXISTS `cinereview`.`reviews` (
+
   `review` VARCHAR(255) NOT NULL,
   `review_date` DATETIME NOT NULL,
   `user_id` INT NOT NULL,
@@ -110,55 +123,38 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `cinereview`.`watchlisted`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `cinereview`.`watchlisted` ;
+DROP TABLE IF EXISTS `cinereview`.`watchlisted`;
 
 CREATE TABLE IF NOT EXISTS `cinereview`.`watchlisted` (
-  `user_id` INT NOT NULL,
-  `content_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `content_id`),
-  INDEX `fk_users_has_contents_contents1_idx` (`content_id` ASC) VISIBLE,
-  INDEX `fk_users_has_contents_users_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_users_has_contents_users`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `cinereview`.`users` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_has_contents_contents1`
-    FOREIGN KEY (`content_id`)
-    REFERENCES `cinereview`.`contents` (`content_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
+    `user_id` INT NOT NULL,
+    `content_id` INT NOT NULL,
+    PRIMARY KEY (`user_id`, `content_id`),
+    INDEX `fk_users_has_contents_contents1_idx` (`content_id` ASC) VISIBLE,
+    INDEX `fk_users_has_contents_users_idx` (`user_id` ASC) VISIBLE,
+    CONSTRAINT `fk_users_has_contents_users` FOREIGN KEY (`user_id`) REFERENCES `cinereview`.`users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_users_has_contents_contents1` FOREIGN KEY (`content_id`) REFERENCES `cinereview`.`contents` (`content_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
 -- Table `cinereview`.`contents_actors`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `cinereview`.`contents_actors` ;
+DROP TABLE IF EXISTS `cinereview`.`contents_actors`;
 
 CREATE TABLE IF NOT EXISTS `cinereview`.`contents_actors` (
-  `content_id` INT NOT NULL AUTO_INCREMENT,
-  `actor_id` INT NOT NULL,
-  PRIMARY KEY (`content_id`, `actor_id`),
-  INDEX `fk_contents_has_actors_actors1_idx` (`actor_id` ASC) VISIBLE,
-  INDEX `fk_contents_has_actors_contents1_idx` (`content_id` ASC) VISIBLE,
-  CONSTRAINT `fk_contents_has_actors_contents1`
-    FOREIGN KEY (`content_id`)
-    REFERENCES `cinereview`.`contents` (`content_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_contents_has_actors_actors1`
-    FOREIGN KEY (`actor_id`)
-    REFERENCES `cinereview`.`actors` (`actor_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+
+    `content_id` INT NOT NULL,
+    `actor_id` INT NOT NULL,
+    PRIMARY KEY (`content_id`, `actor_id`),
+    INDEX `fk_contents_has_actors_actors1_idx` (`actor_id` ASC) VISIBLE,
+    INDEX `fk_contents_has_actors_contents1_idx` (`content_id` ASC) VISIBLE,
+    CONSTRAINT `fk_contents_has_actors_contents1` FOREIGN KEY (`content_id`) REFERENCES `cinereview`.`contents` (`content_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_contents_has_actors_actors1` FOREIGN KEY (`actor_id`) REFERENCES `cinereview`.`actors` (`actor_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+
+SET SQL_MODE = @OLD_SQL_MODE;
+
+SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
+
+SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS;
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

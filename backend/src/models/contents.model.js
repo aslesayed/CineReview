@@ -1,11 +1,11 @@
 const db = require("../../database/client");
 
 const insert = async (content) => {
-  const { type, name, description, rating, thumbnail, genre } = content;
+  const { type, name, description, rating, thumbnail, genre, release_date } = content;
 
   return db.query(
     "INSERT INTO contents (type, name, description, rating, release_date, thumbnail, genre) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    [type, name, description, content.release_date, rating, thumbnail, genre]
+    [type, name, description, rating, release_date, thumbnail, genre]
   );
 };
 
