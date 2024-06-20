@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`contents` (
   `description` VARCHAR(255) NOT NULL,
   `release_date` DATETIME NOT NULL,
   `rating` DECIMAL(3,1) NOT NULL,
-  `thumbnail` BLOB NOT NULL,
+  `thumbnail` VARCHAR(255) NOT NULL,
   `genre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`content_id`)
 ) ENGINE = InnoDB 
@@ -60,6 +60,8 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`contents` (
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `cinereview`.`users` ;
 
+DROP TABLE IF EXISTS `cinereview`.`users`;
+
 CREATE TABLE IF NOT EXISTS `cinereview`.`users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(45) NOT NULL,
@@ -68,11 +70,12 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`users` (
   `password` VARCHAR(245) NOT NULL,
   `telephone` VARCHAR(13) NOT NULL,
   `admin` TINYINT(1) NOT NULL DEFAULT '0',
-  `thumbnail` BLOB NOT NULL,
-  PRIMARY KEY (`user_id`))
-ENGINE = InnoDB
+  `thumbnail` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
 
 
 -- -----------------------------------------------------
