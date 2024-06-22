@@ -15,16 +15,14 @@ const deleteById = async (id) => {
   return db.query(sql, [id]);
 };
 
-const insert = (artwork) => {
-  const { review, review_date } = artwork;
+const insert = (data) => {
+  const { review, user_id, content_id } = data;
 
   return db.query(
-    "INSERT INTO reviews (review, review_date, user_id, content_id) VALUES (?, ?, ?, ?)",
-    [review, review_date, user.user_id, user.content_id]
+    "INSERT INTO reviews (review, user_id, content_id) VALUES (?, ?, ?)",
+    [review, user_id, content_id]
   );
 };
-
-
 
 
 

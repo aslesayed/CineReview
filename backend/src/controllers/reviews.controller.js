@@ -1,5 +1,25 @@
 const reviewModel = require("../models/reviews.model");
 
+
+const insertReview = async (req, res, next) => {
+  try {
+    const reviewData = req.body; // Make sure review_date is present here
+
+    const [result] = await reviewModel.insert(reviewData);
+
+    if (result.insertId) {
+      const [[newReview]] = await reviewModel.findById(result.insertId);
+      res.status(201).json(newReview);
+    } else {
+      res.sendStatus(422);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
 const getAll = async (req, res, next) => {
   try {
     const [review] = await reviewModel.findAll();
@@ -8,14 +28,7 @@ const getAll = async (req, res, next) => {
     next(error);
   }
 };
-// const getAll = async (req, res, next) => {
-//   try {
-//     const [review] = await reviewModel.findAll();
-//     res.status(200).json(review);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+
 const getById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -42,6 +55,7 @@ const deleteReview = async (req, res, next) => {
 };
 
 module.exports = {
+  insertReview,
   getAll,
   getById,
   deleteReview,

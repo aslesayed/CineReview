@@ -1,21 +1,31 @@
-const contentsActorsModel = require("../models/actors.model");
+const contentsActorsModel = require("../models/contents_actors.model");
+
+
+// const addContentActor = async (req, res, next) => {
+//   try {
+//     const contentActor = req.body;
+//     const result = await contentsActorsModel.insert(contentActor);
+//     if (result.affectedRows > 0) {
+//       res.sendStatus(201);
+//     } else {
+//       res.sendStatus(422);
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 const addContentActor = async (req, res, next) => {
-  const { contentId, actorIds } = req.body;
   try {
-    const arr = [];
-    for (const actorId of actorIds) {
-      arr.push([contentId, actorId]);
-    }
-    const [result] = await contentsActorsModel.insert(arr);
-
+    const { content_id, actor_id } = req.body;
+    const result = await contentsActorsModel.insert({ content_id, actor_id });
     if (result.affectedRows > 0) {
-      res.sendStatus(201);
+      res.sendStatus(201); 
     } else {
-      res.sendStatus(422);
+      res.sendStatus(422); 
     }
   } catch (error) {
-    next(error);
+    next(error); 
   }
 };
 
@@ -35,9 +45,7 @@ const getContentActorById = async (req, res, next) => {
     if (actors.length > 0) {
       res.status(200).json(actors);
     } else {
-      res
-        .status(404)
-        .json({ message: "No actors found for the given content ID" });
+      res.status(404).json({ message: "No actors found for the given content ID" });
     }
   } catch (error) {
     next(error);
@@ -49,7 +57,7 @@ const deleteContentActor = async (req, res, next) => {
     const { contentId, actorId } = req.params;
 
     await contentsActorsModel.deleteById(contentId, actorId);
-    res.sendStatus(204).json();
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }

@@ -1,13 +1,10 @@
 const db = require("../../database/client");
 
-const findAll = () => {
-  return db.query("SELECT * FROM watchlisted ");
-};
-
+// const findAll = () => {
+//   return db.query("SELECT * FROM watchlisted ");
+// };
 
 const insert = (watchlist) => {
-  console.info(watchlist);
-
   return db.query(
     "INSERT INTO watchlisted ( user_id, content_id ) VALUES (?, ?)",
     [watchlist.userID, watchlist.content_id]
@@ -20,8 +17,6 @@ const findByUsers = (usersid) => {
   );
 };
 
-
-
 const deleteById = (watchlist) => {
   return db.query(
     "DELETE FROM watchlisted WHERE content_id = ? AND user_id = ?",
@@ -30,7 +25,7 @@ const deleteById = (watchlist) => {
 };
 
 module.exports = {
-  findAll,
+  // findAll,
   insert,
   findByUsers,
   deleteById,

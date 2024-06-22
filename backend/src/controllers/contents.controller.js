@@ -3,9 +3,6 @@ const { insert } = require('../models/contents.model');
 
 const addContent = async (req, res, next) => {
   try {
-    console.log("Body:", req.body);
-    console.log("File:", req.file);
-
     const content = req.body;
     if (req.file) {
       content.thumbnail = `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`;
@@ -84,13 +81,36 @@ const getContentById = async (req, res, next) => {
   }
 };
 
+// const editContent = async (req, res, next) => {
+//   const { id } = req.params;
+//   try {
+//     const [result] = await contentModel.updateContent(req.body, id);
+//     if (result.affectedRows > 0) res.sendStatus(204);
+//     else res.sendStatus(404);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
 const editContent = async (req, res, next) => {
   const { id } = req.params;
+  const updatedContent = req.body;
+
   try {
-    const [result] = await contentModel.updateContent(req.body, id);
-    if (result.affectedRows > 0) res.sendStatus(204);
-    else res.sendStatus(404);
+    // Check if the content with the given id exists
+    const existingContent = await contentModel.findById(id);
+    if (existingContent.length === 0) {
+      return res.status(404).json({ message: "Content not found" });
+    }
+
+    // Perform the update operation
+    await contentModel.updateContent(updatedContent, id);
+
+    // Return the updated content as response
+    res.status(200).json(updatedContent);
   } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
     next(error);
   }
 };
