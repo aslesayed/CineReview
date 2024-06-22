@@ -1,10 +1,14 @@
 const express = require("express");
 const contentController = require("../controllers/contents.controller");
 const upload = require("../middlewares/upload");
+const { addContent } = require('../controllers/contents.controller');
+
 
 const router = express.Router();
 
-router.post("/contents", upload.any(), contentController.addContent);
+
+
+router.post("/contents", upload.single('thumbnail'), addContent);
 router.get("/contents", contentController.getAll);
 router.get("/contents/type/movies", contentController.getAllMovies);
 router.get("/contents/type/series", contentController.getAllSeries);

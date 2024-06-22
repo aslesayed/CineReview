@@ -1,21 +1,21 @@
 const argon = require("argon2");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/users.model");
+const { insert } = require('../models/users.model');
 
 const add = async (req, res, next) => {
   try {
     const user = req.body;
-    user.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
-      req.file.filename
-    }`;
-    const [result] = await userModel.insert(user);
-    if (result.insertId) {
-      const [[newUser]] = await userModel.findById(result.insertId);
-      res.status(201).json(newUser);
+    if (req.file) {
+      user.thumbnail = `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`;
     } else {
-      res.sendStatus(422);
+      throw new Error('File upload failed');
     }
+    await insert(user);
+    res.status(201).json(user);
   } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
     next(error);
   }
 };
@@ -82,30 +82,35 @@ const deleteuser = async (req, res, next) => {
   }
 };
 
-// const updateUse = async (req, res, next) => {
-//   const { id } = req.params;
-//   try {
-//     const [result] = await userModel.updateById(req.body, id);
-//     if (result.affectedRows > 0) res.sendStatus(204);
-//     else res.sendStatus(404);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
 const updateUser = async (req, res, next) => {
   try {
-    const id = req.userID;
+    const { id } = req.params; // Ensure you are using req.params to get the id
     const data = req.body;
-    const [result] = await userModel.updateById(id, data);
-    if (result.affectedRows <= 0) res.sendStatus(422);
-    else {
-      const [[user]] = await userModel.findById(id);
-      res.status(200).json(user);
+    const [result] = await userModel.updateById(id, data); // Call the correct function
+    if (result.affectedRows > 0) {
+      res.sendStatus(204); // No content status for successful update
+    } else {
+      res.sendStatus(404); // Not found status if no rows were affected
     }
   } catch (error) {
-    next(error);
+    next(error); // Pass errors to the next middleware
   }
 };
+
+const getUserById = async (req, res, next) => {
+  try {
+    const { id } = req.params; // Extract user ID from request parameters
+    const [[user]] = await userModel.findById(id); // Find user by ID
+    if (user) {
+      res.status(200).json(user); // If user exists, send user data
+    } else {
+      res.sendStatus(404); // If user does not exist, send 404 status
+    }
+  } catch (error) {
+    next(error); // Handle errors by passing to the next middleware
+  }
+};
+
 
 module.exports = {
   add,
@@ -115,4 +120,5 @@ module.exports = {
   logout,
   updateUser,
   deleteuser,
+  getUserById,
 };

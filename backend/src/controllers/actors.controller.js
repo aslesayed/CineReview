@@ -1,3 +1,4 @@
+
 const actorModel = require("../models/actors.model");
 
 const addActor = async (req, res, next) => {
@@ -12,12 +13,27 @@ const addActor = async (req, res, next) => {
 
 const getAllActors = async (req, res, next) => {
   try {
-    const [actor] = await actorModel.findAllActors();
-    res.status(200).json(actor);
+    const actors = await actorModel.findAllActors(); // no destructuring
+    res.status(200).json(actors); // send the whole array
   } catch (error) {
     next(error);
   }
 };
+
+const getActorById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const actor = await actorModel.findActorById(id);
+    if (actor) {
+      res.status(200).json(actor);
+    } else {
+      res.status(404).json({ message: "Actor not found" });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const editActor = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -52,4 +68,5 @@ module.exports = {
   getAllActors,
   editActor,
   deleteActor,
+  getActorById
 };

@@ -9,6 +9,7 @@ const insert = async (content) => {
   );
 };
 
+
 const findAll = async () => {
   const sql = `SELECT * FROM contents`;
   return db.query(sql);
@@ -49,15 +50,23 @@ const findById = async (contentId) => {
   return rows;
 };
 
-const updateContent = (content, contentId) => {
-  const { type, name, description, rating, release_date, thumbnail, genre } =
-    content;
+
+
+const updateContent = (content, id) => {
+  const {  type, name, description, rating, release_date, genre } = content;
   return db.query(
-    "UPDATE contents SET type = ?, name = ?, description = ?, rating = ?, release_date = ?, thumbnail = ?, genre = ? WHERE content_id = ?",
-    [type, name, description, rating, release_date, thumbnail, genre, contentId]
+    "UPDATE contents SET type = ?, name = ?, description = ?, rating = ?, release_date = ?, genre = ? WHERE content_id = ?",
+    [
+      type,
+      name,
+      description,
+      rating,
+      release_date,
+      genre,
+      id,
+    ]
   );
 };
-
 const deleteById = async (id) => {
   const sql = `DELETE FROM contents WHERE content_id = ?`;
   return db.query(sql, [id]);
