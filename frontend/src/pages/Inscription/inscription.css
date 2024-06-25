@@ -27,7 +27,7 @@
   background-color: rgba(0, 0, 0, 0.76);
   color: #b5b5b5;
   width: 308px;
-  height: 464px;
+  height: 492px;
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;
@@ -101,8 +101,7 @@
 .unmatch-header {
   font-size: 13px;
   margin-left: 6%;
-  margin-bottom: 1rem;
-  color: #5a0d0d;
+  color: #8e1212;
 }
 
 @media screen and (min-width: 1024px) {
