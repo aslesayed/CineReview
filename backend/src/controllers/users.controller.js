@@ -84,11 +84,11 @@ const deleteuser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   try {
-    const { id } = req.params; // Ensure you are using req.params to get the id
-    const data = req.body;
+    const id = req.params.id; // Access the id parameter correctly
+    const data = req.body; // Assuming you have a body parser middleware handling form-data
     const [result] = await userModel.updateById(id, data); // Call the correct function
     if (result.affectedRows > 0) {
-      res.sendStatus(204); // No content status for successful update
+      res.sendStatus(204).json(result); // No content status for successful update
     } else {
       res.sendStatus(404); // Not found status if no rows were affected
     }

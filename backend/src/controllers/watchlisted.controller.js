@@ -15,45 +15,15 @@ const addWatchlist = async (req, res, next) => {
   }
 };
 
-// const getWatchlist = async (req, res, next) => {
-//   try {
-//     const { userID } = req.body;
-//     const [watchlist] = await watchlistedModel.findByUsers(userID);
-//     if (watchlist.affectedRows > 0) {
-//       res.status(200).json (watchlist);
-//     } else res.sendStatus(422);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 const getWatchlist = async (req, res, next) => {
   try {
-    const { userID } = req.body;
-
-    // Ensure userID is present and valid
-    if (!userID) {
-      return res.status(400).json({ error: "userID is required" });
-    }
-
-    // Fetch watchlist for the user
-    const watchlist = await watchlistedModel.findByUsers(userID);
-
-    // Check if watchlist has data
-    if (watchlist.length > 0) {
-      res.status(200).json(watchlist);
-    } else {
-      res.status(404).json({ message: "Watchlist not found" });
-    }
+    const { userId } = req.params;
+    const [watchlist] = await watchlistedModel.findByUsers(userId);
+    res.status(200).json(watchlist);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
     next(error);
   }
 };
-
-
-
 
 const deleteWatchlist = async (req, res, next) => {
   try {
