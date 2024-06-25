@@ -23,7 +23,6 @@ const updateById = (id, data) => {
   return db.query("UPDATE users SET ? WHERE user_id = ?", [data, id]);
 };
 
-
 module.exports = {
   insert,
   findById,

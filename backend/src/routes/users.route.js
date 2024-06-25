@@ -17,6 +17,6 @@ router.get(
 router.get('/users/:id', userController.getUserById);
 router.get("/users/logout", auth.isAuth, userController.logout);
 router.get("/users", userController.getAll);
-router.put("/users/:id", userController.updateUser); 
+router.put("/users/:id", upload.single('thumbnail'), userController.updateUser); 
 router.delete("/users/:id", auth.isAuth, userController.deleteuser);
 module.exports = router;

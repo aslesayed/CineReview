@@ -1,10 +1,8 @@
 const reviewModel = require("../models/reviews.model");
 
-
 const insertReview = async (req, res, next) => {
   try {
-    const reviewData = req.body; // Make sure review_date is present here
-
+    const reviewData = req.body; 
     const [result] = await reviewModel.insert(reviewData);
 
     if (result.insertId) {
@@ -17,7 +15,6 @@ const insertReview = async (req, res, next) => {
     next(error);
   }
 };
-
 
 
 const getAll = async (req, res, next) => {
@@ -60,3 +57,5 @@ module.exports = {
   getById,
   deleteReview,
 };
+
+

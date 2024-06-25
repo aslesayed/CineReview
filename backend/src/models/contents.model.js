@@ -52,21 +52,26 @@ const findById = async (contentId) => {
 
 
 
-const updateContent = (content, id) => {
-  const {  type, name, description, rating, release_date, genre } = content;
-  return db.query(
-    "UPDATE contents SET type = ?, name = ?, description = ?, rating = ?, release_date = ?, genre = ? WHERE content_id = ?",
-    [
-      type,
-      name,
-      description,
-      rating,
-      release_date,
-      genre,
-      id,
-    ]
-  );
+// const updateContent = (content, id) => {
+//   const {  type, name, description, rating, release_date, genre } = content;
+//   return db.query(
+//     "UPDATE contents SET type = ?, name = ?, description = ?, rating = ?, release_date = ?, genre = ? WHERE content_id = ?",
+//     [
+//       type,
+//       name,
+//       description,
+//       rating,
+//       release_date,
+//       genre,
+//       id,
+//     ]
+//   );
+// };
+
+const updateContent = (id, data) => {
+  return db.query("UPDATE contents SET ? WHERE content_id = ?", [data, id]);
 };
+
 const deleteById = async (id) => {
   const sql = `DELETE FROM contents WHERE content_id = ?`;
   return db.query(sql, [id]);

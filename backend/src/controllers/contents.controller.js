@@ -92,28 +92,42 @@ const getContentById = async (req, res, next) => {
 //   }
 // };
 
+// const editContent = async (req, res, next) => {
+//   const { id } = req.params;
+//   const updatedContent = req.body;
+//   try {
+//     // Check if the content with the given id exists
+//     const existingContent = await contentModel.findById(id);
+//     if (existingContent.length === 0) {
+//       return res.status(404).json({ message: "Content not found" });
+//     }
+//     // Perform the update operation
+//     await contentModel.updateContent(updatedContent, id);
+//     // Return the updated content as response
+//     res.status(200).json(updatedContent);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: error.message });
+//     next(error);
+//   }
+// };
+
+
 const editContent = async (req, res, next) => {
-  const { id } = req.params;
-  const updatedContent = req.body;
-
   try {
-    // Check if the content with the given id exists
-    const existingContent = await contentModel.findById(id);
-    if (existingContent.length === 0) {
-      return res.status(404).json({ message: "Content not found" });
+    const id = req.params.id; // Access the id parameter correctly
+    const data = req.body; // Assuming you have a body parser middleware handling form-data
+    const [result] = await contentModel.updateContent(id, data); // Call the correct function
+    if (result.affectedRows > 0) {
+      res.sendStatus(204).json(result); // No content status for successful update
+    } else {
+      res.sendStatus(404); // Not found status if no rows were affected
     }
-
-    // Perform the update operation
-    await contentModel.updateContent(updatedContent, id);
-
-    // Return the updated content as response
-    res.status(200).json(updatedContent);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
-    next(error);
+    next(error); // Pass errors to the next middleware
   }
 };
+
 
 const deleteContent = async (req, res, next) => {
   try {
@@ -129,7 +143,6 @@ const deleteContent = async (req, res, next) => {
 
 
 
-
 module.exports = {
   addContent,
   getAll,
@@ -141,3 +154,5 @@ module.exports = {
   editContent,
   deleteContent,
 };
+
+

@@ -26,10 +26,11 @@ const insert = (data) => {
 
 
 
-
 module.exports = {
   findAll,
   findById,
   deleteById,
   insert,
 };
+
+
