@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useState, useRef } from "react";
 import "./inscription.css";
@@ -14,6 +14,7 @@ function Inscription() {
   const [isPhoneValid, setIsPhoneValid] = useState(true);
   const firstname = useRef();
   const lastname = useRef();
+  const navigate = useNavigate();
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
@@ -64,16 +65,19 @@ function Inscription() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               firstname: firstname.current.value,
-              lastname: lastname.current.value || undefined,
+              lastname: lastname.current.value || null,
               email,
-              telephone: telephone || undefined,
+              telephone: telephone || null,
               password,
+              thumbnail: null,
             }),
           }
         );
         console.info(response.status);
         if (response.status === 201) {
           console.log("User created successfully.");
+          alert("User created successfully.");
+          navigate("/connection");
         } else {
           console.error("Failed to create user.");
         }
@@ -81,7 +85,7 @@ function Inscription() {
         console.error("Error creating user:", error);
       }
     } else {
-      alert("Please ensure all fields are valid.");
+      alert("Please ensure all the mendatory fields are valid.");
     }
   };
 
