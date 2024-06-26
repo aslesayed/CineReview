@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import useUser, { UserProvider } from "./contexts/UserContext";
 import Homepage from "./pages/Homepage/Homepage.jsx";
 import Connection from "./pages/Connection/Connection.jsx";
 import Description from "./pages/Description/Description.jsx";
@@ -13,6 +19,23 @@ import SeriesList from "./pages/SeriesList/SeriesList.jsx";
 import WatchList from "./pages/WatchList/WatchList.jsx";
 import ContentManager from "./pages/ContentManager/ContentManager.jsx";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
+import Loader from "./composants/Loader/Loader.jsx";
+
+
+// eslint-disable-next-line react-refresh/only-export-components
+function PrivateRoute({ children }) {
+  const { user, isLoading } = useUser();
+  const [page, setPage] = useState(null);
+  const redirect = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (isLoading) setPage(<Loader />);
+    else if (!user) redirect("./login");
+    else setPage(children);
+    return () => setPage(null);
+  }, [user, isLoading, location, redirect, children]);
+  return page;
+}
 
 const router = createBrowserRouter([
   {
@@ -49,11 +72,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/watchlist",
-        element: <WatchList />,
+        element: (
+          <PrivateRoute>
+          <WatchList />
+          </PrivateRoute>
+        ),
+        
       },
       {
         path: "/contentmanager",
-        element: <ContentManager />,
+        element: (
+          <PrivateRoute>
+           <ContentManager />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/moviedetail",
@@ -67,6 +99,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
+     <UserProvider>
     <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );

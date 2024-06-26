@@ -32,10 +32,11 @@ const cors = require("cors");
 app.use(
   cors({
     origin: [
-      process.env.FRONTEND_URL, // keep this one, after checking the value in `backend/.env`
-      "http://mysite.com",
-      "http://another-domain.com",
-      "http://127.0.0.1:3000",
+      process.env.FRONTEND_URL, // keep this one, after checking the value in backend/.env
+      "http://mysite.com/",
+      "http://another-domain.com/",
+      "http://127.0.0.1:3310/",
+      "http://localhost:3310/"
     ],
     credentials: true,
   })
