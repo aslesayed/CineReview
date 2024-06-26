@@ -244,39 +244,39 @@ function Inscription() {
     validateEmail();
     validatePhoneNumber();
 
-    if (
-      isEmailValid &&
-      isPhoneValid &&
-      isPasswordValid &&
-      password === confirmPassword
-    ) {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/users`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              firstname: firstname.current.value,
-              lastname: lastname.current.value || undefined,
-              email,
-              telephone: telephone || undefined,
-              password,
-            }),
-          }
-        );
-        console.info(response.status);
-        if (response.status === 201) {
-          console.log("User created successfully.");
-        } else {
-          console.error("Failed to create user.");
+    // if (
+    //   isEmailValid &&
+    //   isPhoneValid &&
+    //   isPasswordValid &&
+    //   password === confirmPassword
+    // ) {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstname: firstname.current.value,
+            lastname: lastname.current.value || undefined,
+            email,
+            telephone: telephone || undefined,
+            password,
+          }),
         }
-      } catch (error) {
-        console.error("Error creating user:", error);
+      );
+      console.info(response.status);
+      if (response.status === 201) {
+        console.log("User created successfully.");
+      } else {
+        console.error("Failed to create user.");
       }
-    } else {
-      alert("Please ensure all fields are valid.");
+    } catch (error) {
+      console.error("Error creating user:", error);
     }
+    // } else {
+    //   alert("Please ensure all fields are valid.");
+    // }
   };
 
   return (
