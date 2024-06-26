@@ -1,13 +1,15 @@
 const argon = require("argon2");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/users.model");
-const { insert } = require('../models/users.model');
+const { insert } = require("../models/users.model");
 
 const add = async (req, res, next) => {
   try {
     const user = req.body;
     if (req.file) {
-      user.thumbnail = `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`;
+      user.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
+        req.file.filename
+      }`;
     }
     await insert(user);
     res.status(201).json(user);
@@ -108,7 +110,6 @@ const getUserById = async (req, res, next) => {
     next(error); // Handle errors by passing to the next middleware
   }
 };
-
 
 module.exports = {
   add,
