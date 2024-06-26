@@ -8,8 +8,6 @@ const add = async (req, res, next) => {
     const user = req.body;
     if (req.file) {
       user.thumbnail = `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`;
-    } else {
-      throw new Error('File upload failed');
     }
     await insert(user);
     res.status(201).json(user);
