@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
 import ContentDetail from "../../composants/ContentDetail/ContentDetail";
 
 function MovieDetail() {
+  const { id } = useParams();
+
   return (
     <section>
-      <ContentDetail />
+      <ContentDetail contentId={id} />
     </section>
   );
 }
