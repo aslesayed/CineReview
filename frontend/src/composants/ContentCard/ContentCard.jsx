@@ -4,9 +4,9 @@ import "./contentcard.css";
 
 const ContentCard = () => {
   const [contents, setContents] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  const [watchlist, setWatchlist] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => {	
     const fetchContents = async () => {
       try {
         const response = await fetch(
@@ -23,8 +23,49 @@ const ContentCard = () => {
     fetchContents();
   }, []);
 
-  const handleAddToFavorites = (contentId) => {
-    setFavorites([...favorites, contentId]);
+  const togglewatchlist = async () => {
+    try {
+      if (watchlist) {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/watchlisted`,
+          {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              artworks_id: artwork?.artworkUnique.artworks_id,
+            }),
+            credentials: "include",
+          }
+        );
+        console.info(response.status);
+        if (response.status === 200) {
+          setWatchlist(false);
+          setDeleted(artwork?.artworkUnique.artworks_id);
+        } else {
+          console.error("suppression du favori.");
+        }
+      } else {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              content_id: contentId,
+            }),
+            credentials: "include",
+          }
+        );
+        console.info(response.status);
+        if (response.status === 201) {
+          setWatchlist(true);
+        } else {
+          console.error("Zrro.");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -67,3 +108,4 @@ const ContentCard = () => {
 };
 
 export default ContentCard;
+
