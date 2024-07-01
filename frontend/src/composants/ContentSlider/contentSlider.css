@@ -1,0 +1,12 @@
+.content-slider {
+    width: 85%;
+    margin: auto;
+  }
+
+.content-slider .slick-slide {
+    padding: 0px; /* Adjust the value as needed */
+  }
+
+.content-slider .slick-list {
+    margin: 0px; /* Adjust the value to match padding */
+  }

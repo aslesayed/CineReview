@@ -1,27 +1,13 @@
 // ContentCard.jsx
-import { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./contentcard.css";
 
-const ContentCard = () => {
-  const [contents, setContents] = useState([]);
-
-  useEffect(() => {    
-    const fetchContents = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/contents`
-        );
-        const data = await response.json();
-        console.log(data); // Log the data to check the structure
-        setContents(data);
-      } catch (error) {
-        console.error("Error fetching contents:", error);
-      }
-    };
-
-    fetchContents();
-  }, []);
+const ContentCard = ({ contents = [] }) => {
+  const handleAddToFavorites = (contentId) => {
+    console.log(`Adding content ${contentId} to favorites`);
+    // Logic to add to favorites
+  };
 
   return (
     <div className="content-list">

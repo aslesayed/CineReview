@@ -1,8 +1,10 @@
-import ContentCard from "../../composants/ContentCard/ContentCard";
 import "./homepage.css";
+import ContentSlider from "../../composants/ContentSlider/ContentSlider";
 
 function Homepage() {
-  return <div> <ContentCard/>
+  return <div> 
+<ContentSlider/>
+<ContentSlider/>
   </div>;
 }
 
