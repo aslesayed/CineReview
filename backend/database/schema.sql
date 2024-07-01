@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`contents` (
     `content_id` INT NOT NULL AUTO_INCREMENT,
     `type` VARCHAR(45) NOT NULL,
     `name` VARCHAR(45) NOT NULL,
-    `description` VARCHAR(255) NOT NULL,
+    `description` VARCHAR(500) NOT NULL,
     `release_date` DATETIME NOT NULL,
     `rating` DECIMAL(3, 1) NOT NULL,
     `thumbnail` VARCHAR(255) NOT NULL,
