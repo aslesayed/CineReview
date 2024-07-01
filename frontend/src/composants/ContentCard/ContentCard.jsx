@@ -4,7 +4,6 @@ import "./contentcard.css";
 
 const ContentCard = () => {
   const [contents, setContents] = useState([]);
-  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     const fetchContents = async () => {
@@ -23,10 +22,10 @@ const ContentCard = () => {
     fetchContents();
   }, []);
 
-  const handleAddToFavorites = (contentId) => {
-    setFavorites([...favorites, contentId]);
-  };
 
+
+ 
+      
   return (
     <div className="content-list">
       {contents.map((content) => (
@@ -50,11 +49,7 @@ const ContentCard = () => {
               </div>
               <button
                 className="add-to-favorites"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  handleAddToFavorites(content.id);
-                }}
+              
               >
                 +
               </button>

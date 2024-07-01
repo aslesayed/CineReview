@@ -2,9 +2,7 @@ import { useState } from "react";
 import "./reviewsection.css";
 
 const ReviewSection = () => {
-  const [reviews, setReviews] = useState([
-    { id: 1, name: "Lio", time: "1 day ago", text: "So cheesy!" },
-  ]);
+  const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
 
   const handleAddReview = () => {
