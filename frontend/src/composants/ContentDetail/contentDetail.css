@@ -52,7 +52,11 @@
 }
 
 .content-casting {
+  display:flex;
   margin-bottom: 5px;
+  flex-direction: row;
+  gap: 5px;
+
 }
 
 .horizontal-bar {
