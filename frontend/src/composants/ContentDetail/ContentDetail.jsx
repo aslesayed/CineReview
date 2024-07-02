@@ -55,7 +55,7 @@ const ContentDetail = ({ contentId }) => {
               <div className="type2">{content[0].type}</div>
               <div className="genre2">{content[0].genre}</div>
               <div className="rating2">
-                {content.rating} <span className="star-symbol">★</span>
+                {content[0].rating} <span className="star-symbol">★</span>
               </div>
             </div>
             <button
@@ -87,11 +87,11 @@ const ContentDetail = ({ contentId }) => {
 
           <div className="content-description">{content[0].description}</div>
           <div className="horizontal-bar"></div>
-          <div className="content-release">{content[0].release_date}</div>
+          <div className="content-release">Release date:  {content[0].release_date}</div>
           <div className="horizontal-bar"></div>
           <div className="content-casting">
             {actors.map((actor) => (
-              <div key={actor.actor_id}>{actor.firstname}  {actor.lastname}</div>
+              <div key={actor.actor_id}> Casting:  {actor.firstname} {actor.lastname}</div>
             ))}
           </div>
           <div className="horizontal-bar"></div>
