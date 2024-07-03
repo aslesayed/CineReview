@@ -82,9 +82,7 @@ const router = createBrowserRouter([
       {
         path: "/contentmanager",
         element: (
-          <PrivateRoute>
            <ContentManager />
-          </PrivateRoute>
         ),
       },
       {

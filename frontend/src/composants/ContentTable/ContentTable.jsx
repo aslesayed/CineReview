@@ -1,34 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./contenttable.css";
 
-const ContentTable = () => {
-  const [data, setData] = useState([
-    {
-      id: 1,
-      title: "Content Title 1",
-      description: "Description of Content 1",
-      type: "Movie",
-      releaseDate: "2023-05-01",
-      actors: "Actor 1, Actor 2",
-      rating: 8.5,
-      genres: "Action, Thriller",
-      image: "https://via.placeholder.com/100",
-    },
-    {
-      id: 2,
-      title: "Content Title 2",
-      description: "Description of Content 2",
-      type: "Series",
-      releaseDate: "2023-06-15",
-      actors: "Actor 3, Actor 4",
-      rating: 9.0,
-      genres: "Drama, Mystery",
-      image: "https://via.placeholder.com/100",
-    },
-  ]);
-
+const ContentTable = ({ contents }) => {
+  const [data, setData] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
-  const [editContent, setEditContent] = useState(null);
+  const [editContent, setEditContent] = useState({
+    name: "",
+    description: "",
+    type: "",
+    release_date: "",
+    thumbnail: "",
+    rating: "",
+    genre: "",
+  });
+
+  useEffect(() => {
+    if (contents) {
+      console.log("Contents received:", contents); // Log pour vérifier les contenus
+      setData(contents);
+    }
+  }, [contents]);
 
   const handleEditClick = (index) => {
     setEditIndex(index);
@@ -50,12 +41,28 @@ const ContentTable = () => {
     newData[editIndex] = editContent;
     setData(newData);
     setEditIndex(null);
-    setEditContent(null);
+    setEditContent({
+      name: "",
+      description: "",
+      type: "",
+      release_date: "",
+      thumbnail: "",
+      rating: "",
+      genre: "",
+    });
   };
 
   const handleCancelClick = () => {
     setEditIndex(null);
-    setEditContent(null);
+    setEditContent({
+      name: "",
+      description: "",
+      type: "",
+      release_date: "",
+      thumbnail: "",
+      rating: "",
+      genre: "",
+    });
   };
 
   return (
@@ -63,26 +70,25 @@ const ContentTable = () => {
       <table>
         <thead>
           <tr>
-            <th>Title</th>
+            <th>Name</th>
             <th>Description</th>
             <th>Type</th>
             <th>Release Date</th>
-            <th>Poster URL</th>
-            <th>Actors</th>
+            <th>Thumbnail</th>
             <th>Rating</th>
-            <th>Genres</th>
+            <th>Genre</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {data.map((content, index) => (
-            <tr key={content.id}>
+            <tr key={content.content_id}>
               {editIndex === index ? (
                 <>
                   <td>
                     <input
-                      name="title"
-                      value={editContent.title}
+                      name="name"
+                      value={editContent.name}
                       onChange={handleChange}
                     />
                   </td>
@@ -102,22 +108,15 @@ const ContentTable = () => {
                   </td>
                   <td>
                     <input
-                      name="releaseDate"
-                      value={editContent.releaseDate}
+                      name="release_date"
+                      value={editContent.release_date}
                       onChange={handleChange}
                     />
                   </td>
                   <td>
                     <input
-                      name="image"
-                      value={editContent.image}
-                      onChange={handleChange}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      name="actors"
-                      value={editContent.actors}
+                      name="thumbnail"
+                      value={editContent.thumbnail}
                       onChange={handleChange}
                     />
                   </td>
@@ -130,8 +129,8 @@ const ContentTable = () => {
                   </td>
                   <td>
                     <input
-                      name="genres"
-                      value={editContent.genres}
+                      name="genre"
+                      value={editContent.genre}
                       onChange={handleChange}
                     />
                   </td>
@@ -142,14 +141,13 @@ const ContentTable = () => {
                 </>
               ) : (
                 <>
-                  <td>{content.title}</td>
+                  <td>{content.name}</td>
                   <td>{content.description}</td>
                   <td>{content.type}</td>
-                  <td>{content.releaseDate}</td>
-                  <td>{content.image}</td>
-                  <td>{content.actors}</td>
+                  <td>{content.release_date}</td>
+                  <td>{content.thumbnail}</td>
                   <td>{content.rating}</td>
-                  <td>{content.genres}</td>
+                  <td>{content.genre}</td>
                   <td>
                     <button onClick={() => handleEditClick(index)}>Edit</button>
                     <button onClick={() => handleDeleteClick(index)}>

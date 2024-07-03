@@ -3,11 +3,14 @@ const db = require("../../database/client");
 const insert = async (content) => {
   const { type, name, description, rating, thumbnail, genre, release_date } = content;
 
-  return db.query(
+  const result =  db.query(
     "INSERT INTO contents (type, name, description, rating, release_date, thumbnail, genre) VALUES (?, ?, ?, ?, ?, ?, ?)",
     [type, name, description, rating, release_date, thumbnail, genre]
   );
+  return result;
 };
+
+
 
 
 const findAll = async () => {
@@ -18,6 +21,11 @@ const findAll = async () => {
 const findByType = async (type) => {
   const sql = `SELECT * FROM contents WHERE type = ?`;
   return db.query(sql, [type]);
+};
+
+const findByName = async (name) => {
+  const sql = `SELECT * FROM contents WHERE name = ?`;
+  return db.query(sql, [name]);
 };
 
 const findByGenre = async (genre) => {
@@ -84,6 +92,7 @@ const deleteById = async (id) => {
 // };
 
 module.exports = {
+  findByName,
   insert,
   findAll,
   findByType,

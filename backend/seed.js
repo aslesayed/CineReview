@@ -195,7 +195,7 @@ const contents = [
     },
     {
         type: "Movie",
-        name: "Shining",
+        name: "Jaws",
         description: "Shining by Stanley Kubrick is a horror film based on Stephen King's novel. It follows Jack Torrance, the caretaker of a remote hotel, who descends into madness under supernatural influences, endangering his family. Terrifying atmosphere and memorable performances.",
         release_date: "16/10/1980",
         rating: "8.1",

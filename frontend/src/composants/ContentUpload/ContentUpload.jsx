@@ -1,47 +1,75 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import Select from "react-select";
 import "./contentupload.css";
 
 const ContentUpload = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    type: "",
-    releaseDate: "",
-    actors: "",
-    rating: "",
-    genres: "",
-    image: null, // Update to handle file
-  });
+  const nameRef = useRef();
+  const descriptionRef = useRef();
+  const typeRef = useRef();
+  const release_dateRef = useRef();
+  const ratingRef = useRef();
+  const genreRef = useRef();
+  const thumbnailRef = useRef();
+  const [confirmation, setConfirmation] = useState("");
+  const [actors, setActors] = useState([]);
+  const [selectedActors, setSelectedActors] = useState([]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  useEffect(() => {
+    // Fetch actors from backend
+    const fetchActors = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/actors`);
+        const data = await response.json();
+        // Map actors to the format required by react-select
+        const formattedActors = data.map(actor => ({
+          value: actor.actor_id,
+          label: `${actor.firstname} ${actor.lastname}`
+        }));
+        setActors(formattedActors);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des acteurs:", error);
+      }
+    };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
-  };
+    fetchActors();
+  }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSubmit = new FormData();
-    for (const key in formData) {
-      formDataToSubmit.append(key, formData[key]);
+    formDataToSubmit.append("name", nameRef.current.value);
+    formDataToSubmit.append("description", descriptionRef.current.value);
+    formDataToSubmit.append("type", typeRef.current.value);
+    formDataToSubmit.append("release_date", release_dateRef.current.value);
+    formDataToSubmit.append("actors", JSON.stringify(selectedActors.map(actor => actor.value)));
+    formDataToSubmit.append("rating", ratingRef.current.value);
+    formDataToSubmit.append("genre", JSON.stringify(Array.from(genreRef.current.selectedOptions).map(option => option.value)));
+    formDataToSubmit.append("thumbnail", thumbnailRef.current.files[0]);
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/contents`,
+        {
+          method: "POST",
+          credentials: "include",
+          body: formDataToSubmit,
+        }
+      );
+      console.info(response.status);
+      if (response.status === 201) {
+        setConfirmation("Œuvre ajoutée avec succès !");
+      } else {
+        console.error("Veuillez vérifier votre saisie.");
+        setConfirmation("Erreur d'ajout, veuillez vérifier votre saisie.");
+      }
+    } catch (error) {
+      console.error(error);
+      setConfirmation("Erreur de réseau, veuillez réessayer plus tard.");
     }
-    // Here you can perform any action you want with the form data
-    console.log(formData);
 
     // Reset the form fields
-    setFormData({
-      title: "",
-      description: "",
-      type: "",
-      releaseDate: "",
-      actors: "",
-      rating: "",
-      genres: "",
-      image: null,
-    });
+    // e.target.reset();
+    // setSelectedActors([]);
   };
 
   return (
@@ -51,44 +79,42 @@ const ContentUpload = () => {
         <input
           className="content-form-inputs"
           type="text"
-          name="title"
-          placeholder="Title"
-          value={formData.title}
-          onChange={handleChange}
+          name="name"
+          placeholder="Name"
+          ref={nameRef}
           required
         />
         <textarea
           className="content-form-inputs"
           name="description"
           placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
+          ref={descriptionRef}
           required
         ></textarea>
-        <input
+        <select
           className="content-form-inputs"
-          type="text"
           name="type"
-          placeholder="Type"
-          value={formData.type}
-          onChange={handleChange}
+          ref={typeRef}
           required
-        />
+        >
+          <option value="Movie">Movie</option>
+          <option value="Serie">Serie</option>
+        </select>
         <input
           className="content-form-inputs"
           type="date"
-          name="releaseDate"
-          value={formData.releaseDate}
-          onChange={handleChange}
+          name="release_date"
+          ref={release_dateRef}
           required
         />
-        <input
+        <Select
           className="content-form-inputs"
-          type="text"
           name="actors"
-          placeholder="Actors"
-          value={formData.actors}
-          onChange={handleChange}
+          options={actors}
+          isMulti
+          onChange={setSelectedActors}
+          value={selectedActors}
+          placeholder="Select actors"
           required
         />
         <input
@@ -96,31 +122,35 @@ const ContentUpload = () => {
           type="number"
           name="rating"
           placeholder="Rating"
-          value={formData.rating}
-          onChange={handleChange}
+          ref={ratingRef}
           required
         />
-        <input
+        <select
           className="content-form-inputs"
-          type="text"
-          name="genres"
-          placeholder="Genres"
-          value={formData.genres}
-          onChange={handleChange}
+          name="genre"
+          multiple
+          ref={genreRef}
           required
-        />
+        >
+          <option value="Comedy">Comedy</option>
+          <option value="Drama">Drama</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Action">Action</option>
+          <option value="Horror">Horror</option>
+        </select>
         <input
           className="content-form-inputs"
           type="file"
-          name="image"
+          name="thumbnail"
           accept="image/*"
-          onChange={handleFileChange}
+          ref={thumbnailRef}
           required
         />
         <button className="upload-content-button" type="submit">
           Upload
         </button>
       </form>
+      {confirmation && <p>{confirmation}</p>}
     </div>
   );
 };
