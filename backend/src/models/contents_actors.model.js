@@ -17,6 +17,13 @@ const insert = async ({ content_id, actor_id }) => {
   return result;
 };
 
+const insertActors = async ({ content_id, actor_ids }) => {
+  const query = "INSERT INTO contents_actors (content_id, actor_id) VALUES ?";
+  const values = actor_ids.map(actor_id => [content_id, actor_id]);
+  const [result] = await db.query(query, [values]);
+  return result;
+};
+
 const findAll = () => {
   return db.query("SELECT * FROM contents_actors");
 };
@@ -45,6 +52,7 @@ const deleteById = (contentId, actorId) => {
 
 
 module.exports = {
+  insertActors,
   insert,
   findAll,
   findById,

@@ -1,16 +1,24 @@
 const contentModel = require("../models/contents.model");
 const { insert } = require('../models/contents.model');
+const { insertActors } = require("../models/contents_actors.model");
+const { findByName } = require("../models/contents.model");
 
 const addContent = async (req, res, next) => {
   try {
     const content = req.body;
+    console.log(req.body)
     if (req.file) {
       content.thumbnail = `${req.protocol}://${req.get("host")}/upload/${req.file.filename}`;
     } else {
       throw new Error('File upload failed');
     }
-    await insert(content);
+    const result = await insert(content);
+    const actors = JSON.parse(req.body.actors);
+    if (actors.length > 0) {
+      await insertActors({ content_id: result[0].insertId, actor_ids: actors });
+    }
     res.status(201).json(content);
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
