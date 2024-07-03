@@ -10,8 +10,8 @@
 
 .content-card {
   position: relative;
-  width: 166px;
-  height: 288px;
+  width: 158px;
+  height: 285px;
   overflow: hidden;
 
   background-color: black;
@@ -28,7 +28,7 @@
 
 .content-details {
   position: absolute;
-  bottom: 8px;
+  bottom: 5px;
   width: 100%;
   color: #ffffff;
   display: flex;
@@ -71,4 +71,11 @@
   font-size: 24px;
   cursor: pointer;
   margin-left: 105px;
+}
+
+@media screen and (min-width: 1024px) {
+  .content-card {
+    width: 158px;
+  height: 280px;
+  }
 }

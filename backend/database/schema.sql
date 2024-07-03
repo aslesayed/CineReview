@@ -68,12 +68,12 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`users` (
 
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(45) NOT NULL,
-  `lastname` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45)  NULL,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(245) NOT NULL,
-  `telephone` VARCHAR(13) NOT NULL,
+  `telephone` VARCHAR(13)  NULL,
   `admin` TINYINT(1) NOT NULL DEFAULT '0',
-  `thumbnail` VARCHAR(255),
+  `thumbnail` VARCHAR(255) NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

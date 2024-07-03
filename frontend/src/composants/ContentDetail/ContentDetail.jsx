@@ -1,4 +1,3 @@
-// ContentDetail.jsx
 import { useState, useEffect } from "react";
 import "./contentDetail.css";
 import ReviewSection from "../ReviewSection/ReviewSection.jsx";
@@ -99,6 +98,7 @@ const ContentDetail = ({ contentId }) => {
       </div>
       <ReviewSection />
     </div>
+    
   );
 };
 

@@ -10,3 +10,12 @@
 .content-slider .slick-list {
     margin: 0px; /* Adjust the value to match padding */
   }
+
+
+
+  @media screen and (min-width: 1024px) {
+    .content-slider {
+      width: 62%;
+      margin: auto;
+    }
+    }

@@ -8,6 +8,7 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
+import { DataProvider } from "./contexts/DataContext";
 import useUser, { UserProvider } from "./contexts/UserContext";
 import Homepage from "./pages/Homepage/Homepage.jsx";
 import Connection from "./pages/Connection/Connection.jsx";
@@ -102,7 +103,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
      <UserProvider>
-    <RouterProvider router={router} />
+     <DataProvider>
+        <RouterProvider router={router} />
+      </DataProvider>
     </UserProvider>
   </React.StrictMode>
 );
