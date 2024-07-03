@@ -6,66 +6,71 @@ import "./contentSlider.css";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-const ContentSlider = () => {
-    const [contents, setContents] = useState([]);
-  
-    useEffect(() => {    
-      const fetchContents = async () => {
-        try {
-          const response = await fetch(
-            `${import.meta.env.VITE_BACKEND_URL}/api/contents`
-          );
-          const data = await response.json();
-          console.log(data); // Log the data to check the structure
-          setContents(data);
-        } catch (error) {
-          console.error("Error fetching contents:", error);
-        }
-      };
-  
-      fetchContents();
-    }, []);
-  
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 5, // Default to 5 for desktop
-      slidesToScroll: 1,
-      arrows: true,
-      responsive: [
-        {
-          breakpoint: 700, // Adjust for desktop
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 480, // Adjust for mobile
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: true
-          }
-        }
-      ]
+const ContentSlider = ({ type, genre }) => {
+  const [contents, setContents] = useState([]);
+
+  useEffect(() => {
+    const fetchContents = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/contents`);
+        const data = await response.json();
+        console.log(data); // Log the data to check the structure
+        setContents(data);
+      } catch (error) {
+        console.error("Error fetching contents:", error);
+      }
     };
-  
-    return (
-      <div className="content-slider">
-        <Slider {...settings}>
-          {contents.map((content) => (
-            <div key={content.content_id}>
-              <ContentCard contents={[content]} />
-            </div>
-          ))}
-        </Slider>
-      </div>
-    );
+
+    fetchContents();
+  }, []);
+
+  const filteredContents = contents.filter(content => {
+    if (genre) {
+      return content.type === type && content.genre === genre;
+    }
+    return content.type === type;
+  });
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+    ],
   };
-  
-  export default ContentSlider;
+
+  return (
+    <div className="content-slider">
+      <Slider {...settings}>
+        {filteredContents.map((content) => (
+          <div key={content.content_id}>
+            <ContentCard contents={[content]} />
+          </div>
+        ))}
+      </Slider>
+    </div>
+  );
+};
+
+export default ContentSlider;

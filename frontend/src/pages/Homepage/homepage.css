@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
+
+.Slidername {
+  font-size: 18px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  margin-left: 28px;
+  margin-top: 2rem;
+}
+
+/* @media screen and (min-width: 1024px) {
+    .Slidername {
+        margin-left : 180px
+    }
+} */

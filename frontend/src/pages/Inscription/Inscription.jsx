@@ -26,8 +26,7 @@ function Inscription() {
   };
 
   const validatePassword = (password) => {
-    const regexPattern =
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const regexPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$/;
     setIsPasswordValid(regexPattern.test(password));
   };
 
@@ -85,13 +84,15 @@ function Inscription() {
         console.error("Error creating user:", error);
       }
     } else {
-      alert("Please ensure all the mendatory fields are valid.");
+      alert("Please ensure all the mandatory fields are valid.");
     }
   };
 
   return (
     <div className="container-form">
-      <h1 className="top-header">CINÉREVIEW</h1>
+      <Link to="/" className="top-header-link"> 
+        <h1 className="top-header">CINÉREVIEW</h1>
+      </Link>
 
       <div className="form-inscription">
         <h2 className="form-header">Create Account</h2>
@@ -203,3 +204,4 @@ function Inscription() {
 }
 
 export default Inscription;
+

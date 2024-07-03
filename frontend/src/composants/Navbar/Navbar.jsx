@@ -3,8 +3,11 @@ import ProfilIcon from "../../assets/images/Profilicon.png";
 import "./navbar.css";
 import SearchBar from "../SearchBar/SearchBar.jsx";
 import FilterGenre from "../FilterGenre/FilterGenre.jsx";
+import useUser from "../../contexts/UserContext"; 
 
 function Navbar() {
+  const { user } = useUser(); // Get the user object from the context
+  const profileLink = user ? "/profil" : "/connection"; 
   return (
     <div className="navbar">
       <div className="logo_profil">
@@ -56,7 +59,7 @@ function Navbar() {
             <p className="button-filter-dektop">WATCHLIST</p>
           </Link>
 
-          <Link to="/profil" className="button-filter-link">
+          <Link to={profileLink} className="button-filter-link">
             <p className="button-filter-dektop">PROFIL</p>
           </Link>
         </div>
