@@ -91,6 +91,11 @@ const deleteById = async (id) => {
 //   return rows;
 // };
 
+const deleteAssociationsByContentId = async (content_id) => {
+  const query = "DELETE FROM contents_actors WHERE content_id = ?";
+  return db.query(query, [content_id]);
+};
+
 module.exports = {
   findByName,
   insert,
@@ -101,4 +106,5 @@ module.exports = {
   findById,
   updateContent,
   deleteById,
+  deleteAssociationsByContentId,
 };

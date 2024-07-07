@@ -1,7 +1,6 @@
 const contentModel = require("../models/contents.model");
 const { insert } = require('../models/contents.model');
 const { insertActors } = require("../models/contents_actors.model");
-const { findByName } = require("../models/contents.model");
 
 const addContent = async (req, res, next) => {
   try {
@@ -140,15 +139,22 @@ const editContent = async (req, res, next) => {
 const deleteContent = async (req, res, next) => {
   try {
     const { id } = req.params;
+    
+    // Supprimer les associations dans contents_actors
+    await contentModel.deleteAssociationsByContentId(id);
+    
+    // Supprimer le contenu dans contents
     const [result] = await contentModel.deleteById(id);
+    
     if (result.affectedRows > 0) {
       res.sendStatus(204);
-    } else res.sendStatus(404);
+    } else {
+      res.sendStatus(404);
+    }
   } catch (error) {
     next(error);
   }
 };
-
 
 
 module.exports = {

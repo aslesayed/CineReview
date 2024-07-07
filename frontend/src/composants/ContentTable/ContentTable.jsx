@@ -26,9 +26,20 @@ const ContentTable = ({ contents }) => {
     setEditContent({ ...data[index] });
   };
 
-  const handleDeleteClick = (index) => {
-    const newData = data.filter((_, i) => i !== index);
-    setData(newData);
+  const handleDeleteClick = async (id, index) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/contents/${id}`, {
+        method: "DELETE",
+      });
+      if (response.status === 204) {
+        const newData = data.filter((_, i) => i !== index);
+        setData(newData);
+      } else {
+        console.error("Failed to delete content");
+      }
+    } catch (error) {
+      console.error("Error deleting content:", error);
+    }
   };
 
   const handleChange = (e) => {
@@ -36,20 +47,35 @@ const ContentTable = ({ contents }) => {
     setEditContent({ ...editContent, [name]: value });
   };
 
-  const handleSaveClick = () => {
-    const newData = [...data];
-    newData[editIndex] = editContent;
-    setData(newData);
-    setEditIndex(null);
-    setEditContent({
-      name: "",
-      description: "",
-      type: "",
-      release_date: "",
-      thumbnail: "",
-      rating: "",
-      genre: "",
-    });
+  const handleSaveClick = async (id) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/contents/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editContent),
+      });
+      if (response.status === 204) {
+        const newData = [...data];
+        newData[editIndex] = editContent;
+        setData(newData);
+        setEditIndex(null);
+        setEditContent({
+          name: "",
+          description: "",
+          type: "",
+          release_date: "",
+          thumbnail: "",
+          rating: "",
+          genre: "",
+        });
+      } else {
+        console.error("Failed to update content");
+      }
+    } catch (error) {
+      console.error("Error updating content:", error);
+    }
   };
 
   const handleCancelClick = () => {
@@ -135,7 +161,7 @@ const ContentTable = ({ contents }) => {
                     />
                   </td>
                   <td>
-                    <button onClick={handleSaveClick}>Save</button>
+                    <button onClick={() => handleSaveClick(content.content_id)}>Save</button>
                     <button onClick={handleCancelClick}>Cancel</button>
                   </td>
                 </>
@@ -150,7 +176,7 @@ const ContentTable = ({ contents }) => {
                   <td>{content.genre}</td>
                   <td>
                     <button onClick={() => handleEditClick(index)}>Edit</button>
-                    <button onClick={() => handleDeleteClick(index)}>
+                    <button onClick={() => handleDeleteClick(content.content_id, index)}>
                       Delete
                     </button>
                   </td>
