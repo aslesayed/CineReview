@@ -356,7 +356,7 @@ const contents = [
         genre: "Action",
     },
     {
-        type: "Series",
+        type: "Serie",
         name: "Game of Thrones",
         description: "Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.",
         release_date: "17/04/2011",
@@ -383,7 +383,7 @@ const contents = [
         genre: "Action",
     },
     {
-        type: "Series",
+        type: "Serie",
         name: "How I Met Your Mother",
         description: "A father recounts to his children - through a series of flashbacks - the journey he and his four best friends took leading up to him meeting their mother.",
         release_date: "19/09/2005",
@@ -392,7 +392,7 @@ const contents = [
         genre: "Comedy",
     },
     {
-        type: "Series",
+        type: "Serie",
         name: "Modern Family",
         description: "Three different but related families face trials and tribulations in their own uniquely comedic ways.",
         release_date: "23/09/2009",
@@ -401,16 +401,16 @@ const contents = [
         genre: "Comedy",
     },
     {
-        type: "Series",
+        type: "Serie",
         name: "Fargo",
         description: "Various chronicles of deception, intrigue and murder in and around frozen Minnesota. Yet all of these tales mysteriously lead back one way or another to Fargo, North Dakota.",
         release_date: "15/04/2014",
         rating: "8.9",
         thumbnail: `${imageBaseUrl}/fargo.jpg`,
-        genre: "Drama",
+        genre: "Thriller",
     },
     {
-        type: "Series",
+        type: "Serie",
         name: "Better Call Saul",
         description: "The trials and tribulations of criminal lawyer Jimmy McGill in the time before he established his strip-mall law office in Albuquerque, New Mexico.",
         release_date: "08/02/2015",
@@ -427,6 +427,159 @@ const contents = [
         thumbnail: `${imageBaseUrl}/saw.jpg`,
         genre: "Horror",
     },
+    {
+        type: "Serie",
+        name: "Monster",
+        description: "A chilling true-crime series that explores the life of Jeffrey Dahmer, one of America's most infamous serial killers.  Through a mix of dramatization and factual recounting, the series portrays the horror of his actions and the impact on his victims' families.",
+        release_date:"21/09/2022",
+        rating:"7.9",
+        thumbnail:`${imageBaseUrl}/monster.jpg`,
+        genre: "Horror",
+    },
+    {
+        type: "Serie",
+        name: "Shameless",
+        description: "Shameless is a comedy-drama series following the dysfunctional Gallagher family. Led by their alcoholic father Frank, the siblings navigate life's challenges with humor and resilience in the South Side of Chicago.",
+        release_date: "09/01/2011",
+        rating: "8.6",
+        thumbnail: `${imageBaseUrl}/shameless.jpg`,
+        genre: "Comedy",
+    },
+    {
+        type: "Serie",
+        name: "Prison Break",
+        description: "Prison Break follows Michael Scofield as he attempts to free his falsely accused brother from prison. The series is known for its suspenseful plots, complex characters, and intricate escape plans.",
+        release_date: "29/08/2005",
+        rating: "8.3",
+        thumbnail: `${imageBaseUrl}/prisonbreak.jpg`,
+        genre: "Action",
+    },
+    {
+        type: "Movie",
+        name: "Avatar",
+        description: "Avatar is a sci-fi epic set on the alien world of Pandora. It follows a paraplegic Marine, Jake Sully, who becomes part of the planet's native Na'vi culture and leads a rebellion against the human invaders.",
+        release_date: "18/12/2009",
+        rating: "7.8",
+        thumbnail: `${imageBaseUrl}/avatar.jpg`,
+        genre: "Drama",
+    },
+    {
+        type: "Movie",
+        name: "Inglorious Bastards",
+        description: "Inglourious Basterds is a war film set in Nazi-occupied France. It follows a group of Jewish-American soldiers who plan to assassinate Nazi leaders, intertwining with the story of a young French woman seeking revenge.",
+        release_date: "21/08/2009",
+        rating: "8.3",
+        thumbnail: `${imageBaseUrl}/ingloriousbastards.jpg`,
+        genre: "Thriller",
+    },
+    {
+        type: "Movie",
+        name: "Ted",
+        description: "Ted is a comedy film about a man whose childhood wish brings his teddy bear to life. As an adult, he navigates the challenges of maintaining his relationship with his girlfriend while dealing with Ted's antics.",
+        release_date: "29/06/2012",
+        rating: "6.9",
+        thumbnail: `${imageBaseUrl}/ted.jpg`,
+        genre: "Comedy",
+    },
+    {
+        type: "Serie",
+        name: "The Walking Dead",
+        description: "The Walking Dead is a post-apocalyptic horror series. It follows a group of survivors led by Rick Grimes as they navigate a world overrun by zombies, facing constant threats from both the dead and the living.",
+        release_date: "31/10/2010",
+        rating: "8.2",
+        thumbnail: `${imageBaseUrl}/thewalkingdead.jpg`,
+        genre: "Horror",
+    },
+    {
+        type: "Serie",
+        name: "Chernobyl",
+        description: "Chernobyl is a historical drama series that depicts the catastrophic nuclear disaster of 1986. It highlights the heroism of those who fought to contain the fallout and the systemic failures that led to the disaster.",
+        release_date: "06/05/2019",
+        rating: "9.4",
+        thumbnail: `${imageBaseUrl}/chernobyl.jpg`,
+        genre: "Drama",
+    },
+    {
+        type: "Serie",
+        name: "House of Cards",
+        description: "House of Cards is a political drama series centered on Frank Underwood, a ruthless politician who manipulates and schemes his way to power in Washington, D.C.",
+        release_date: "01/02/2013",
+        rating: "8.7",
+        thumbnail: `${imageBaseUrl}/houseofcards.jpg`,
+        genre: "Drama",
+    },
+    {
+        type: "Serie",
+        name: "Peaky Blinders",
+        description: "Peaky Blinders is a historical crime drama set in post-WWI Birmingham, England. It follows the Shelby crime family, led by the ambitious and cunning Tommy Shelby.",
+        release_date: "12/09/2013",
+        rating: "8.8",
+        thumbnail: `${imageBaseUrl}/peakyblinders.jpg`,
+        genre: "Drama",
+    },
+    {
+        type: "Serie",
+        name: "Dexter",
+        description: "Dexter is a crime drama series about Dexter Morgan, a forensic expert for the Miami police who leads a secret life as a vigilante serial killer targeting other murderers.",
+        release_date: "01/10/2006",
+        rating: "8.6",
+        thumbnail: `${imageBaseUrl}/dexter.jpg`,
+        genre: "Thriller",
+    },
+    {
+        type: "Serie",
+        name: "Silicon Valley",
+        description: "Silicon Valley is a comedy series that follows the lives of five young men who found a startup company in Silicon Valley. The show satirizes the tech industry and startup culture.",
+        release_date: "06/04/2014",
+        rating: "8.5",
+        thumbnail: `${imageBaseUrl}/siliconvalley.jpg`,
+        genre: "Comedy",
+      },
+      {
+        type: "Serie",
+        name: "The Big Bang Theory",
+        description: "The Big Bang Theory is a sitcom about a group of socially awkward scientists and their interactions with each other and the outside world. The show humorously explores nerd culture and relationships.",
+        release_date: "24/09/2007",
+        rating: "8.1",
+        thumbnail: `${imageBaseUrl}/thebigbangtheory.jpg`,
+        genre: "Comedy",
+      },
+      {
+        type: "Serie",
+        name: "Mr. Robot",
+        description: "Mr. Robot is a thriller series that follows Elliot Alderson, a cybersecurity engineer and hacker who suffers from social anxiety disorder and clinical depression. He is recruited by a mysterious leader of an underground hacker group to bring down corporate America.",
+        release_date: "24/06/2015",
+        rating: "8.5",
+        thumbnail: `${imageBaseUrl}/mrrobot.jpg`,
+        genre: "Thriller",
+      },
+      {
+        type: "Serie",
+        name: "The End of the F***ing World",
+        description: "The End of the F***ing World is a dark comedy-drama series that follows two teenagers, James and Alyssa, as they embark on a road trip to find Alyssa's estranged father. James believes he is a psychopath and plans to kill Alyssa, but their journey leads to unexpected developments.",
+        release_date: "24/10/2017",
+        rating: "8.1",
+        thumbnail: `${imageBaseUrl}/theendofthefuckingworld.jpg`,
+        genre: "Drama",
+      },
+      {
+        type: "Serie",
+        name: "Dark",
+        description: "Dark is a German sci-fi thriller series that follows four interconnected families as they uncover a time travel conspiracy that spans several generations. The series explores themes of time, fate, and free will.",
+        release_date: "01/12/2017",
+        rating: "8.8",
+        thumbnail: `${imageBaseUrl}/dark.jpg`,
+        genre: "Horror",
+      },
+      {
+        type: "Movie",
+        name: "It",
+        description: "It is a horror film based on Stephen King's novel. It follows a group of children who are terrorized by a malevolent entity that takes the form of a clown named Pennywise. They must confront their deepest fears to defeat the creature.",
+        release_date: "08/09/2017",
+        rating: "7.3",
+        thumbnail: `${imageBaseUrl}/it.jpg`,
+        genre: "Horror",
+      },
 ];
 
 const users = [
@@ -639,7 +792,7 @@ const users = [
             lastname:"Wilson",
         },
         {
-            firstname:"Cilian",
+            firstname:"Cilian",      //37
             lastname:"Murphy",
         },
         {
@@ -1041,6 +1194,202 @@ const users = [
         {
             firstname: "Leigh",
             lastname: "Whannell",
+        },
+        {
+            firstname: "Evan",
+            lastname: "Peters",
+        },
+        {
+            firstname: "Niecy",
+            lastname: "Nash",
+        },
+        {
+            firstname: "Molly",
+            lastname: "Ringwald",
+        },
+        { 
+            firstname: "William H.",
+            lastname: "Macy",
+        },
+        { 
+            firstname: "Emmy", 
+            lastname: "Rossum" 
+        },
+        {
+            firstname: "Jeremy",
+            lastname: "Allen White",
+        },
+        {
+            firstname: "Wentworth", 
+            lastname: "Miller",
+        },
+        {
+            firstname: "Dominic",
+            lastname: "Purcell",
+        },
+        {
+            firstname: "Sarah",
+            lastname: "Wayne Callies",
+        },
+        {
+            firstname: "Sam",
+            lastname: "Worthington",
+        },
+        {
+            firstname: "Zoe",
+            lastname: "Saldana",
+        },
+        {
+            firstname: "Sigourney",
+            lastname: "Weaver",
+        },
+        {
+            firstname: "Christoph",             //brad
+            lastname: "Waltz",
+        },
+        {
+            firstname: "Diane",
+            lastname: "Kruger",
+        },
+        {
+            firstname: "Mark",
+            lastname: "Wahlberg",
+        },
+        {
+            firstname: "Mila",
+            lastname: "Kunis",
+        },
+        { 
+            firstname: "Seth",
+            lastname: "MacFarlane",
+        },
+        {
+            firstname: "Andrew",
+            lastname: "Lincoln",
+        },
+        {
+            firstname: "Norman",
+            lastname: "Reedus",
+        },
+        {
+            firstname: "Melissa",
+            lastname: "McBride",
+        },
+        {
+            firstname: "Jared",
+            lastname: "Harris",
+        },
+        {
+            firstname: "Stellan",
+            lastname: "Skarsgård",
+        },
+        {
+            firstname: "Emily",
+            lastname: "Watson",
+        },
+        {
+            firstname: "Kevin",
+            lastname: "Spacey",
+        },
+        {
+            firstname: "Robin",
+            lastname: "Wright",
+        },
+        {
+            firstname: "Kate",
+            lastname: "Mara",
+        },
+        {                                   //Murphy
+            firstname: "Paul",
+            lastname: "Anderson",
+        },
+        {
+            firstname: "Helen",
+            lastname: "McCrory",
+        },
+        {
+            firstname: "Michael C.",
+            lastname: "Hall",
+        },
+        {
+            firstname: "Jennifer",
+            lastname: "Carpenter",
+        },
+        {
+            firstname: "David",
+            lastname: "Zayas",
+        },
+        {
+            firstname: "Thomas",
+            lastname: "Middleditch",
+        },
+        {
+            firstname: "Zach",
+            lastname: "Woods",
+        },
+        {
+            firstname: "Kumail",
+            lastname: "Nanjiani",
+        },
+        {
+            firstname: "Johnny",
+            lastname: "Galecki",
+        },
+        {
+            firstname: "Jim",
+            lastname: "Parsons",
+        },
+        {
+            firstname: "Kaley",
+            lastname: "Cuoco",
+        },
+        {
+            firstname: "Rami",
+            lastname: "Malek"
+        },
+        {
+            firstname: "Christian",
+            lastname: "Slater",
+        },
+        {
+            firstname: "Carly",
+            lastname: "Chaikin",
+        },
+        {
+            firstname: "Jessica",
+            lastname: "Barden"
+        },
+        {
+            firstname: "Alex",
+            lastname: "Lawther",
+        },
+        {
+            firstname: "Steve",
+            lastname: "Oram",
+        },
+        {
+            firstname: "Louis",
+            lastname: "Hofmann",
+        },
+        {
+            firstname: "Lisa",
+            lastname: "Vicari"
+        },
+        {
+            firstname: "Maja",
+            lastname: "Schöne",
+        },
+        {
+            firstname: "Bill",
+            lastname: "Skarsgård",
+        },
+        {
+            firstname: "Jaeden",
+            lastname: "Martell",
+        },
+        {
+            firstname: "Finn",
+            lastname: "Wolfhard",
         },
 
 ];
@@ -1598,7 +1947,213 @@ const users = [
         content_id:"46",
         actor_id:"137",
         },
-];
+        {
+        content_id:"47",
+        actor_id:"138",
+        },
+        {
+        content_id:"47",
+        actor_id:"139",
+        },
+        {
+        content_id:"47",
+        actor_id:"140",
+        },
+        {
+        content_id:"48",
+        actor_id:"141",
+        },
+        {
+        content_id:"48",
+        actor_id:"142",
+        },
+        {
+        content_id:"48",
+        actor_id:"143",
+        },
+        {
+        content_id:"49",
+        actor_id:"144",
+        },
+        {
+        content_id:"49",
+        actor_id:"145",
+        },
+        {
+        content_id:"49",
+        actor_id:"146",
+        },
+        {
+        content_id:"50",
+        actor_id:"147",
+        },
+        {
+        content_id:"50",
+        actor_id:"148",
+        },
+        {
+        content_id:"50",
+        actor_id:"149",
+        },
+        {
+        content_id:"51",
+        actor_id:"50",
+        },
+        {
+        content_id:"51",
+        actor_id:"150",
+        },
+        {
+        content_id:"51",
+        actor_id:"151",
+        },
+        {
+        content_id:"52",
+        actor_id:"152",
+        },
+        {
+        content_id:"52",
+        actor_id:"153",
+        },
+        {
+        content_id:"52",
+        actor_id:"154",
+        },
+        {
+        content_id:"53",
+        actor_id:"155",
+        },
+        {
+        content_id:"53",
+        actor_id:"156",
+        },
+        {
+        content_id:"53",
+        actor_id:"157",
+        },
+        {
+        content_id:"54",
+        actor_id:"158",
+        },
+        {
+        content_id:"54",
+        actor_id:"159",
+        },
+        {
+        content_id:"54",
+        actor_id:"160",
+        },
+        {
+        content_id:"55",
+        actor_id:"161",
+        },
+        {
+        content_id:"55",
+        actor_id:"162",
+        },
+        {
+        content_id:"55",
+        actor_id:"163",
+        },
+        {
+        content_id:"56",
+        actor_id:"37",
+        },
+        {
+        content_id:"56",
+        actor_id:"164",
+        },
+        {
+        content_id:"56",
+        actor_id:"165",
+        },
+        {
+        content_id:"57",
+        actor_id:"166",
+        },
+        {
+        content_id:"57",
+        actor_id:"167",
+        },
+        {
+        content_id:"57",
+        actor_id:"168",
+        },
+        {
+        content_id:"58",
+        actor_id:"169",
+        },
+        {
+        content_id:"58",
+        actor_id:"170",
+        },
+        {
+        content_id:"58",
+        actor_id:"171",
+        },
+        {
+        content_id:"59",
+        actor_id:"172",
+        },
+        {
+        content_id:"59",
+        actor_id:"173",
+        },
+        {
+        content_id:"59",
+        actor_id:"174",
+        },
+        {
+        content_id:"60",
+        actor_id:"175",
+        },
+        {
+        content_id:"60",
+        actor_id:"176",
+        },
+        {
+        content_id:"60",
+        actor_id:"177",
+        },
+        {
+            content_id:"61",
+            actor_id:"178",
+            },
+            {
+            content_id:"61",
+            actor_id:"179",
+            },
+            {
+            content_id:"61",
+            actor_id:"180",
+            },
+            {
+            content_id:"62",
+            actor_id:"181",
+            },
+            {
+            content_id:"62",
+            actor_id:"182",
+            },
+            {
+            content_id:"62",
+            actor_id:"183",
+            },
+            {
+            content_id:"63",
+            actor_id:"184",
+            },
+            {
+            content_id:"63",
+            actor_id:"185",
+            },
+            {
+            content_id:"63",
+            actor_id:"186",
+            },
+    ];
+    
+
 
 
 
