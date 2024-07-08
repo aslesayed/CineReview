@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import "./filterGenre.css";
 
 function FilterGenre() {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
+  const navigate = useNavigate();
 
   const genres = ["Horror", "Action", "Comedy", "Drama", "Thriller"];
 
@@ -16,6 +18,11 @@ function FilterGenre() {
     if (ref.current && !ref.current.contains(event.target)) {
       setIsOpen(false);
     }
+  };
+
+  const handleGenreClick = (genre) => {
+    setIsOpen(false);
+    navigate(`/?genre=${genre}`);
   };
 
   useEffect(() => {
@@ -38,7 +45,11 @@ function FilterGenre() {
       {isOpen && (
         <ul className="genre-list">
           {genres.map((genre, index) => (
-            <li key={index} className="genre-item">
+            <li
+              key={index}
+              className="genre-item"
+              onClick={() => handleGenreClick(genre)}
+            >
               {genre}
             </li>
           ))}

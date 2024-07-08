@@ -1,9 +1,8 @@
-// ContentSlider.jsx
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import ContentCard from "../ContentCard/ContentCard.jsx"
+import ContentCard from "../ContentCard/ContentCard.jsx";
 import "./contentSlider.css";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ContentSlider = ({ type, genre }) => {
@@ -14,7 +13,6 @@ const ContentSlider = ({ type, genre }) => {
       try {
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/contents`);
         const data = await response.json();
-        console.log(data); // Log the data to check the structure
         setContents(data);
       } catch (error) {
         console.error("Error fetching contents:", error);
