@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./contentDetail.css";
-import ReviewSection from "../ReviewSection/ReviewSection.jsx";
+
 
 const ContentDetail = ({ contentId }) => {
   const [content, setContent] = useState(null);
@@ -96,7 +96,7 @@ const ContentDetail = ({ contentId }) => {
           <div className="horizontal-bar"></div>
         </div>
       </div>
-      <ReviewSection />
+
     </div>
     
   );

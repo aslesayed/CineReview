@@ -26,12 +26,26 @@ const getAll = async (req, res, next) => {
   }
 };
 
-const getById = async (req, res, next) => {
+// const getById = async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+//     const [[review]] = await reviewModel.findById(id);
+//     if (review) {
+//       res.status(200).json(review);
+//     } else {
+//       res.sendStatus(404);
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+const getByContentId = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const [[review]] = await reviewModel.findById(id);
-    if (review) {
-      res.status(200).json(review);
+    const { contentId } = req.params;
+    const [reviews] = await reviewModel.findByContentId(contentId);
+    if (reviews.length > 0) {
+      res.status(200).json(reviews);
     } else {
       res.sendStatus(404);
     }
@@ -39,6 +53,9 @@ const getById = async (req, res, next) => {
     next(error);
   }
 };
+
+
+
 const deleteReview = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -54,7 +71,7 @@ const deleteReview = async (req, res, next) => {
 module.exports = {
   insertReview,
   getAll,
-  getById,
+  getByContentId,
   deleteReview,
 };
 

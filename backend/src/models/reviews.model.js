@@ -5,10 +5,16 @@ const findAll = async () => {
   return db.query(sql);
 };
 
-const findById = async (id) => {
-  const sql = `SELECT * FROM reviews WHERE review_id = ?`;
-  return db.query(sql, [id]);
+const findByContentId = async (contentId) => {
+  const sql = `SELECT * FROM reviews WHERE content_id = ?`;
+  return db.query(sql, [contentId]);
 };
+
+
+
+
+
+
 
 const deleteById = async (id) => {
   const sql = `DELETE FROM reviews WHERE review_id = ?`;
@@ -28,7 +34,7 @@ const insert = (data) => {
 
 module.exports = {
   findAll,
-  findById,
+  findByContentId,
   deleteById,
   insert,
 };

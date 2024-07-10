@@ -24,25 +24,49 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const [[user]] = await userModel.findByEmail(email);
-    if (!user) res.sendStatus(422);
-    else if (await argon.verify(user.password, password)) {
+
+    if (!user) {
+      console.log('User not found');
+      return res.sendStatus(422);
+    }
+
+    console.log('User found:', user);
+    console.log('Hashed password from DB:', user.password);
+
+    // Vérifiez que le mot de passe haché commence par '$argon2id$'
+    if (!user.password.startsWith('$argon2id$')) {
+      console.log('Password format incorrect:', user.password);
+      return res.sendStatus(500); // ou un autre statut pour indiquer une erreur côté serveur
+    }
+
+    const isPasswordValid = await argon.verify(user.password, password);
+    console.log('Is password valid:', isPasswordValid);
+
+    if (isPasswordValid) {
       const token = jwt.sign(
         { id: user.user_id, role: user.admin },
         process.env.APP_SECRET,
         { expiresIn: "30d" }
       );
+
       res.cookie("auth-token", token, {
         expire: "30d",
         httpOnly: true,
         secure: false,
         sameSite: "Lax",
       });
-      res.status(200).json(user);
-    } else res.sendStatus(422);
+
+      return res.status(200).json(user);
+    } else {
+      console.log('Invalid password');
+      return res.sendStatus(422);
+    }
   } catch (error) {
+    console.error('Error during login:', error);
     next(error);
   }
 };
+
 
 const getAll = async (req, res, next) => {
   try {
