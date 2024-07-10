@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import ContentDetail from "../../composants/ContentDetail/ContentDetail";
+import ReviewSection from "../../composants/ReviewSection/ReviewSection";
 
 function MovieDetail() {
   const { id } = useParams();
@@ -7,6 +8,8 @@ function MovieDetail() {
   return (
     <section>
       <ContentDetail contentId={id} />
+      <ReviewSection contentId={id} />
+
     </section>
   );
 }
