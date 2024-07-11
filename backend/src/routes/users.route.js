@@ -10,7 +10,7 @@ router.post("/users", auth.hashPassword, upload.single("thumbnail"), add);
 router.post("/users/login", userController.login);
 router.get(
   "/users/me",
-  // auth.isAuth,
+  auth.isAuth,
   // auth.isAdmin,
   userController.getCurrentUser
 );

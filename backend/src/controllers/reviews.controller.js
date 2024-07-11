@@ -1,21 +1,44 @@
 const reviewModel = require("../models/reviews.model");
 
-const insertReview = async (req, res, next) => {
+const insertReview = async (req, res) => {
   try {
-    const reviewData = req.body; 
-    const [result] = await reviewModel.insert(reviewData);
+    const { review, user_id, content_id } = req.body;
+    console.log("Received data:", { review, user_id, content_id });
 
-    if (result.insertId) {
-      const [[newReview]] = await reviewModel.findById(result.insertId);
-      res.status(201).json(newReview);
+    const review_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const result = await reviewModel.insert({ review, review_date, user_id, content_id });
+
+    if (result && result.affectedRows > 0) {
+      console.log("Review inserted with ID:", result.insertId);
+
+      const insertedReview = await reviewModel.findById(result.insertId);
+      console.log("Inserted review data:", insertedReview);
+
+      const user = await reviewModel.findUserById(user_id);
+      console.log("User data:", user);
+
+      if (insertedReview && insertedReview.length > 0 && user && user.length > 0) {
+        const reviewData = {
+          ...insertedReview[0],
+          firstname: user[0].firstname,
+          lastname: user[0].lastname,
+          thumbnail: user[0].thumbnail,
+        };
+        console.log("Review data to be returned:", reviewData);
+        res.status(201).json(reviewData);
+      } else {
+        console.error("Review or user not found");
+        res.status(404).json({ error: "Review or user not found" });
+      }
     } else {
-      res.sendStatus(422);
+      console.error("Failed to insert review");
+      res.status(500).json({ error: "Failed to insert review" });
     }
   } catch (error) {
-    next(error);
+    console.error("Error in insertReview:", error);
+    res.status(500).json({ error: error.message });
   }
 };
-
 
 const getAll = async (req, res, next) => {
   try {
