@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const hashingOptions = {
   type: argon.argon2id,
-  memoryCost: 19 * 2 ** 10 /* 19 Mio en kio (19 * 1024 kio) */,
+  memoryCost: 19 * 2 ** 10, // 19 Mio en kio (19 * 1024 kio)
   timeCost: 2,
   parallelism: 1,
 };
@@ -19,24 +19,26 @@ const hashPassword = async (req, res, next) => {
     res.status(500).json(error.message);
   }
 };
-const isAuth = async (req, res, next) => {
+
+const isAuth = (req, res, next) => {
   try {
     const token = req.cookies["auth-token"];
+    if (!token) {
+      return res.status(401).json("Access Denied");
+    }
     const decoded = jwt.verify(token, process.env.APP_SECRET);
-    req.admin = decoded.admin;
+    req.admin = decoded.role;
     req.userID = decoded.id;
-    req.body.admin = decoded.admin;
-    req.body.userID = decoded.id;
     next();
   } catch (error) {
     console.error(error);
-    res.status(401).json(error.message);
+    res.status(401).json("Invalid Token");
   }
 };
 
-const isAdmin = async (req, res, next) => {
+const isAdmin = (req, res, next) => {
   try {
-    if (req.admin !== "admin") {
+    if (!req.admin) {
       throw new Error("Sorry, you are unauthorized to view this page.");
     }
     next();
