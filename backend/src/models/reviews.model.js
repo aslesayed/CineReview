@@ -6,10 +6,14 @@ const findAll = async () => {
 };
 
 const findByContentId = async (contentId) => {
-  const sql = `SELECT * FROM reviews WHERE content_id = ?`;
+  const sql = `
+    SELECT reviews.*, users.firstname, users.lastname 
+    FROM reviews 
+    JOIN users ON reviews.user_id = users.user_id 
+    WHERE content_id = ?
+  `;
   return db.query(sql, [contentId]);
 };
-
 
 
 
