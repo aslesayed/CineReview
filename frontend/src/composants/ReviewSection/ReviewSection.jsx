@@ -1,8 +1,5 @@
-
-
 import { useEffect, useState } from "react";
 import useUser from "../../contexts/UserContext"; // Adjust the import based on your project structure
-
 import "./reviewsection.css";
 
 const ReviewSection = ({ contentId }) => {
@@ -10,18 +7,12 @@ const ReviewSection = ({ contentId }) => {
   const [newReview, setNewReview] = useState("");
   const { user } = useUser(); // Get user data from UserContext
 
-  // Debugging: Check if contentId is being received
-  useEffect(() => {
-    console.log("Received contentId:", contentId);
-  }, [contentId]);
-
   useEffect(() => {
     if (!contentId) {
       console.error("No contentId provided");
       return;
     }
 
-    // Fetch reviews for the given contentId when the component mounts
     const fetchReviews = async () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reviews/content/${contentId}`);
@@ -40,7 +31,6 @@ const ReviewSection = ({ contentId }) => {
     fetchReviews();
   }, [contentId]);
 
-  // Function to handle adding a new review
   const handleAddReview = async () => {
     try {
       const response = await fetch(
@@ -88,13 +78,13 @@ const ReviewSection = ({ contentId }) => {
       </button>
       {reviews.map((review) => (
         <div key={review.review_id} className="review">
-          <div className="review-avatar"> {/* Update to show user's image if available */}</div>
+          <div className="review-avatar">
+            <img src={review.thumbnail ? `${import.meta.env.VITE_BACKEND_URL}${review.thumbnail}` : `${import.meta.env.VITE_BACKEND_URL}/upload/defaultpicture.jpg`} alt="User Avatar" />
+          </div>
           <div className="review-content">
             <div className="review-header">
-              {/* <span className="review-name">User {review.user_id}</span> */}
-
               <span className="review-name">{`${review.firstname} ${review.lastname}`}</span>
-              <span className="review-time">{new Date(review.review_date).toLocaleString()}</span>
+              <span className="review-time">{new Date(review.review_date).toLocaleDateString()}</span>
             </div>
             <div className="review-text">{review.review}</div>
           </div>
@@ -105,4 +95,3 @@ const ReviewSection = ({ contentId }) => {
 };
 
 export default ReviewSection;
-

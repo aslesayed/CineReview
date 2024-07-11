@@ -64,6 +64,13 @@
   margin-right: 10px;
 }
 
+.review-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Pour que l'image couvre tout le conteneur */
+  border-radius: 50%;
+}
+
 .review-content {
   flex: 1;
 }

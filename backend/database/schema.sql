@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `cinereview`.`users` (
   `password` VARCHAR(245) NOT NULL,
   `telephone` VARCHAR(13)  NULL,
   `admin` TINYINT(1) NOT NULL DEFAULT '0',
-  `thumbnail` VARCHAR(255) NULL,
+  `thumbnail` VARCHAR(255) NOT NULL DEFAULT '/public/upload/defaultpicture.jpg',
   PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

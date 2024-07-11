@@ -1,5 +1,8 @@
 // Load environment variables from .env file
 require("dotenv").config();
+const mysql = require('mysql2/promise'); // Assurez-vous d'utiliser la version promise de mysql2
+
+
 
 
 const database = require("./database/client");
@@ -2157,103 +2160,90 @@ const users = [
 
 
 
-const seed = async () => {
-    try {
-      // Declare an array to store the query promises
-      // See why here: https://eslint.org/docs/latest/rules/no-await-in-loop
-      const queries = [];
-  
-      /* ************************************************************************* */
-  
-      // Generating Seed Data
-  
-      // Optional: Truncate tables (remove existing data)
-      await database.query("DELETE from contents");
-      await database.query("DELETE from users");
-      await database.query("DELETE from reviews");
-      await database.query("DELETE from actors");
-      await database.query("DELETE from contents_actors");
-    
-      // Insert fake data into the 'item' table
-  
-      for (const content of contents) {
-        const { type, name, description, release_date, rating, thumbnail, genre } = content;
-        queries.push(
-          await database.query(
-            "insert into contents(type, name, description, release_date, rating, thumbnail, genre) VALUES (?,?,?,?,?,?,?)",
-            [
-              content.type,
-              content.name,
-              content.description,
-              content.release_date,
-              content.rating,
-              content.thumbnail,
-              content.genre
-            ]
-          )
-        );
-      }
-      for (const user of users) {
-        queries.push(
-          database.query(
-            "insert into users(firstname, lastname, email, password, telephone, admin) VALUES (?,?,?,?,?,?)",
-            [
-              user.firstname,
-              user.lastname,
-              user.email,
-              user.password,
-              user.telephone,
-              user.admin,
-            ]
-          )
-        );
-      }
-  
-      for (const review of reviews) {
-        queries.push(
-          await database.query("INSERT INTO reviews(review, review_date, user_id, content_id) VALUES (?,?,?,?)", 
-            [
-            review.review,
-            review.review_date,
-            review.user_id,
-            review.content_id,
-            ]
-          )
-        );
-      }
-      for (const actor of actors) {
-        queries.push(
-          await database.query(
-            "INSERT INTO actors(firstname, lastname) VALUES (?,?)",
-            [actor.firstname, actor.lastname]
-          )
-        );
-      }
-
-      for (const content_actor of contents_actors) {
-        queries.push(
-          await database.query(
-            "INSERT INTO contents_actors(content_id, actor_id) VALUES (?,?)",
-            [content_actor.content_id, content_actor.actor_id]
-          )
-        );
-      }
-  
-      /* ************************************************************************* */
-  
-      // Wait for all the insertion queries to complete
-      // await Promise.all(queries);
-  
-      // Close the database connection
-      database.end();
-  
-      console.info(`${database.databaseName} filled from ${__filename} 🌱`);
-    } catch (err) {
-      console.error("Error filling the database:", err);
-    }
-  };
-  
-  // Run the seed function
-  seed();
-  
-
+    const seed = async () => {
+        // Configurer la connexion à la base de données
+        const database = await mysql.createConnection({
+          host: process.env.DB_HOST || 'localhost',
+          user: process.env.DB_USER || 'root',
+          password: process.env.DB_PASSWORD || 'password',
+          database: process.env.DB_NAME || 'cinereview'
+        });
+      
+        try {
+          // Optional: Truncate tables (remove existing data)
+          await database.query("DELETE FROM contents");
+          await database.query("DELETE FROM users");
+          await database.query("DELETE FROM reviews");
+          await database.query("DELETE FROM actors");
+          await database.query("DELETE FROM contents_actors");
+      
+          // Insert fake data into the 'contents' table
+          for (const content of contents) {
+            await database.query(
+              "INSERT INTO contents (type, name, description, release_date, rating, thumbnail, genre) VALUES (?, ?, ?, ?, ?, ?, ?)",
+              [
+                content.type,
+                content.name,
+                content.description,
+                content.release_date,
+                content.rating,
+                content.thumbnail,
+                content.genre
+              ]
+            );
+          }
+      
+          // Insert fake data into the 'users' table
+          for (const user of users) {
+            await database.query(
+              "INSERT INTO users (firstname, lastname, email, password, telephone, admin) VALUES (?, ?, ?, ?, ?, ?)",
+              [
+                user.firstname,
+                user.lastname,
+                user.email,
+                user.password,
+                user.telephone,
+                user.admin
+              ]
+            );
+          }
+      
+          // Insert fake data into the 'reviews' table
+          for (const review of reviews) {
+            await database.query(
+              "INSERT INTO reviews (review, review_date, user_id, content_id) VALUES (?, ?, ?, ?)",
+              [
+                review.review,
+                review.review_date,
+                review.user_id,
+                review.content_id
+              ]
+            );
+          }
+      
+          // Insert fake data into the 'actors' table
+          for (const actor of actors) {
+            await database.query(
+              "INSERT INTO actors (firstname, lastname) VALUES (?, ?)",
+              [actor.firstname, actor.lastname]
+            );
+          }
+      
+          // Insert fake data into the 'contents_actors' table
+          for (const content_actor of contents_actors) {
+            await database.query(
+              "INSERT INTO contents_actors (content_id, actor_id) VALUES (?, ?)",
+              [content_actor.content_id, content_actor.actor_id]
+            );
+          }
+      
+          console.info(`${database.config.database} filled from ${__filename} 🌱`);
+        } catch (err) {
+          console.error("Error filling the database:", err);
+        } finally {
+          await database.end();
+        }
+      };
+      
+      // Run the seed function
+      seed();
