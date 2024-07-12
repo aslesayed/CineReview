@@ -3,21 +3,15 @@ const reviewModel = require("../models/reviews.model");
 const insertReview = async (req, res) => {
   try {
     const { review, user_id, content_id } = req.body;
-    console.log("Received data:", { review, user_id, content_id });
 
     const review_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const result = await reviewModel.insert({ review, review_date, user_id, content_id });
-
-    if (result && result.affectedRows > 0) {
-      console.log("Review inserted with ID:", result.insertId);
-
-      const insertedReview = await reviewModel.findById(result.insertId);
-      console.log("Inserted review data:", insertedReview);
-
+      console.log(result)
+      console.log(result.affectedRows)
+    if (result&& result[0].affectedRows > 0) {
+      const insertedReview = await reviewModel.findById(result[0].insertId);
       const user = await reviewModel.findUserById(user_id);
-      console.log("User data:", user);
-
-      if (insertedReview && insertedReview.length > 0 && user && user.length > 0) {
+      if (insertedReview.length > 0 && user.length > 0) {
         const reviewData = {
           ...insertedReview[0],
           firstname: user[0].firstname,
