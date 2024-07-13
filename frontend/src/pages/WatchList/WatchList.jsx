@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ContentCard from "../../composants/ContentCard/ContentCard";
 import useUser from "../../contexts/UserContext";
 import "./watchlist.css";
