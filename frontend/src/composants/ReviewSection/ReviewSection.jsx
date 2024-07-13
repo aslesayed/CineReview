@@ -15,7 +15,9 @@ const ReviewSection = ({ contentId }) => {
 
     const fetchReviews = async () => {
       try {
+
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reviews/content/${contentId}`);
+
 
         if (response.ok) {
           const data = await response.json();
@@ -90,6 +92,7 @@ const ReviewSection = ({ contentId }) => {
       </button>
       {reviews.map((review) => (
         <div key={review.review_id} className="review">
+
           <div className="review-avatar">
             <img src={review.thumbnail ? `${import.meta.env.VITE_BACKEND_URL}${review.thumbnail}` : `${import.meta.env.VITE_BACKEND_URL}/upload/defaultpicture.jpg`} alt="User Avatar" />
           </div>
@@ -97,6 +100,7 @@ const ReviewSection = ({ contentId }) => {
             <div className="review-header">
               <span className="review-name">{`${review.firstname || ''} ${review.lastname || ''}`}</span>
               <span className="review-time">{review.review_date ? new Date(review.review_date).toLocaleDateString() : 'Invalid Date'}</span>
+
             </div>
             <div className="review-text">{review.review}</div>
           </div>
@@ -106,4 +110,6 @@ const ReviewSection = ({ contentId }) => {
   );
 };
 
+
 export default ReviewSection;
+

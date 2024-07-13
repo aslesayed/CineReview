@@ -8,6 +8,7 @@ import useUser from "../../contexts/UserContext";
 function Navbar() {
   const { user } = useUser(); // Get the user object from the context
   const profileLink = user ? "/profil" : "/connection"; 
+  const watchlist = user ? "/watchlist" : "/connection"; 
   return (
     <div className="navbar">
       <div className="logo_profil">
@@ -55,7 +56,7 @@ function Navbar() {
 
         <div className="search-watch-pro-dektop">
           <SearchBar />
-          <Link to="/watchlist" className="button-filter-link">
+          <Link to={watchlist} className="button-filter-link">
             <p className="button-filter-dektop">WATCHLIST</p>
           </Link>
 
