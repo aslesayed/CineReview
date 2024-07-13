@@ -6,14 +6,9 @@ const { insert } = require("../models/users.model");
 const add = async (req, res, next) => {
   try {
     let { firstname, lastname, email, telephone, password } = req.body;
-    let thumbnail = req.file ? `${req.protocol}://${req.get("host")}/upload/${req.file.filename}` : '/public/upload/defaultpicture.jpg';
+    let thumbnail = req.file ? `/upload/${req.file.filename}` : '/upload/defaultpicture.jpg';
 
     const user = { firstname, lastname, email, telephone, password, thumbnail };
-
-    // Si aucun fichier n'est téléchargé (req.file n'est pas défini), utiliser l'image par défaut
-    if (!req.file && !thumbnail) {
-      thumbnail = '/public/upload/defaultpicture.jpg';
-    }
 
     await insert(user);
     res.status(201).json(user);
