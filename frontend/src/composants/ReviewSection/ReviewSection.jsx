@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import useUser from "../../contexts/UserContext"; // Adjust the import based on your project structure
 
@@ -24,8 +22,10 @@ const ReviewSection = ({ contentId }) => {
     // Fetch reviews for the given contentId when the component mounts
     const fetchReviews = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reviews/content/${contentId}`);
-        
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/reviews/content/${contentId}`
+        );
+
         if (response.ok) {
           const data = await response.json();
           setReviews(data);
@@ -88,13 +88,13 @@ const ReviewSection = ({ contentId }) => {
       </button>
       {reviews.map((review) => (
         <div key={review.review_id} className="review">
-          <div className="review-avatar"> {/* Update to show user's image if available */}</div>
+          <div className="review-avatar"> {`${review.lastname}`}</div>
           <div className="review-content">
             <div className="review-header">
-              {/* <span className="review-name">User {review.user_id}</span> */}
-
               <span className="review-name">{`${review.firstname} ${review.lastname}`}</span>
-              <span className="review-time">{new Date(review.review_date).toLocaleString()}</span>
+              <span className="review-time">
+                {new Date(review.review_date).toLocaleString()}
+              </span>
             </div>
             <div className="review-text">{review.review}</div>
           </div>
@@ -105,4 +105,3 @@ const ReviewSection = ({ contentId }) => {
 };
 
 export default ReviewSection;
-

@@ -1,13 +1,29 @@
 const reviewModel = require("../models/reviews.model");
 
+// const insertReview = async (req, res, next) => {
+//   try {
+//     const reviewData = req.body; 
+//     const [result] = await reviewModel.insert(reviewData);
+
+//     if (result.insertId) {
+//       const [[newReview]] = await reviewModel.findById(result.insertId);
+//       res.status(201).json(newReview);
+//     } else {
+//       res.sendStatus(422);
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+
 const insertReview = async (req, res, next) => {
   try {
     const reviewData = req.body; 
     const [result] = await reviewModel.insert(reviewData);
 
     if (result.insertId) {
-      const [[newReview]] = await reviewModel.findById(result.insertId);
-      res.status(201).json(newReview);
+      res.status(201).json(result); // Return the inserted review data
     } else {
       res.sendStatus(422);
     }

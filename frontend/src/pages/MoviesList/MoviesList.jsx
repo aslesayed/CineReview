@@ -8,6 +8,8 @@ function MoviesList() {
       <ContentSlider type="Movie" genre="Drama" />
       <h2 className="Slidername">Top Actions Movies</h2>
       <ContentSlider type="Movie" genre="Action" />
+      <h2 className="Slidername">Top Thriller Movies</h2>
+      <ContentSlider type="Movie" genre="Thriller" />
     </div>
   );
 };
