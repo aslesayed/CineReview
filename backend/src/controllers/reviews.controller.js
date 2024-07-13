@@ -1,37 +1,40 @@
 const reviewModel = require("../models/reviews.model");
 
-// const insertReview = async (req, res, next) => {
-//   try {
-//     const reviewData = req.body; 
-//     const [result] = await reviewModel.insert(reviewData);
 
-//     if (result.insertId) {
-//       const [[newReview]] = await reviewModel.findById(result.insertId);
-//       res.status(201).json(newReview);
-//     } else {
-//       res.sendStatus(422);
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+const insertReview = async (req, res) => {
 
-
-const insertReview = async (req, res, next) => {
   try {
-    const reviewData = req.body; 
-    const [result] = await reviewModel.insert(reviewData);
+    const { review, user_id, content_id } = req.body;
+    const review_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const result = await reviewModel.insert({ review, review_date, user_id, content_id });
+      console.log(result)
+      console.log(result.affectedRows)
+    if (result&& result[0].affectedRows > 0) {
+      const insertedReview = await reviewModel.findById(result[0].insertId);
+      const user = await reviewModel.findUserById(user_id);
+      if (insertedReview.length > 0 && user.length > 0) {
+        const reviewData = {
+          ...insertedReview[0],
+          firstname: user[0].firstname,
+          lastname: user[0].lastname,
+          thumbnail: user[0].thumbnail,
+        };
+        console.log("Review data to be returned:", reviewData);
+        res.status(201).json(reviewData);
+      } else {
+        console.error("Review or user not found");
+        res.status(404).json({ error: "Review or user not found" });
+      }
 
-    if (result.insertId) {
-      res.status(201).json(result); // Return the inserted review data
     } else {
-      res.sendStatus(422);
+      console.error("Failed to insert review");
+      res.status(500).json({ error: "Failed to insert review" });
     }
   } catch (error) {
-    next(error);
+    console.error("Error in insertReview:", error);
+    res.status(500).json({ error: error.message });
   }
 };
-
 
 const getAll = async (req, res, next) => {
   try {
@@ -42,19 +45,7 @@ const getAll = async (req, res, next) => {
   }
 };
 
-// const getById = async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
-//     const [[review]] = await reviewModel.findById(id);
-//     if (review) {
-//       res.status(200).json(review);
-//     } else {
-//       res.sendStatus(404);
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+
 
 const getByContentId = async (req, res, next) => {
   try {

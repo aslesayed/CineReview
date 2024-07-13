@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
-import useUser from "../../contexts/UserContext"; // Adjust the import based on your project structure
-
+import useUser from "../../contexts/UserContext";
 import "./reviewsection.css";
 
 const ReviewSection = ({ contentId }) => {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
-  const { user } = useUser(); // Get user data from UserContext
-
-  // Debugging: Check if contentId is being received
-  useEffect(() => {
-    console.log("Received contentId:", contentId);
-  }, [contentId]);
+  const { user } = useUser();
 
   useEffect(() => {
     if (!contentId) {
@@ -19,12 +13,11 @@ const ReviewSection = ({ contentId }) => {
       return;
     }
 
-    // Fetch reviews for the given contentId when the component mounts
     const fetchReviews = async () => {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/reviews/content/${contentId}`
-        );
+
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reviews/content/${contentId}`);
+
 
         if (response.ok) {
           const data = await response.json();
@@ -40,8 +33,12 @@ const ReviewSection = ({ contentId }) => {
     fetchReviews();
   }, [contentId]);
 
-  // Function to handle adding a new review
   const handleAddReview = async () => {
+    if (!user) {
+      console.error("User not logged in");
+      return;
+    }
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/reviews`,
@@ -53,15 +50,18 @@ const ReviewSection = ({ contentId }) => {
           body: JSON.stringify({
             review: newReview,
             content_id: contentId,
-            user_id: user.user_id, // Use user_id from UserContext
+            user_id: user.user_id,
           }),
         }
       );
 
+      console.log("Response status:", response.status);
+
       if (response.status === 201) {
         const data = await response.json();
-        setReviews([...reviews, data]); // Add the new review to the state
-        setNewReview(""); // Clear the input field
+        console.log("New review data:", data);
+        setReviews(prevReviews => [...prevReviews, data]);
+        setNewReview("");
       } else {
         console.error("Failed to add review", response.status);
       }
@@ -74,7 +74,11 @@ const ReviewSection = ({ contentId }) => {
     <div className="review-section">
       <h1 className="review-section-header">Reviews</h1>
       <div className="add-review">
-        <div className="review-avatar"></div>
+        {user && (
+          <div className="review-avatar">
+            <img src={user.thumbnail ? `${import.meta.env.VITE_BACKEND_URL}${user.thumbnail}` : `${import.meta.env.VITE_BACKEND_URL}/upload/defaultpicture.jpg`} alt="User Avatar" />
+          </div>
+        )}
         <input
           className="add-review-input"
           type="text"
@@ -88,13 +92,15 @@ const ReviewSection = ({ contentId }) => {
       </button>
       {reviews.map((review) => (
         <div key={review.review_id} className="review">
-          <div className="review-avatar"> {`${review.lastname}`}</div>
+
+          <div className="review-avatar">
+            <img src={review.thumbnail ? `${import.meta.env.VITE_BACKEND_URL}${review.thumbnail}` : `${import.meta.env.VITE_BACKEND_URL}/upload/defaultpicture.jpg`} alt="User Avatar" />
+          </div>
           <div className="review-content">
             <div className="review-header">
-              <span className="review-name">{`${review.firstname} ${review.lastname}`}</span>
-              <span className="review-time">
-                {new Date(review.review_date).toLocaleString()}
-              </span>
+              <span className="review-name">{`${review.firstname || ''} ${review.lastname || ''}`}</span>
+              <span className="review-time">{review.review_date ? new Date(review.review_date).toLocaleDateString() : 'Invalid Date'}</span>
+
             </div>
             <div className="review-text">{review.review}</div>
           </div>
@@ -104,4 +110,6 @@ const ReviewSection = ({ contentId }) => {
   );
 };
 
+
 export default ReviewSection;
+
