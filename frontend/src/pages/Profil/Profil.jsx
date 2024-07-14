@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useUser from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import "./profil.css";
 
 function Profil() {
   const { user, setUser } = useUser();
-  const [firstname, setFirstname] = useState(user?.firstname);
-  const [lastname, setLastname] = useState(user?.lastname);
-  const [email, setEmail] = useState(user?.email);
-  const [telephone, setTelephone] = useState(user?.telephone);
+  const [firstname, setFirstname] = useState(user?.firstname || '');
+  const [lastname, setLastname] = useState(user?.lastname || '');
+  const [email, setEmail] = useState(user?.email || '');
+  const [telephone, setTelephone] = useState(user?.telephone || '');
+  const [thumbnail, setThumbnail] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setFirstname(user.firstname);
+      setLastname(user.lastname);
+      setEmail(user.email);
+      setTelephone(user.telephone);
+    }
+  }, [user]);
 
   const logout = async () => {
     try {
@@ -29,44 +39,71 @@ function Profil() {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
+      const formData = new FormData();
+      formData.append("firstname", firstname);
+      formData.append("lastname", lastname);
+      formData.append("email", email);
+      formData.append("telephone", telephone);
+      if (thumbnail) {
+        formData.append("thumbnail", thumbnail);
+      }
+
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/${user.user_id}`,
         {
           method: "PUT",
           credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            firstname,
-            lastname,
-            email,
-            telephone,
-          }),
+          body: formData,
         }
       );
-      if (response.status === 204) {
+
+      if (response.status === 200) {
         const data = await response.json();
-        setUser(data);
+        setUser(data);  // Update user context
       } else {
-        console.error("dfbgsrspr.");
+        console.error("Erreur lors de la mise à jour.");
       }
     } catch (error) {
       console.error(error);
     }
   };
+
+  const handleFileChange = (e) => {
+    setThumbnail(e.target.files[0]);
+
+    // Update the profile picture preview immediately
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = document.getElementById("profil-picture");
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
   return (
     <div className="container-form-profil">
       <div className="form-profil">
-        {/* <div className="profil-picture-container">
-            <img
-              src={user.image}
-              alt="profil-picture"
-              className="profil-image"
-            />
-          </div> */}
+        <div className="profil-picture-container">
+          <img
+            id="profil-picture"
+            src={user?.thumbnail ? `${import.meta.env.VITE_BACKEND_URL}${user.thumbnail}` : `${import.meta.env.VITE_BACKEND_URL}/upload/defaultpicture.jpg`}
+            alt="profil-picture"
+            className="profil-image"
+            onClick={() => document.getElementById("fileInput").click()}
+          />
+          <input
+            id="fileInput"
+            type="file"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+        </div>
         <div className="name-profilzz">{user?.firstname}</div>
-        <form className="form-body-profil">
+        <form className="form-body-profil" onSubmit={handleSubmit}>
           <label className="form-profil-label">Firstname</label>
           <input
             className="form-input-profil"
@@ -89,7 +126,7 @@ function Profil() {
           <label className="form-profil-label">Email</label>
           <input
             className="form-input-profil"
-            type="text"
+            type="email"
             required
             value={email}
             onChange={(e) => {
@@ -99,21 +136,17 @@ function Profil() {
           <label className="form-profil-label">Telephone</label>
           <input
             className="form-input-profil"
-            type="text"
+            type="tel"
             required
             value={telephone}
             onChange={(e) => {
               setTelephone(e.target.value);
             }}
           />
+          <button type="submit" className="modify-profil">Modify informations</button>
         </form>
-        <button type="button" className="modify-profil" onClick={handleSubmit}>
-          Modify informations{" "}
-        </button>
       </div>
-      <button className="logout-button" onClick={logout}>
-        Log out
-      </button>
+      <button className="logout-button" onClick={logout}>Log out</button>
     </div>
   );
 }

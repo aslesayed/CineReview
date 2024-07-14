@@ -6,7 +6,6 @@
   align-items: center;
   flex-direction: column;
   height: 100%;
-
   background-repeat: no-repeat;
 }
 
@@ -35,6 +34,7 @@
   font-family: "Inter", sans-serif;
   padding-top: 2rem;
   position: relative;
+  align-items: center; /* Center align the content */
 }
 
 .form-header {
@@ -130,6 +130,7 @@
   height: 100%;
   object-fit: cover;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .profil-picture-container {
@@ -155,6 +156,8 @@
   text-decoration: underline;
   background: none;
 }
+
+
 
 @media screen and (min-width: 1024px) {
   .form-profil {
