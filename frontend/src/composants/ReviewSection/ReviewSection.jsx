@@ -58,7 +58,7 @@ const ReviewSection = ({ contentId }) => {
       if (response.status === 201) {
         const data = await response.json();
         console.log("New review data:", data);
-        setReviews(prevReviews => [...prevReviews, data]);
+        setReviews(prevReviews => [data, ...prevReviews]);
         setNewReview("");
       } else {
         console.error("Failed to add review", response.status);

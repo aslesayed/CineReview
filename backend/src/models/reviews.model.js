@@ -11,6 +11,7 @@ const findByContentId = async (contentId) => {
     FROM reviews 
     JOIN users ON reviews.user_id = users.user_id 
     WHERE content_id = ?
+    ORDER BY review_date DESC
   `;
   return db.query(sql, [contentId]);
 };
