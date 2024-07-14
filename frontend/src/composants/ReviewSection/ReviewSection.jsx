@@ -68,6 +68,29 @@ const ReviewSection = ({ contentId }) => {
     }
   };
 
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/reviews/${reviewId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: 'include', // Assurez-vous que les cookies sont inclus
+        }
+      );
+  
+      if (response.status === 204) {
+        setReviews(prevReviews => prevReviews.filter(review => review.review_id !== reviewId));
+      } else {
+        console.error("Failed to delete review", response.status);
+      }
+    } catch (error) {
+      console.error("Error deleting review:", error);
+    }
+  };
+
   return (
     <div className="review-section">
       <h1 className="review-section-header">Reviews</h1>
@@ -97,6 +120,9 @@ const ReviewSection = ({ contentId }) => {
             <div className="review-header">
               <span className="review-name">{`${review.firstname || ''} ${review.lastname || ''}`}</span>
               <span className="review-time">{review.review_date ? new Date(review.review_date).toLocaleDateString() : 'Invalid Date'}</span>
+              {user && user.user_id === review.user_id && (
+                <button onClick={() => handleDeleteReview(review.review_id)} className="delete-review-button">Delete</button>
+              )}
             </div>
             <div className="review-text">{review.review}</div>
           </div>

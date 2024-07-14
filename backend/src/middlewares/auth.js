@@ -23,15 +23,26 @@ const hashPassword = async (req, res, next) => {
 const isAuth = (req, res, next) => {
   try {
     const token = req.cookies["auth-token"];
+    console.log("Token received:", token);
     if (!token) {
       return res.status(401).json("Access Denied");
     }
     const decoded = jwt.verify(token, process.env.APP_SECRET);
+    console.log("Decoded token:", decoded);
+    
+    // Assign to req.user for compatibility with deletion logic
+    req.user = {
+      id: decoded.id,
+      role: decoded.role,
+    };
+
+    // Assign to req.admin and req.userID for compatibility with older code
     req.admin = decoded.role;
     req.userID = decoded.id;
+
     next();
   } catch (error) {
-    console.error(error);
+    console.error("Error in isAuth middleware:", error);
     res.status(401).json("Invalid Token");
   }
 };
