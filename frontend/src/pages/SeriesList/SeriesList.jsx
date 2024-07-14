@@ -8,6 +8,8 @@ function SeriesList() {
       <ContentSlider type="Serie" genre="Horror" />
       <h2 className="Slidername">Top Comedy Series</h2>
       <ContentSlider type="Serie" genre="Comedy" />
+      <h2 className="Slidername">Top Drama Series</h2>
+      <ContentSlider type="Serie" genre="Drama" />
     </div>
   );
 };

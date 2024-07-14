@@ -1,9 +1,10 @@
 const reviewModel = require("../models/reviews.model");
 
+
 const insertReview = async (req, res) => {
+
   try {
     const { review, user_id, content_id } = req.body;
-
     const review_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const result = await reviewModel.insert({ review, review_date, user_id, content_id });
       console.log(result)
@@ -24,6 +25,7 @@ const insertReview = async (req, res) => {
         console.error("Review or user not found");
         res.status(404).json({ error: "Review or user not found" });
       }
+
     } else {
       console.error("Failed to insert review");
       res.status(500).json({ error: "Failed to insert review" });
@@ -43,19 +45,7 @@ const getAll = async (req, res, next) => {
   }
 };
 
-// const getById = async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
-//     const [[review]] = await reviewModel.findById(id);
-//     if (review) {
-//       res.status(200).json(review);
-//     } else {
-//       res.sendStatus(404);
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+
 
 const getByContentId = async (req, res, next) => {
   try {

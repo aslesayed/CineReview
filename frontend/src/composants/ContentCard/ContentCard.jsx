@@ -1,96 +1,103 @@
-// ContentCard.jsx
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useUser from "../../contexts/UserContext";
+import { IoCheckmarkSharp } from "react-icons/io5";
+
 import "./contentcard.css";
 
-const ContentCard = ({ contents = [] }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const ContentCard = ({ contents = [], setDeleted }) => {
   const { user } = useUser();
   const navigate = useNavigate();
+  const [favoriteStatus, setFavoriteStatus] = useState({});
 
-  // // useEffect(() => {
-  // //   const loadFavorites = async () => {
-  // //     try {
-  // //       const response = await fetch(
-  // //         `${import.meta.env.VITE_BACKEND_URL}/api/watchlisted`,
-  // //         {
-  // //           method: "GET",
-  // //           headers: { "Content-Type": "application/json" },
-  // //           credentials: "include",
-  // //         }
-  // //       );
-  // //       if (response.status === 200) {
-  // //         const favs = await response.json();
-  // //         favs.forEach((fav) => {
-  // //           if (fav.content_id === contents.content_id) setIsFavorite(true);
-  // //         });
-  // //       } else {
-  // //         console.error("Error loading favorites:", response.statusText);
-  // //       }
-  // //     } catch (error) {
-  // //       console.error("Error loading favorites:", error);
-  // //     }
-  // //   };
-  // //   loadFavorites();
-  // // }, []);
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      if (!user) return;
 
-  const toggleFavorite = async () => {
-    try {
-      if (isFavorite) {
+      try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/watchlisted`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/watchlisted/${user.user_id}`,
           {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              content_id: contents.content_id,
-            }),
+            method: "GET",
             credentials: "include",
           }
         );
-        console.info(response.status);
         if (response.status === 200) {
-          setIsFavorite(false);
-          setDeleted(contents.content_id);
+          const data = await response.json();
+          const status = {};
+          data.forEach((item) => {
+            status[item.content_id] = true;
+          });
+          setFavoriteStatus(status);
         } else {
-          console.error("Error removing favorite:", response.statusText);
+          console.error("Failed to fetch favorites", response.status);
         }
-      } else {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/watchlisted`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              content_id: contents.content_id,
-            }),
-            credentials: "include",
-          }
+      } catch (error) {
+        console.error("Error fetching favorites:", error);
+      }
+    };
+
+    fetchFavorites();
+  }, [user, setDeleted]);
+
+  const toggleFavorite = async (contentId) => {
+    try {
+      const isFavorite = favoriteStatus[contentId];
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/watchlisted`,
+        {
+          method: isFavorite ? "DELETE" : "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content_id: contentId,
+            user_id: user.user_id,
+          }),
+          credentials: "include",
+        }
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        console.log(
+          `Successfully ${isFavorite ? "deleted from" : "added to"} favorites`
         );
-        console.info(response.status);
-        if (response.status === 201) {
-          setIsFavorite(true);
-        } else {
-          console.error("Error adding favorite:", response.statusText);
-        }
+        setFavoriteStatus((prevStatus) => ({
+          ...prevStatus,
+          [contentId]: !isFavorite,
+        }));
+        setDeleted((prev) => !prev); // Trigger re-fetch of favorites
+      } else {
+        console.error(
+          `Failed to ${isFavorite ? "delete from" : "add to"} favorites`,
+          response.status
+        );
       }
     } catch (error) {
-      console.error("Error toggling favorite:", error);
+      console.error(
+        `Error ${isFavorite ? "deleting from" : "adding to"} favorites:`,
+        error
+      );
+    }
+  };
+
+  const handleAddToFavorites = (contentId) => {
+    if (user) {
+      toggleFavorite(contentId);
+    } else {
+      navigate("/connection");
     }
   };
 
   return (
     <div className="content-list">
       {contents.map((content) => {
-        console.log(content.content_id); // Log the content_id to ensure it is defined
+        const isFavorite = favoriteStatus[content.content_id];
         return (
-          <div>
+          <div key={content.content_id}>
             <div className="content-card">
               <Link
-                to={`/contents/${content.content_id}`} // Use content.content_id to navigate to the detail page
-                key={content.content_id}
+                to={`/contents/${content.content_id}`}
                 className="content-card-link"
               >
                 <img
@@ -107,16 +114,12 @@ const ContentCard = ({ contents = [] }) => {
                   </div>
                 </div>
                 <button
-                  className="add-to-favorites"
-                  onClick={
-                    user
-                      ? () => toggleFavorite()
-                      : () => {
-                          navigate("/connection");
-                        }
+                  className={
+                    isFavorite ? "added-to-favorites" : "add-to-favorites"
                   }
+                  onClick={() => handleAddToFavorites(content.content_id)}
                 >
-                  +
+                  {isFavorite ? <IoCheckmarkSharp /> : "+"}
                 </button>
               </div>
             </div>
