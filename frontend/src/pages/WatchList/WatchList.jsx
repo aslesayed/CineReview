@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ContentCard from "../../composants/ContentCard/ContentCard";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import useUser from "../../contexts/UserContext";
 import "./watchlist.css";
 
@@ -39,17 +42,51 @@ function WatchList() {
     fetchFavorites();
   }, [user, deleted]);
 
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+    ],
+  };
+
   return (
-    <div>
-      <div className="favorite_title">
-        <h2>Vos favoris</h2>
-      </div>
-      <div className="favorites-container">
-        {favorites.map((favorite) => (
-          <div key={favorite.content_id} className="favorite-item">
-            <ContentCard setDeleted={setDeleted} contents={[favorite]} />
-          </div>
-        ))}
+    <div className="fav-container">
+      <h2 className="fav-header">Your Watchlist</h2>
+      <div className="fav-slider">
+        <Slider {...settings}>
+          {favorites.map((favorite) => (
+            <div key={favorite.content_id} className="favorite-item">
+              <ContentCard setDeleted={setDeleted} contents={[favorite]} />
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );
