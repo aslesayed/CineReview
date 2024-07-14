@@ -16,6 +16,9 @@ function Homepage() {
 
   return (
     <div>
+      <h1 className="title-home">
+        Embark on a journey to pick your perfect movies or series.
+      </h1>
       <h2 className="Slidername">{getTitle("Movie")}</h2>
       <ContentSlider type="Movie" genre={genre} />
       <h2 className="Slidername">{getTitle("Serie")}</h2>

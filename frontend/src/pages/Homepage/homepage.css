@@ -8,8 +8,17 @@
   margin-top: 2rem;
 }
 
-/* @media screen and (min-width: 1024px) {
-    .Slidername {
-        margin-left : 180px
-    }
-} */
+.title-home {
+  font-size: 18px;
+  color: rgb(182, 182, 182);
+  font-family: "Inter", sans-serif;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .title-home {
+    font-size: 24px;
+    margin-top: 4rem;
+  }
+}

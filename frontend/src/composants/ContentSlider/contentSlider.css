@@ -1,21 +1,24 @@
 .content-slider {
-    width: 85%;
-    margin: auto;
-  }
+  width: 85%;
+  margin: auto;
+}
 
 .content-slider .slick-slide {
-    padding: 0px; /* Adjust the value as needed */
-  }
+  transition: transform 0.3s ease-in-out;
+  padding: 0px; /* Adjust the value as needed */
+}
+
+.content-slider .slick-slide:hover {
+  transform: scale(1.1);
+}
 
 .content-slider .slick-list {
-    margin: 0px; /* Adjust the value to match padding */
+  margin: 0px; /* Adjust the value to match padding */
+}
+
+@media screen and (min-width: 1024px) {
+  .content-slider {
+    width: 62%;
+    margin: auto;
   }
-
-
-
-  @media screen and (min-width: 1024px) {
-    .content-slider {
-      width: 62%;
-      margin: auto;
-    }
-    }
+}

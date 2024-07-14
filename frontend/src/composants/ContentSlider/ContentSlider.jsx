@@ -11,7 +11,9 @@ const ContentSlider = ({ type, genre }) => {
   useEffect(() => {
     const fetchContents = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/contents`);
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/contents`
+        );
         const data = await response.json();
         setContents(data);
       } catch (error) {
@@ -22,7 +24,7 @@ const ContentSlider = ({ type, genre }) => {
     fetchContents();
   }, []);
 
-  const filteredContents = contents.filter(content => {
+  const filteredContents = contents.filter((content) => {
     if (genre) {
       return content.type === type && content.genre === genre;
     }
@@ -30,7 +32,6 @@ const ContentSlider = ({ type, genre }) => {
   });
 
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
@@ -43,7 +44,6 @@ const ContentSlider = ({ type, genre }) => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
         },
       },
       {
@@ -52,7 +52,6 @@ const ContentSlider = ({ type, genre }) => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
         },
       },
     ],
