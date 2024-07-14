@@ -66,11 +66,32 @@ const getByContentId = async (req, res, next) => {
 const deleteReview = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const { id: user_id } = req.user;
+
+    console.log(`Attempting to delete review with id ${id} by user ${user_id}`);
+
+    // Vérifiez que l'avis appartient à l'utilisateur
+    const [review] = await reviewModel.findById(id);
+    if (!review) {
+      console.log("Review not found");
+      return res.status(404).json({ error: "Review not found" });
+    }
+
+    if (review.user_id !== user_id) {
+      console.log("Unauthorized access attempt");
+      return res.status(403).json({ error: "Unauthorized" });
+    }
+
     const [result] = await reviewModel.deleteById(id);
     if (result.affectedRows > 0) {
-      res.sendStatus(204);
-    } else res.sendStatus(404);
+      console.log("Review deleted successfully");
+      res.sendStatus(204); // Suppression réussie
+    } else {
+      console.log("Review not found in the database");
+      res.status(404).json({ error: "Review not found in the database" });
+    }
   } catch (error) {
+    console.error("Error in deleteReview:", error);
     next(error);
   }
 };

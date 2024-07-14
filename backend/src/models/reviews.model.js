@@ -41,7 +41,14 @@ const findUserById = async (userId) => {
 
 const deleteById = async (id) => {
   const sql = `DELETE FROM reviews WHERE review_id = ?`;
-  return db.query(sql, [id]);
+  try {
+    const result = await db.query(sql, [id]);
+    console.log("Delete result:", result);
+    return result;
+  } catch (error) {
+    console.error("Error in deleteById:", error);
+    throw error;
+  }
 };
 
 const insert = async ({ review, review_date, user_id, content_id }) => {
