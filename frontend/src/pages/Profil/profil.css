@@ -88,6 +88,17 @@
   border: none;
 }
 
+.content-manager-button {
+  margin-right: 25px;
+  align-self: flex-end;
+  color: #b5b5b5;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 330;
+  background: none;
+  border: none;
+}
+
 .button-to-connect {
   margin-top: 0.5rem;
   text-decoration: none;
