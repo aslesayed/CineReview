@@ -102,7 +102,7 @@ function Profil() {
             onChange={handleFileChange}
           />
         </div>
-        <div className="name-profilzz">{user?.firstname}</div>
+        <div className="name-profil">{user?.firstname}</div>
         <form className="form-body-profil" onSubmit={handleSubmit}>
           <label className="form-profil-label">Firstname</label>
           <input
