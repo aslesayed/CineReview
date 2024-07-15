@@ -21,7 +21,8 @@ import WatchList from "./pages/WatchList/WatchList.jsx";
 import ContentManager from "./pages/ContentManager/ContentManager.jsx";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 import Loader from "./composants/Loader/Loader.jsx";
-
+import AdminRoute from "./composants/AdminRoute/AdminRoute.jsx"; // Import correct
+import Unauthorized from "./pages/Unauthorized/Unauthorized.jsx";
 
 // eslint-disable-next-line react-refresh/only-export-components
 function PrivateRoute({ children }) {
@@ -72,18 +73,23 @@ const router = createBrowserRouter([
         element: <SeriesList />,
       },
       {
+        path: "/unauthorized",
+        element: <Unauthorized />,
+      },
+      {
         path: "/watchlist",
         element: (
           <PrivateRoute>
-          <WatchList />
+            <WatchList />
           </PrivateRoute>
         ),
-        
       },
       {
         path: "/contentmanager",
         element: (
-           <ContentManager />
+          <AdminRoute>
+            <ContentManager />
+          </AdminRoute>
         ),
       },
       {
@@ -102,8 +108,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-     <UserProvider>
-     <DataProvider>
+    <UserProvider>
+      <DataProvider>
         <RouterProvider router={router} />
       </DataProvider>
     </UserProvider>
