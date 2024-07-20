@@ -79,8 +79,10 @@ const getCurrentUser = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
   try {
+    console.log("Clearing auth-token cookie...");
     res.clearCookie("auth-token").sendStatus(200);
   } catch (error) {
+    console.error("Error during logout:", error);
     next(error);
   }
 };
