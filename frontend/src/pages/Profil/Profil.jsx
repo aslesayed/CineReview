@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect } from "react";
 import useUser from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -20,24 +22,6 @@ function Profil() {
       setTelephone(user.telephone);
     }
   }, [user]);
-
-  const logout = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/logout`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
-      if (response.status === 200) {
-        setUser(null);
-        navigate("/connection");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +48,7 @@ function Profil() {
         const data = await response.json();
         setUser(data);  // Update user context
       } else {
-        console.error("Erreur lors de la mise à jour.");
+        console.error("Error during update.");
       }
     } catch (error) {
       console.error(error);
@@ -81,6 +65,27 @@ function Profil() {
       img.src = event.target.result;
     };
     reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const logout = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/logout`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      if (response.ok) {
+        setUser(null); // Clear user context
+        navigate("/connection"); // Redirect to login page
+      } else {
+        console.error("Error during logout.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -102,7 +107,7 @@ function Profil() {
             onChange={handleFileChange}
           />
         </div>
-        <div className="name-profilzz">{user?.firstname}</div>
+        <div className="name-profil">{user?.firstname}</div>
         <form className="form-body-profil" onSubmit={handleSubmit}>
           <label className="form-profil-label">Firstname</label>
           <input
@@ -152,3 +157,4 @@ function Profil() {
 }
 
 export default Profil;
+

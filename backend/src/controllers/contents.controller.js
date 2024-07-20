@@ -157,6 +157,16 @@ const deleteContent = async (req, res, next) => {
 };
 
 
+const getSimilarContents = async (req, res, next) => {
+  const { genre, excludeId } = req.query;
+  try {
+    const contents = await contentModel.findSimilarContents(genre, excludeId);
+    res.status(200).json(contents);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   addContent,
   getAll,
@@ -167,6 +177,5 @@ module.exports = {
   getContentById,
   editContent,
   deleteContent,
+  getSimilarContents,  // Add this line
 };
-
-

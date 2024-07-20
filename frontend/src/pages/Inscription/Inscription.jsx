@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useState, useRef } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./inscription.css";
 
 function Inscription() {
@@ -50,6 +52,21 @@ function Inscription() {
     validateEmail();
     validatePhoneNumber();
 
+    if (!email || !password || !firstname.current.value || !confirmPassword) {
+      toast.error("Please ensure all the mandatory fields are filled.");
+      return;
+    }
+
+   
+    if (!isPasswordValid) {
+      toast.error("Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character.");
+    }
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+
     if (
       isEmailValid &&
       isPhoneValid &&
@@ -72,24 +89,23 @@ function Inscription() {
             }),
           }
         );
-        console.info(response.status);
         if (response.status === 201) {
-          console.log("User created successfully.");
-          alert("User created successfully.");
+          toast.success("User created successfully.");
           navigate("/connection");
         } else {
-          console.error("Failed to create user.");
+          toast.error("Failed to create user.");
         }
       } catch (error) {
-        console.error("Error creating user:", error);
+        toast.error("Error creating user.");
       }
     } else {
-      alert("Please ensure all the mandatory fields are valid.");
+      toast.error("Please ensure all the mandatory fields are valid.");
     }
   };
 
   return (
     <div className="container-form">
+      <ToastContainer />
       <Link to="/" className="top-header-link"> 
         <h1 className="top-header">CINÉREVIEW</h1>
       </Link>
@@ -153,9 +169,9 @@ function Inscription() {
               role="button"
             >
               {passwordVisible ? (
-                <FaRegEye icon="gridicons:not-visible" width="20" />
+                <FaRegEye width="20" />
               ) : (
-                <FaEyeSlash icon="gridicons:visible" width="20" />
+                <FaEyeSlash width="20" />
               )}
             </div>
           </div>
@@ -178,9 +194,9 @@ function Inscription() {
               role="button"
             >
               {passwordVisible ? (
-                <FaRegEye icon="gridicons:not-visible" width="20" />
+                <FaRegEye width="20" />
               ) : (
-                <FaEyeSlash icon="gridicons:visible" width="20" />
+                <FaEyeSlash width="20" />
               )}
             </div>
           </div>
@@ -204,4 +220,5 @@ function Inscription() {
 }
 
 export default Inscription;
+
 
