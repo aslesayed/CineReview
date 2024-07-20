@@ -626,6 +626,22 @@ const users = [
         telephone: "0612566284",
         admin: "0",
     },
+    {
+        firstname: "Admin",
+        lastname: "Admin",
+        email: "admin@admin.admin",
+        password: "Admin123.",
+        telephone: "0606060606",
+        admin: "1",
+    },
+    {
+        firstname: "Notadmin",
+        lastname: "Notadmin",
+        email: "notadmin@notadmin.notadmin",
+        password: "Notadmin123.",
+        telephone: "0606060606",
+        admin: "0",
+    },
 ];
 
     const reviews = [

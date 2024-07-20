@@ -79,8 +79,10 @@ const getCurrentUser = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
   try {
+    console.log("Clearing auth-token cookie...");
     res.clearCookie("auth-token").sendStatus(200);
   } catch (error) {
+    console.error("Error during logout:", error);
     next(error);
   }
 };
@@ -101,9 +103,16 @@ const updateUser = async (req, res, next) => {
   try {
     const id = req.params.id;
     const { firstname, lastname, email, telephone } = req.body;
-    let thumbnail = req.file ? `/upload/${req.file.filename}` : req.body.thumbnail; // Handle file upload
+    let thumbnail = req.file ? `/upload/${req.file.filename}` : req.body.thumbnail;
 
-    const data = { firstname, lastname, email, telephone, thumbnail };
+    // Only add fields that are provided to the data object
+    const data = {};
+    if (firstname) data.firstname = firstname;
+    if (lastname) data.lastname = lastname;
+    if (email) data.email = email;
+    if (telephone) data.telephone = telephone;
+    if (thumbnail) data.thumbnail = thumbnail;
+
     const [result] = await userModel.updateById(id, data);
 
     if (result.affectedRows > 0) {

@@ -23,6 +23,7 @@ function Profil() {
     }
   }, [user]);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -150,6 +151,14 @@ function Profil() {
           />
           <button type="submit" className="modify-profil">Modify informations</button>
         </form>
+        {user && user.admin === 1 && (
+          <button
+            className="modify-profil"
+            onClick={() => navigate("/contentmanager")}
+          >
+            Manage Content
+          </button>
+        )}
       </div>
       <button className="logout-button" onClick={logout}>Log out</button>
     </div>
