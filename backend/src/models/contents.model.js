@@ -96,6 +96,12 @@ const deleteAssociationsByContentId = async (content_id) => {
   return db.query(query, [content_id]);
 };
 
+const findSimilarContents = async (genre, excludeId) => {
+  const query = `SELECT * FROM contents WHERE genre = ? AND content_id != ? LIMIT 5`;
+  const [rows] = await db.execute(query, [genre, excludeId]);
+  return rows; 
+}; // Add this line
+
 module.exports = {
   findByName,
   insert,
@@ -107,4 +113,6 @@ module.exports = {
   updateContent,
   deleteById,
   deleteAssociationsByContentId,
+  findSimilarContents,  // Add this line
 };
+

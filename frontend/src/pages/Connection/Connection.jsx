@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import useUser from "../../contexts/UserContext";
 import "./connection.css";
 
@@ -41,12 +42,12 @@ function Connection() {
         }
       } else {
         setIsLoading(false);
-        // Handle the case without showing toast error
+        toast.error("Email or password is incorrect. Please try again.");
       }
     } catch (error) {
       console.error(error);
       setIsLoading(false);
-      // Optionally handle error without showing toast error
+      toast.error("An error occurred. Please try again later.");
     }
   };
 
@@ -100,6 +101,7 @@ function Connection() {
           <p className="connect-link">Create Account</p>
         </Link>
       </div>
+      <ToastContainer />
     </div>
   );
 }

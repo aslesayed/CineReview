@@ -9,16 +9,17 @@
 }
 
 .title-home {
-  font-size: 18px;
-  color: rgb(182, 182, 182);
-  font-family: "Inter", sans-serif;
-  margin-top: 2rem;
+  font-size: 20px;
+  padding: 7%;
+  color: #adadad;
   text-align: center;
+  font-weight: 250;
 }
 
 @media screen and (min-width: 1024px) {
   .title-home {
-    font-size: 24px;
+    font-size: 25px;
     margin-top: 4rem;
+    padding: 0%;
   }
 }

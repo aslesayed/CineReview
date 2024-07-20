@@ -15,7 +15,9 @@ const ReviewSection = ({ contentId }) => {
 
     const fetchReviews = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reviews/content/${contentId}`);
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/reviews/content/${contentId}`
+        );
 
         if (response.ok) {
           const data = await response.json();
@@ -58,7 +60,7 @@ const ReviewSection = ({ contentId }) => {
       if (response.status === 201) {
         const data = await response.json();
         console.log("New review data:", data);
-        setReviews(prevReviews => [data, ...prevReviews]);
+        setReviews((prevReviews) => [data, ...prevReviews]);
         setNewReview("");
       } else {
         console.error("Failed to add review", response.status);
@@ -77,12 +79,14 @@ const ReviewSection = ({ contentId }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: 'include', // Assurez-vous que les cookies sont inclus
+          credentials: "include", // Assurez-vous que les cookies sont inclus
         }
       );
-  
+
       if (response.status === 204) {
-        setReviews(prevReviews => prevReviews.filter(review => review.review_id !== reviewId));
+        setReviews((prevReviews) =>
+          prevReviews.filter((review) => review.review_id !== reviewId)
+        );
       } else {
         console.error("Failed to delete review", response.status);
       }
@@ -97,7 +101,16 @@ const ReviewSection = ({ contentId }) => {
       <div className="add-review">
         {user && (
           <div className="review-avatar">
-            <img src={user.thumbnail ? `${import.meta.env.VITE_BACKEND_URL}${user.thumbnail}` : `${import.meta.env.VITE_BACKEND_URL}/upload/defaultpicture.jpg`} alt="User Avatar" />
+            <img
+              src={
+                user.thumbnail
+                  ? `${import.meta.env.VITE_BACKEND_URL}${user.thumbnail}`
+                  : `${
+                      import.meta.env.VITE_BACKEND_URL
+                    }/upload/defaultpicture.jpg`
+              }
+              alt="User Avatar"
+            />
           </div>
         )}
         <input
@@ -114,14 +127,32 @@ const ReviewSection = ({ contentId }) => {
       {reviews.map((review) => (
         <div key={review.review_id} className="review">
           <div className="review-avatar">
-            <img src={review.thumbnail ? `${import.meta.env.VITE_BACKEND_URL}${review.thumbnail}` : `${import.meta.env.VITE_BACKEND_URL}/upload/defaultpicture.jpg`} alt="User Avatar" />
+            <img
+              src={
+                review.thumbnail
+                  ? `${import.meta.env.VITE_BACKEND_URL}${review.thumbnail}`
+                  : `${
+                      import.meta.env.VITE_BACKEND_URL
+                    }/upload/defaultpicture.jpg`
+              }
+              alt="User Avatar"
+            />
           </div>
           <div className="review-content">
             <div className="review-header">
-              <span className="review-name">{`${review.firstname || ''} ${review.lastname || ''}`}</span>
-              <span className="review-time">{review.review_date ? new Date(review.review_date).toLocaleDateString() : 'Invalid Date'}</span>
+              <span className="review-name">{`${review.firstname} `}</span>
+              <span className="review-time">
+                {review.review_date
+                  ? new Date(review.review_date).toLocaleDateString()
+                  : "Invalid Date"}
+              </span>
               {user && user.user_id === review.user_id && (
-                <button onClick={() => handleDeleteReview(review.review_id)} className="delete-review-button">Delete</button>
+                <button
+                  onClick={() => handleDeleteReview(review.review_id)}
+                  className="delete-review-button"
+                >
+                  Delete
+                </button>
               )}
             </div>
             <div className="review-text">{review.review}</div>

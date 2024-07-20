@@ -78,18 +78,25 @@ function WatchList() {
 
   return (
     <div className="fav-container">
-      <h2 className="fav-header">Your Watchlist</h2>
+     {favorites.length > 0 && <h2 className="fav-header">Your Watchlist</h2>}
       <div className="fav-slider">
-        <Slider {...settings}>
-          {favorites.map((favorite) => (
-            <div key={favorite.content_id} className="favorite-item">
-              <ContentCard setDeleted={setDeleted} contents={[favorite]} />
-            </div>
-          ))}
-        </Slider>
+        {favorites.length > 0 ? (
+          <Slider {...settings}>
+            {favorites.map((favorite) => (
+              <div key={favorite.content_id} className="favorite-item">
+                <ContentCard setDeleted={setDeleted} contents={[favorite]} />
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <div className="no-favorites">
+            <p>You have no items in your watchlist.</p>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default WatchList;
+
