@@ -15,7 +15,7 @@ router.get(
   userController.getCurrentUser
 );
 router.get("/users/:id", userController.getUserById);
-router.get("/users/logout", auth.isAuth, userController.logout);
+router.post("/users/logout", auth.isAuth, userController.logout);
 router.get("/users", userController.getAll);
 router.put("/users/:id", auth.isAuth, upload.single("thumbnail"), userController.updateUser);
 router.delete("/users/:id", auth.isAuth, userController.deleteuser);

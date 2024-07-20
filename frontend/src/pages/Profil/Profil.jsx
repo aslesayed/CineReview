@@ -23,19 +23,23 @@ function Profil() {
 
   const logout = async () => {
     try {
+      console.log("Attempting to logout...");
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/logout`,
         {
-          method: "GET",
+          method: "POST",
           credentials: "include",
         }
       );
+      console.log("Logout response status:", response.status);
       if (response.status === 200) {
         setUser(null);
         navigate("/connection");
+      } else {
+        console.error("Failed to logout. Status:", response.status);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error during logout:", error);
     }
   };
 
