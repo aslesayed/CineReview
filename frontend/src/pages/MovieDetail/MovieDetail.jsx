@@ -9,7 +9,7 @@ function MovieDetail() {
   return (
     <section>
       <ContentDetail contentId={id} />
-     "" {/* <ReviewSection contentId={id} />"" */}
+     <ReviewSection contentId={id} />
 
     </section>
   );

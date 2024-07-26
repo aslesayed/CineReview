@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useUser from "../../contexts/UserContext";
+import { ImCross } from "react-icons/im";
 import "./reviewsection.css";
 
 const ReviewSection = ({ contentId }) => {
@@ -151,7 +152,7 @@ const ReviewSection = ({ contentId }) => {
                   onClick={() => handleDeleteReview(review.review_id)}
                   className="delete-review-button"
                 >
-                  Delete
+                 <ImCross   style={{ width: "60px", height: "30px", background:"none" }}/>
                 </button>
               )}
             </div>

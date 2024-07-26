@@ -62,10 +62,7 @@ function Inscription() {
       toast.error("Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character.");
     }
 
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match.");
-      return;
-    }
+    
 
     if (
       isEmailValid &&

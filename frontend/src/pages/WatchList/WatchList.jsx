@@ -78,7 +78,7 @@ function WatchList() {
 
   return (
     <div className="fav-container">
-     {favorites.length > 0 && <h2 className="fav-header">Your Watchlist</h2>}
+      {favorites.length > 0 && <h2 className="fav-header">Your Watchlist</h2>}
       <div className="fav-slider">
         {favorites.length > 0 ? (
           <Slider {...settings}>
@@ -99,4 +99,3 @@ function WatchList() {
 }
 
 export default WatchList;
-
