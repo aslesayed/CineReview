@@ -15,7 +15,7 @@ import Connection from "./pages/Connection/Connection.jsx";
 import Description from "./pages/Description/Description.jsx";
 import Inscription from "./pages/Inscription/Inscription.jsx";
 import MoviesList from "./pages/MoviesList/MoviesList.jsx";
-import Profil from "./pages/Profil/Profil.jsx";
+// import Profil from "./pages/Profil/Profil.jsx";
 import SeriesList from "./pages/SeriesList/SeriesList.jsx";
 import WatchList from "./pages/WatchList/WatchList.jsx";
 import ContentManager from "./pages/ContentManager/ContentManager.jsx";
@@ -64,10 +64,10 @@ const router = createBrowserRouter([
         path: "/movieslist",
         element: <MoviesList />,
       },
-      {
-        path: "/profil",
-        element: <Profil />,
-      },
+      // {
+      //   path: "/profil",
+      //   element: <Profil />,
+      // },
       {
         path: "/serieslist",
         element: <SeriesList />,

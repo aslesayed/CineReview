@@ -21,13 +21,12 @@
   font-family: "Inter", sans-serif;
   margin-left: 28px;
   margin-top: 2rem;
- 
 }
 
-.no-favorites{
+.no-favorites {
   font-size: 25px;
   color: #adadad;
-text-align: center;
+  text-align: center;
   margin-top: 12rem;
   font-weight: 250;
 }
@@ -41,9 +40,7 @@ text-align: center;
     margin-top: 5rem;
     margin-bottom: 2rem;
   }
-  .no-favorites{
-    
+  .no-favorites {
     margin-top: 16rem;
-    
   }
 }
