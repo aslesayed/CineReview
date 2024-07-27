@@ -294,7 +294,10 @@ function InfoProfil() {
   };
 
   return (
+    <div>
+    <h1 className="info-header">Your Info</h1>
     <div className="container-form-profil">
+    
       <div className="profil-picture-container">
         <img
           id="profil-picture"
@@ -324,12 +327,10 @@ function InfoProfil() {
           Manage Content
         </button>
       )}
-      <button className="logout-button" onClick={logout}>
-        Log out
-      </button>
+     
       <form className="form-body-profil" onSubmit={handleSubmit}>
         <input
-          className="form-input-profil"
+          className="name-input-profil"
           type="text"
           required
           value={firstname}
@@ -337,12 +338,13 @@ function InfoProfil() {
           disabled={!isEditing}
         />
         <input
-          className="form-input-profil"
+          className="name-input-profil"
           type="text"
           value={lastname}
           onChange={(e) => setLastname(e.target.value)}
           disabled={!isEditing}
         />
+        <div className="block-modal-info" >
         <input
           className="form-input-profil"
           type="email"
@@ -373,10 +375,14 @@ function InfoProfil() {
             className="modify-profil"
             onClick={() => setIsEditing(true)}
           >
-            <MdOutlineEdit size={28} />
+            {/* <MdOutlineEdit size={28} /> */}
+            Edit Information 
+            <div> <MdOutlineEdit size={18} /></div>
           </button>
         )}
+        </div>
       </form>
+    </div>
     </div>
   );
 }
