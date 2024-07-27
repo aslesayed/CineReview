@@ -1,4 +1,3 @@
-
 .details-block {
   display: flex;
   flex-direction: column;
@@ -20,8 +19,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   text-decoration: none;
   color: #b5b5b5;
 }
@@ -101,6 +100,7 @@
   justify-content: center;
   margin-top: 1rem;
   cursor: pointer;
+  margin-left: 70%;
 }
 
 .added-to-favorites2 {
@@ -114,6 +114,7 @@
   justify-content: center;
   margin-top: 1rem;
   cursor: pointer;
+  margin-left: 70%;
 }
 
 .rating2 {
@@ -166,11 +167,16 @@
 
 .review-container,
 .similar-genre-container {
-  width: 90%;
-  padding: 1rem;
+  width: 100%;
   box-sizing: border-box;
 }
-
+.similar-genre-header {
+  font-size: 18px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  margin-left: 28px;
+  margin-top: 2rem;
+}
 @media screen and (min-width: 1024px) {
   .content-card-link2 {
     display: flex;
@@ -279,26 +285,22 @@
     font-size: 18px;
     font-weight: 300;
     color: #b5b5b5;
-    margin-left: 10px; 
+    margin-left: 10px;
   }
- 
-  
+
   .similar-genre-container {
-
-
-    margin-bottom: 6rem;
-    width:100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
     margin-top: 0;
     margin-right: 0;
   }
-  
+
   .similar-genre-header {
-    font-size: 25px;
+    font-size: 18px;
     color: white;
     font-family: "Inter", sans-serif;
-    margin-bottom: 1rem;
+    margin-left: 4%;
+    margin-top: 3rem;
   }
 }
-
-
-

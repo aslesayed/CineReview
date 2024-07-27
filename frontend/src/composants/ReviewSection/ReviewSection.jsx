@@ -100,7 +100,7 @@ const ReviewSection = ({ contentId }) => {
     <div className="review-section">
       <h1 className="review-section-header">Reviews</h1>
       <div className="add-review">
-        {user && (
+        {/* {user && (
           <div className="review-avatar">
             <img
               src={
@@ -113,7 +113,7 @@ const ReviewSection = ({ contentId }) => {
               alt="User Avatar"
             />
           </div>
-        )}
+        )} */}
         <input
           className="add-review-input"
           type="text"

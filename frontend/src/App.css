@@ -1,7 +1,7 @@
 .body {
-  background: linear-gradient(to bottom, rgba(18, 11, 11, 0.5) 52%, #190b0b 56%),
+  background: linear-gradient(to bottom, rgba(18, 11, 11, 0.5) 52%, #000000 56%),
     url(/src/assets/images/BackgroundMobile.png);
-  background-color: #200b0b;
+  background-color: #000000;
   background-attachment: fixed;
   background-size: contain;
   background-position: top;
@@ -15,13 +15,16 @@
 
 @media screen and (min-width: 1024px) {
   .body {
-    background: linear-gradient(
+    /* background: linear-gradient(
         to bottom,
         rgba(18, 11, 11, 0.7) 50%,
         #170a0a 70%
       ),
       url(/src/assets/images/Back.png);
-    background-color: #200b0b;
+    background-color: #200b0b; */
+
+    background: linear-gradient(to bottom, rgba(10, 11, 11, 0.7) 50%, #000000 70%), url(/src/assets/images/Back.png);
+    background-color: #000000; 
     background-attachment: fixed;
     background-size: contain;
     background-position: center top;
@@ -37,5 +40,3 @@
 
 
 
-/* background: linear-gradient(to bottom, rgba(10, 11, 11, 0.7) 50%, #000000 70%), url(/src/assets/images/Back.png);
-background-color: #000000; */

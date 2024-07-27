@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
 
 .review-section {
-  padding: 54px;
+
   color: white;
   font-family: "Inter", sans-serif;
   font-weight: 330;
   color: #b5b5b5;
   margin-bottom: 4rem;
-  width: 60%; /* Adjusted width for wider section */
-  margin: 0 auto; /* Center the review section */
+  width: 88%; 
+  margin: 0 auto;
 }
 
 .review-section-header {
@@ -16,6 +16,7 @@
   font-family: "Inter", sans-serif;
   color: white;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .add-review {
@@ -24,13 +25,13 @@
   margin-bottom: 6px;
 }
 
-.add-review-avatar {
-  width: 40px;
-  height: 40px;
+/* .add-review-avatar {
+  width: 20px;
+  height: 20px;
   background-color: #555;
   border-radius: 50%;
   margin-right: 10px;
-}
+} */
 
 .add-review-input {
   flex: 1;
@@ -39,7 +40,7 @@
   background-color: transparent;
   color: white;
   border-bottom: 0.9px solid #b5b5b5;
-  margin-left: 2%;
+
 }
 
 .add-review-button {
@@ -60,8 +61,8 @@
 }
 
 .review-avatar img {
-  width: 100%;
-  height: 100%;
+  width: 46px;
+  height: 46px;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -73,7 +74,7 @@
 .review-header {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .review-name {
@@ -95,7 +96,7 @@
 
 @media screen and (min-width: 1024px) {
   .review-section {
-    width: 90%;
+    width: 92%;
     margin-left: 3%;
     margin-right: 0%;
     padding: 0;
@@ -108,9 +109,10 @@
   }
 
   .review-section-header {
-    font-size: 25px;
+    font-size: 18px;
+    color: white;
     font-family: "Inter", sans-serif;
-    margin-bottom: 2rem;
+   
   }
 
   .add-review-input {

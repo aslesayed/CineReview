@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./contentDetail.css";
 import ContentSlider from "../ContentSlider/ContentSlider";
 
@@ -13,7 +13,7 @@ const ContentDetail = ({ contentId }) => {
   const [actors, setActors] = useState([]);
   const [genre, setGenre] = useState("");
   const [favoriteStatus, setFavoriteStatus] = useState(false);
- 
+
   useEffect(() => {
     const fetchContentDetails = async () => {
       try {
@@ -191,19 +191,11 @@ const ContentDetail = ({ contentId }) => {
         </div>
       </div>
 
-    
-       
-         
-        <div className="similar-genre-container">
-          <p className="similar-genre-header">Same Genre</p>
-          <ContentSlider
-            genre={genre}
-            type={content[0].type}
-            slidesToShow={5}
-          />
-        </div>
+      <div className="similar-genre-container">
+        <p className="similar-genre-header">Same Genre</p>
+        <ContentSlider genre={genre} type={content[0].type} slidesToShow={5} />
       </div>
-  
+    </div>
   );
 };
 
