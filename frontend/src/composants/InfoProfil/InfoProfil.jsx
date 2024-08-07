@@ -54,7 +54,7 @@ function InfoProfil() {
 
   return (
     <div>
-      <h1 className="info-header">Your Info</h1>
+      
       <div className="container-form-profil">
         <div className="profil-picture-container">
           <img
