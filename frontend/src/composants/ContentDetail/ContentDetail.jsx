@@ -180,11 +180,12 @@ const ContentDetail = ({ contentId }) => {
           </div>
           <div className="horizontal-bar"></div>
           <div className="content-casting">
-            {actors.map((actor) => (
-              <div key={actor.actor_id}>
-                {" "}
-                Casting: {actor.firstname} {actor.lastname},
-              </div>
+            Casting:{" "}
+            {actors.map((actor, index) => (
+              <span key={actor.actor_id}>
+                {actor.firstname} {actor.lastname}
+                {index < actors.length - 1 ? ", " : ""}
+              </span>
             ))}
           </div>
           <div className="horizontal-bar"></div>
