@@ -2,15 +2,18 @@
 
 .container-form-profil {
   display: flex;
+  flex-direction: column; /* Centrer verticalement */
+  align-items: center; /* Centrer horizontalement */
   gap: 8%;
   margin-top: 2%;
   height: 100%;
   background-repeat: no-repeat;
   position: relative;
-margin-left: 6%;
+  margin-left: 6%;
 }
-.info-header{
-  color:#b5b5b5;
+
+.info-header {
+  color: #b5b5b5;
   font-family: "Bebas+Neue";
   margin-bottom: 1.5rem;
   margin-top: 0.5rem;
@@ -18,7 +21,8 @@ margin-left: 6%;
 }
 
 .profil-picture-container {
-  height: 60px;
+  width: 90px; /* Ajusté pour la taille */
+  height: 90px; /* Ajusté pour la taille */
   margin-bottom: 20px;
 }
 
@@ -36,8 +40,7 @@ margin-left: 6%;
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: baseline;
-
+  align-items: center; /* Ajusté pour centrer */
 }
 
 .info-item {
@@ -69,7 +72,6 @@ margin-left: 6%;
   border: none;
   background: none;
   color: #b5b5b5;
-
 }
 
 .modify-profil,
@@ -112,18 +114,52 @@ margin-left: 6%;
   color: rgb(182, 181, 181);
   font-size: 24px;
 }
+
 .block-name-header {
   display: flex;
   gap: 2%;
   align-items: baseline;
 }
+
 .more-button {
   background: none;
   border: none;
   color: rgb(182, 181, 181);
 }
-.block-modal-info{
+
+.buttons-container {
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  gap: 10px;
   margin-top: 8%;
+}
+
+.round-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modify-profil.round-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.logout-button.round-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.watchlist-button.round-button {
+  background-color: #2196F3;
+  color: white;
 }
 
 @media screen and (min-width: 1024px) {
@@ -142,7 +178,6 @@ margin-left: 6%;
   .info-text,
   .form-input-profil {
     font-size: 17px;
-    
   }
 
   .form-profil {
@@ -150,10 +185,48 @@ margin-left: 6%;
     flex-direction: column;
     gap: 15%;
   }
+
   .name-section {
     display: flex;
   }
-  .block-input-profil{
+
+  .block-input-profil {
     display: flex;
+  }
+
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .round-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modify-profil.round-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .logout-button.round-button {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .watchlist-button.round-button {
+    background-color: #2196F3;
+    color: white;
   }
 }
