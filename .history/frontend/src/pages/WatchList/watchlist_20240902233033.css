@@ -1,0 +1,50 @@
+.fav-slider {
+  width: 85%;
+  margin: auto;
+}
+
+.fav-slider .slick-slide {
+  transition: transform 0.3s ease-in-out;
+  padding: 0px; /* Adjust the value as needed */
+}
+
+.fav-slider .slick-slide:hover {
+  transform: scale(1.1);
+}
+
+.fav-slider .slick-list {
+  margin: 0px; /* Adjust the value to match padding */
+}
+.fav-header {
+  font-size: 18px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  margin-left: 28px;
+  margin-top: 2rem;
+}
+
+.no-favorites {
+  font-size: 25px;
+  color: #adadad;
+  text-align: center;
+  margin-top: 12rem;
+  font-weight: 250;
+}
+.fav-container {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .fav-slider {
+    width: 74%;
+    margin: auto;
+  }
+  .fav-container {
+    margin-top: 8rem;
+    margin-bottom: 12rem;
+  }
+  .no-favorites {
+    margin-top: 16rem;
+  }
+}
