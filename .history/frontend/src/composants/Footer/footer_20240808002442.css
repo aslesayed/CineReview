@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
+
+.Footer {
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.382);
+  width: 100%;
+  height: 84px;
+  font-family: "Inter", sans-serif;
+  margin-top: 1rem;
+}
+
+.top-footer {
+  align-self: center;
+  color: #b5b5b5;
+  padding-top: 12px;
+  font-size: 12px;
+}
+
+.middle-footer {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  padding-right: 28px;
+  padding-left: 28px;
+  color: white;
+}
+
+.bottom-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.social-link {
+  color: #b5b5b5;
+  padding-top: 1rem;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+}
+
+.bottom-footer .social-link {
+  font-size: 10px;
+  text-decoration: none;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+@media screen and (min-width: 1024px) {
+  .Footer {
+    position: absolute;
+  }
+}
