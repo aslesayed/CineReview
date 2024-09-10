@@ -2,11 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* background:#000000b0; */
     background:#0a0a0a;
-    height: 25rem;
-     margin-left: -1.2rem; 
-     width: 17.5rem;
-   
+    padding: 20px;
+    height: 2;
   }
   
   .profil-picture-container {
@@ -31,7 +30,7 @@
     color: #b5b5b5;
     margin-bottom: 0.8rem;
     padding: 0.5rem;
-    width: 78%;
+    width: 88%;
     border-bottom: 1px solid #b5b5b5;
   }
   
@@ -47,8 +46,8 @@
   }
   @media screen and (min-width: 1024px) {
     .form-body-profil {
-        width: 16.5rem;
+        max-width: 225px;
+        width: 100%;
         
     }
-
 }
