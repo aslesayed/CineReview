@@ -41,6 +41,7 @@
   flex-direction: column;
   width: 100%;
   align-items: center; /* Ajusté pour centrer */
+  padding: 0px;
 }
 
 .info-item {
