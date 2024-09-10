@@ -54,6 +54,10 @@ function InfoProfil() {
     }
   };
 
+  const goToContentManager = () => {
+    navigate("/contentmanager");
+  };
+
   return (
     <div>
       <div className="container-form-profil">
@@ -90,6 +94,11 @@ function InfoProfil() {
           <button className="round-button" onClick={logout}>
             Logout
           </button>
+          {user?.admin === 1 && (
+            <button className="round-button" onClick={goToContentManager}>
+              Admin
+            </button>
+          )}
         </div>
       </div>
 

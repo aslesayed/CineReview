@@ -69,7 +69,7 @@ function EditProfil({ onClose }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-body-profil">
+    <form onSubmit={handleSubmit} className="form-body-profil" style={{ padding: '0' }}>
       <div className="profil-picture-container">
         <img
           id="profil-picture"
