@@ -1,5 +1,4 @@
 .form-body-profil {
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,4 +48,3 @@
     width: 16.42rem;
   }
 }
-
