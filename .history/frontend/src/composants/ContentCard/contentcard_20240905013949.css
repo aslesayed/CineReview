@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap");
+
+.content-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+}
+
+.content-card {
+  position: relative;
+  width: 158px;
+  height: 285px;
+  overflow: hidden;
+
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-image {
+  width: 134px;
+  height: 200px;
+  margin-top: 18px;
+}
+
+.content-details {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.genre-rating-container {
+  display: flex;
+  margin-left: 42px;
+  width: 100%;
+  align-items: baseline;
+}
+
+.genre {
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  border: 1px solid #ffffff;
+  padding: 3px 10px;
+  border-radius: 26px;
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating {
+  display: flex;
+  gap: 12%;
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+}
+
+.add-to-favorites {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 105px;
+}
+.added-to-favorites {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 112px;
+}
+
+
+
+@media screen and (min-width: 1024px) {
+  .content-card {
+    width: 180px;
+    height: 282px;
+  }
+
+  .content-image {
+    width: 134px;
+    height: 200px;
+    margin-top: 18px;
+  }
+}
