@@ -1,3 +1,5 @@
+
+
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
@@ -87,7 +89,11 @@ function Inscription() {
           }
         );
         if (response.status === 201) {
-          navigate("/connection"); // Immediately navigate without delay
+          console.log("Account created, showing toast");
+          toast.success("Account created successfully.");
+          setTimeout(() => {
+            navigate("/connection");
+          }, 2000);
         } else {
           toast.error("Failed to create account.");
         }

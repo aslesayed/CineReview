@@ -87,7 +87,11 @@ function Inscription() {
           }
         );
         if (response.status === 201) {
-          navigate("/connection"); // Immediately navigate without delay
+          console.log("Account created, showing toast");
+          toast.success("Account created successfully.");
+          setTimeout(() => {
+            navigate("/connection");
+          }, 2000);
         } else {
           toast.error("Failed to create account.");
         }
